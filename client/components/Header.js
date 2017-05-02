@@ -363,7 +363,13 @@ class Header extends Component {
 			    </li>
 			    <li key="support">
 				<a onClick={()=>this.showModal("support")}>
-				    Support
+				    Contact Support
+				</a>
+			    </li>
+			    <li key="subreddit">
+				<a href="https://www.reddit.com/r/nulis"
+				   target="_blank">
+				    Subreddit
 				</a>
 			    </li>
 			</ul>
