@@ -64,13 +64,16 @@ class Header extends Component {
 	console.log(JSON.stringify(file.name));
 	/* Parse file, turn it into json tree */
 	const tree = JSON.parse(contents);
-	tree.name = file.name.slice(0, -4);
+	if (!tree.name) {
+	    tree.name = file.name.slice(0, -4);
+	}
 	/* console.log(`Successfully loaded ${JSON.stringify(tree)}!`);*/
 	/* Replace my state with it */
 	this.props.setTree(tree);
 	browserHistory.push('/file/'+tree.name);
     }    
-    saveFile() {
+    saveFile(event) {
+	event.preventDefault();
 	/* Take my tree from state and stringify it */
 	var tree = this.props.tree;
 	tree.modified = false;
@@ -162,23 +165,29 @@ class Header extends Component {
 			<h1>Download Nulis Desktop</h1>
 		    </Modal.Header>
 		    <div className="panel-modal">
-			<p>Desktop version of Nulis is now available for Linux!<br/>
-			   Coming soon to other platforms as well! </p>
-			<div className="panel-download hidden">
-			    <h2>Mac</h2>
-			    <a className="btn btn-primary right">Download</a>
-			    <div className="clearfix"></div>			    
-			</div>
+			<p>Desktop version of Nulis is now available for
+			    all the platforms! <br/>
+			    Awesome, right? =) </p>
 			<div className="panel-download">
-			    <h2>Linux</h2>
 			    <a href="/downloads/Nulis-linux-x64.zip"
 			       className="btn btn-primary right">Download</a>
+			    <h2 className="fullheight">Linux</h2>
 			    <div className="clearfix"></div>			    
 			</div>
 
-			<div className="panel-download hidden">
+			<div className="panel-download">
+			    <a href="/downloads/Nulis-darwin-x64.zip"
+			       className="btn btn-primary right">Download</a>
+			    <h2>Mac</h2>
+			    <p> (Untested. Message me to report bugs.) </p>
+			    <div className="clearfix"></div>			    
+			</div>
+
+			<div className="panel-download">
+			    <a href="/downloads/Nulis-win32-x64.zip"
+			       className="btn btn-primary right">Download</a>
 			    <h2>Windows</h2>
-			    <a className="btn btn-primary right">Download</a>
+			    <p> (Untested. Message me to report bugs.) </p>    
 			    <div className="clearfix"></div>
 			</div>
 

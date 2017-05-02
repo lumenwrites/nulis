@@ -146,9 +146,11 @@ textarea {
     h2 {
 	font-size: 32px;
 	color: #333333;
+    }
+    .fullheight {
 	float: left;
 	line-height: 60px;
-    }
+    }    
     .btn {
 	background: #f66303;
 	color: white;
@@ -361,6 +363,9 @@ textarea {
 
     img {
 	width: 100%;
+    }
+    a {
+	color: #008cba;
     }
 }
 

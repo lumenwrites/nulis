@@ -1,16 +1,16 @@
 {
-    "name": "about",
+    "name": "About",
     "slug": "",
     "cards": {
         "id": "root",
         "children": [
             {
                 "id": "0",
-                "content": "![](/media/header.png)\n\n# Welcome to Nulis\nThis is a tree editor for writers. It is useful for organizing information about your stories and outlining your plots.\n\nFeel free to edit this page to experiment with it, don't worry, it's a template, you can always reopen it from `Tree>About`.\nRead on to the second column to learn more.\n",
+                "content": "![](/media/header.png)\n\n# Welcome to Nulis\nThis is a tree editor for writers. It makes the process of outlining your stories, articles, or books easy, fun, and convenient.\n\nFeel free to edit this page to experiment with it, don't worry, it's a template, you can always reopen it from the `About` menu.\n\nPress `Ctrl+Enter` to try editing cards, click `+` buttons to create new ones, drag cards by the handle(to the left of the card) to rearrange them.\n\nRead on to the second column to learn more.",
                 "children": [
                     {
                         "creator_id": "0",
-                        "content": "# How it works\nNulis allows you to edit your story on multiple different levels. Describe the general idea of your story in the first column, then create child cards to the right of it to add more details. \n\nCards in the second column can describe your story outline, and cards in the third column can describe your scenes.\n\nYou can create more cards or rearrange them to conveniently edit your story.",
+                        "content": "# How it works\nNulis is useful for organizing large amounts of information, beraking down your large writing goals into smaller steps, and working on your writing in manageable chunks. The purpose of Nulis is to help you to write in the state of flow.\n\nNulis allows you to edit your story on multiple different levels. Describe the general idea of your story or an article in the first column, then create child cards to the right of it to add more details. \n\nFor example cards in the second column can describe your story outline, and cards in the third column can describe your scenes.",
                         "position": "right",
                         "children": [
                             {
@@ -23,7 +23,7 @@
                             },
                             {
                                 "id": "6-pd13zce",
-                                "content": "# Upcoming features\n- Search.\n- Tags.\n- Conveniently splitting and merging cards.\n- Collapse branches/cards (like in mindmaps).\n- Focus on a subtree.\n- Export markdown.\n- Bug fixes and better stability.\n- Desktop version.\n- Possibly plugins and themes.\n- And much more =)",
+                                "content": "# Upcoming features\n- Search.\n- Tags.\n- Conveniently splitting and merging cards.\n- Collapse branches/cards (like in mindmaps).\n- Focus on a subtree.\n- Cut/Paste trees and cards.\n- Export markdown.\n- Possibly plugins and themes.\n- And much more =)",
                                 "children": []
                             }
                         ],
@@ -37,7 +37,7 @@
                         "children": [
                             {
                                 "id": "7-xv43z7n",
-                                "content": "# Snowflake method\nNulis can be extremely convenient for writing stories using a \"Snowflake Method\":\nhttp://www.advancedfictionwriting.com/articles/snowflake-method/\n",
+                                "content": "# Snowflake method\nNulis can be extremely convenient for writing stories using a [\"Snowflake Method\"](http://www.advancedfictionwriting.com/articles/snowflake-method/).\n",
                                 "children": []
                             }
                         ],
@@ -46,7 +46,7 @@
                     },
                     {
                         "id": "6-sz03zdq",
-                        "content": "# Pricing\nThis is a very early beta version of this app, so using it is completely free. When it will become more mature, the premium version will cost $5 per month, or you can buy a destkop version for one time payment of $50.\n\nIt will also be possible to get Nulis for free, by inviting other users, or by providing useful feedback.",
+                        "content": "# Pricing\nThis is a very early beta version of this app, so using it is completely free. When it will become more mature, the premium version will cost $5 per month, or $50 per year, or $150 one time payment.\n\nIt will also be possible to get Nulis for free, by inviting other users, or by providing useful feedback.",
                         "children": []
                     }
                 ],
@@ -59,5 +59,5 @@
     "updatedAt": null,
     "createdAt": null,
     "editing": false,
-    "debugging": "{\"id\":\"6-pd13zce\",\"content\":\"# Upcoming features\\n- Search.\\n- Tags.\\n- Conveniently splitting and merging cards.\\n- Collapse branches/cards (like in mindmaps).\\n- Focus on a subtree.\\n- Export markdown.\\n- Bug fixes and better stability.\\n- Desktop version.\\n- Possibly plugins and themes.\\n- And much more =)\",\"children\":[]}"
+    "debugging": "{\"id\":\"6-pd13zce\",\"content\":\"# Upcoming features\\n- Search.\\n- Tags.\\n- Conveniently splitting and merging cards.\\n- Collapse branches/cards (like in mindmaps).\\n- Focus on a subtree.\\n- Cut/Paste trees and cards.\\n- Export markdown.\\n- Possibly plugins and themes.\\n- And much more =)\",\"children\":[]}"
 }
