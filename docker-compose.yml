@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  db:
+    image: mongo:latest
+    command: "--smallfiles --logpath=/dev/null"    
+    volumes:
+        - ./data/db:/data/db
+  web:
+    build: .
+    working_dir: /home/nulis
+    command: npm run serve
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - "3090:3000"
+    volumes:
+      - ./client:/home/nulis/client
+      - ./server:/home/nulis/server      
+    environment:
+      MONGO_URL: mongodb://db:27017/nulis

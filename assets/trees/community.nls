@@ -1,0 +1,25 @@
+{
+    "name": "community",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "Community episode breakdown.",
+                "children": [
+                    {
+                        "id": "2-ln030gq",
+                        "content": "",
+                        "children": []
+                    }
+                ],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "activeCard": "2-ln030gq",
+    "modified": false,
+    "editing": true,
+    "slug": "community",
+    "debugging": "\"right\""
+}

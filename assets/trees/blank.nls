@@ -1,0 +1,18 @@
+{
+    "slug": "",
+    "name": "",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "",
+                "children": [],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "activeCard": "0",
+    "modified": false,
+    "editing": true
+}

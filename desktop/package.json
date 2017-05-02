@@ -1,0 +1,23 @@
+{
+    "name": "electron",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"start": "electron .",
+	"build": "webpack -p --progress && electron-packager . Nulis --electron-version=1.6.2 --platform=linux --arch=x64 --out='./builds/' --overwrite && chmod +x ./builds/Nulis-linux-x64/Nulis",
+	"buildlinux": "webpack -p --progress && electron-zip-packager . Nulis --electron-version=1.6.2 --platform=linux --arch=x64 --out='./packages/' --overwrite",	
+	"buildall": "webpack -p --progress && electron-zip-packager . Nulis --electron-version=1.6.2 --all --arch=x64  --out='./packages/' --overwrite"      
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+	"devtron": "^1.4.0",
+	"electron-prebuilt": "^1.4.13",
+	"electron-reload": "^1.1.0"
+    },
+    "dependencies": {
+	"electron-debug": "^1.1.0"
+    }
+}

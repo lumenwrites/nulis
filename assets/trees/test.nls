@@ -1,0 +1,35 @@
+{
+    "name": "blank",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "A 1",
+                "children": [
+                    {
+                        "id": "3-5d530hy",
+                        "content": "B 1\n(A 1 child)",
+                        "children": []
+                    },
+                    {
+                        "id": "4-a363029",
+                        "content": "B 2\n(A 1 child)",
+                        "children": []
+                    }
+                ],
+                "parent_id": "root"
+            },
+            {
+                "id": "2-he430ub",
+                "content": "A 2",
+                "children": []
+            }
+        ]
+    },
+    "activeCard": "0",
+    "modified": false,
+    "editing": true,
+    "_id": "blank",
+    "debugging": "\"left\""
+}

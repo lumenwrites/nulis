@@ -1,0 +1,68 @@
+{
+    "name": "about",
+    "slug": "",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "![](/media/header.png)\n\n# Welcome to Nulis\nThis is a tree editor for writers. It is useful for organizing information about your stories and outlining your plots.\n\nFeel free to edit this page to experiment with it, don't worry, it's a template, you can always reopen it from `Tree>About`.\nRead on to the second column to learn more.\n",
+                "children": [
+                    {
+                        "creator_id": "0",
+                        "content": "# How it works\nNulis allows you to edit your story on multiple different levels. Describe the general idea of your story in the first column, then create child cards to the right of it to add more details. \n\nCards in the second column can describe your story outline, and cards in the third column can describe your scenes.\n\nYou can create more cards or rearrange them to conveniently edit your story.",
+                        "position": "right",
+                        "children": [
+                            {
+                                "creator_id": 2,
+                                "content": "# Hotkeys\nTo edit the tree, you need to remember two sets of hotkeys:  \n\n- Movement:  \n  `H` - left  \n\t`J` - down   \n\t`K` - up   \n\t`L` - left  \n- Actions:  \n  `Ctrl` - select   \n\t`Ctrl+Shift` - create   \n\t`Alt` - move  \n\t\n\t\nSo for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\n\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\n\n`Alt+F` toggles the fullscreen mode in the editor.\n\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.",
+                                "position": "after",
+                                "children": [],
+                                "id": 3,
+                                "parent_id": 2
+                            },
+                            {
+                                "id": "8-gr73vo3",
+                                "content": "# Saving\nYou can Save/Open trees with `Ctrl+S` and `Ctrl+O`.\n\nFor now you can save the trees into files, in the future I'll implement user accounts and you'll be able to save trees in the cloud.\n\nBecause of the browser limitations, there's no convenient \"save as\" dialogue, but you can go to `chrome://settings/`, click \"Show Advanced Settings\", and check \"Ask where to save each file before downloading\". That will allow you to conveniently choose the location of files you're saving.\n\nAlso, the tree is being autosaved into the browser every time you switch between cards.",
+                                "children": []
+                            },
+                            {
+                                "id": "6-pd13zce",
+                                "content": "# Upcoming features\n- User accounts and tree management \n  so you could save trees online.\n- Search.\n- Tags.\n- Conveniently splitting and merging cards.\n- Collapse branches/cards (like in mindmaps).\n- Focus on a subtree.\n- Export markdown.\n- Bug fixes and better stability.\n- Desktop version.\n- Possibly plugins and themes.\n- And much more =)",
+                                "children": []
+                            }
+                        ],
+                        "id": 2,
+                        "parent_id": "0"
+                    },
+                    {
+                        "creator_id": 3,
+                        "content": "# Examples\nOpen the `Tree` menu and select one of the templates at the bottom to browse some examples of what can be done in Nulis.",
+                        "position": "after",
+                        "children": [
+                            {
+                                "id": "7-xv43z7n",
+                                "content": "# Snowflake method\nNulis can be extremely convenient for writing stories using a \"Snowflake Method\":\nhttp://www.advancedfictionwriting.com/articles/snowflake-method/\n",
+                                "children": []
+                            }
+                        ],
+                        "id": 4,
+                        "parent_id": "0"
+                    },
+                    {
+                        "id": "6-sz03zdq",
+                        "content": "# Pricing\nThis is a very early beta version of this app, so using it is completely free. When it will become more mature, the premium version will cost $5 per month, or you can buy a destkop version for one time payment of $50.\n\nIt will also be possible to get Nulis for free, by inviting other users, or by providing useful feedback.",
+                        "children": []
+                    }
+                ],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": null,
+    "createdAt": null,
+    "editing": false,
+    "debugging": "{\"creator_id\":2,\"content\":\"# Hotkeys\\nTo edit the tree, you need to remember two sets of hotkeys:  \\n\\n- Movement:  \\n  `H` - left  \\n\\t`J` - down   \\n\\t`K` - up   \\n\\t`L` - left  \\n- Actions:  \\n  `Ctrl` - select   \\n\\t`Ctrl+Shift` - create   \\n\\t`Alt` - move  \\n\\t\\n\\t\\nSo for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\\n\\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\\n\\n`Alt+F` toggles the fullscreen mode in the editor.\\n\\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.\",\"position\":\"after\",\"children\":[],\"id\":3,\"parent_id\":2}"
+}

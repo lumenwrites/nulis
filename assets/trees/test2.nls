@@ -1,0 +1,23 @@
+{
+    "_id": "5908699436c6a00692a9d9d5",
+    "slug": "12-k00aa9c",
+    "name": "test2",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "12",
+                "children": [],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "author": "raymestalez3@gmail.com",
+    "__v": 0,
+    "editing": true,
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": null,
+    "createdAt": null
+}
