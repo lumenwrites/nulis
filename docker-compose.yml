@@ -18,6 +18,7 @@ services:
       - "3090:3000"
     volumes:
       - ./client:/home/nulis/client
-      - ./server:/home/nulis/server      
+      - ./server:/home/nulis/server
+      - ./desktop:/home/nulis/desktop            
     environment:
       MONGO_URL: mongodb://db:27017/nulis
