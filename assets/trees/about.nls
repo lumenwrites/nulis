@@ -15,7 +15,7 @@
                         "children": [
                             {
                                 "creator_id": 2,
-                                "content": "# Hotkeys\nTo edit the tree, you need to remember two sets of keys:  \n\n- Directions:  \n  `H` - left  \n\t`J` - down   \n\t`K` - up   \n\t`L` - right  \n- Actions:  \n  `Ctrl` - select   \n\t`Ctrl+Shift` - create   \n\t`Alt` - move  \n\t\nYou can combine them to form shortcuts. So for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\n\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\n\n`Alt+F` toggles the fullscreen mode in the editor.\n\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.",
+                                "content": "# Hotkeys\nTo edit the tree, you need to remember two sets of keys:  \n\n- Directions(can also just use arrows):  \n  `H` - left  \n\t`J` - down   \n\t`K` - up   \n\t`L` - right  \n- Actions:  \n  `Ctrl` - select   \n\t`Ctrl+Shift` - create   \n\t`Alt` - move  \n\t\nYou can combine them to form shortcuts. So for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\n\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\n\n`Alt+F` toggles the fullscreen mode in the editor.\n\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.",
                                 "position": "after",
                                 "children": [],
                                 "id": 3,
@@ -55,9 +55,9 @@
         ]
     },
     "modified": false,
-    "activeCard": "0",
+    "activeCard": 2,
     "updatedAt": null,
     "createdAt": null,
     "editing": false,
-    "debugging": "{\"creator_id\":2,\"content\":\"# Hotkeys\\nTo edit the tree, you need to remember two sets of keys:  \\n\\n- Directions:  \\n  `H` - left  \\n\\t`J` - down   \\n\\t`K` - up   \\n\\t`L` - right  \\n- Actions:  \\n  `Ctrl` - select   \\n\\t`Ctrl+Shift` - create   \\n\\t`Alt` - move  \\n\\t\\nYou can combine them to form shortcuts. So for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\\n\\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\\n\\n`Alt+F` toggles the fullscreen mode in the editor.\\n\\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.\",\"position\":\"after\",\"children\":[],\"id\":3,\"parent_id\":2}"
+    "debugging": "\"left\""
 }
