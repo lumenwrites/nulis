@@ -36,49 +36,49 @@ class Hotkeys extends Component {
 	});
 
 	/* Select */
-	Mousetrap(document.body).bind(['ctrl+j', "tab"], ()=>{
+	Mousetrap(document.body).bind(['ctrl+j', 'down', "tab"], ()=>{
 	    this.props.selectCard('down');
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+k', "shift+tab"], ()=>{
+	Mousetrap(document.body).bind(['ctrl+k','up', "shift+tab"], ()=>{
 	    this.props.selectCard('up');
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+h'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+h', 'left'], ()=>{
 	    this.props.selectCard('left');
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+l'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+l', 'right'], ()=>{
 	    this.props.selectCard('right');
 	    return false;
 	});
 	/* Create */
-	Mousetrap(document.body).bind(['ctrl+shift+l'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+shift+l', 'ctrl+shift+right'], ()=>{
 	    this.props.createCard("right");
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+shift+k'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+shift+k', 'ctrl+shift+up'], ()=>{
 	    this.props.createCard("before");
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+shift+j'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+shift+j', 'ctrl+shift+down'], ()=>{
 	    this.props.createCard("after");
 	    return false;
 	});
 	/* Move */
-	Mousetrap(document.body).bind(['alt+j'], ()=>{
+	Mousetrap(document.body).bind(['alt+j', 'alt+down'], ()=>{
 	    this.props.moveCard("down");
 	    return false;
 	});
-	Mousetrap(document.body).bind(['alt+k'], ()=>{
+	Mousetrap(document.body).bind(['alt+k', 'alt+up'], ()=>{
 	    this.props.moveCard("up");
 	    return false;
 	});
-	Mousetrap(document.body).bind(['alt+l'], ()=>{
+	Mousetrap(document.body).bind(['alt+l', 'alt+right'], ()=>{
 	    this.props.moveCard("right");
 	    return false;
 	});
-	Mousetrap(document.body).bind(['alt+h'], ()=>{
+	Mousetrap(document.body).bind(['alt+h', 'alt+left'], ()=>{
 	    this.props.moveCard("left");
 	    return false;
 	});		
