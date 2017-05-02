@@ -52,7 +52,7 @@ export function join({email, password}) {
 	    "email": email,
 	    "password": password
 	}
-	console.log("Credentials " + JSON.stringify(credentials));
+	/* console.log("Credentials " + JSON.stringify(credentials));*/
 	axios.post(`${API_URL}/auth/join`, credentials)
 	     .then(response => {
 		 console.log("Returned ");
@@ -62,7 +62,6 @@ export function join({email, password}) {
 		 // - save JWT token
 		 console.log("Returned token " + response.data.token);
 		 localStorage.setItem('token', response.data.token);
-		 localStorage.setItem('email', response.data.email);		 
 		 // - redirect to /feature
 		 browserHistory.push('/');
 	     })
@@ -81,7 +80,6 @@ export function logout() {
     console.log(">>>> src/actions/auth.js:");
     console.log("Signing out user, deleting token from localStorage.");		    
     localStorage.removeItem('token');
-    localStorage.removeItem('email');    
     console.log("Redirecting to /, and dispatching action UNAUTH_USER.");
     browserHistory.push('/');    
     return {
