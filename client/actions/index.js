@@ -6,7 +6,7 @@ import { DEFAULT_TREE } from '../data';
 import { getCard } from '../utils/cards';
 import { handleScroll } from '../utils/handleScroll';
 
-var API_URL = 'http://nulis.io/api/v1';
+var API_URL = 'https://nulis.io/api/v1';
 if (process.env.NODE_ENV === 'development') {
     API_URL = 'http://localhost:3000/api/v1';
 }
