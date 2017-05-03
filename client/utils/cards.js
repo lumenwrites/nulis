@@ -460,14 +460,13 @@ export function cardsToColumns (cards) {
 
 
 export function search(card, query) {
+    if (!query) { return true; }
+
     var content = card.content;
     /* content = removeMd(content);*/
     content = content.toLowerCase();
-    if (query && !content.includes(query)) {
-	/* If there's a query and a card doesn't contain it - didn't found. */
-	return false;
-    } else {
-	return true;
-    }
+    query = query.toLowerCase();    
+
+    return content.includes(query);
 }
 
