@@ -8,6 +8,7 @@ import { browserHistory } from 'react-router';
 import Mousetrap from 'mousetrap';
 import { Modal } from 'react-bootstrap';
 import removeMd from 'remove-markdown';
+import MetaTags from 'react-meta-tags';
 
 import saveAs from 'save-as'
 import FileReaderInput from 'react-file-reader-input';
@@ -114,12 +115,39 @@ class Header extends Component {
 	var hr = [ <hr key="hr-templates"/> ]
 	return templates;
     }
+
+    renderMetaInfo () {
+	const tree = this.props.tree;
+
+	var title = "Nulis";
+	if (tree.name) {
+	    title = tree.name + " - Nulis";
+	}
+	const description = removeMd(tree.cards.children[0].content).substring(0,120);	
+
+	return (
+            <MetaTags>
+		{/* Main */}
+		<title>{title}</title>
+		<meta name="description"
+		      content={description} />
+		{/* Facebook */}
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />	
+		{/* Twitter */}
+		<meta property="twitter:description" content={description}/>
+            </MetaTags>
+	);
+    }
+    
+    
     render() {
 	const atMyTrees = this.props.location.pathname == "/trees";
 	const isDesktop = window.__ELECTRON_ENV__ == 'desktop';
 	
 	return (
 	    <div className="header">
+		{this.renderMetaInfo()}
 		<Modal className="upgrade"
 		       show={this.state.showModal =="upgrade" ? true : false}
 		       onHide={()=>this.showModal(false)}>
@@ -218,9 +246,7 @@ class Header extends Component {
 		    <div className="left">
 			<Link to={"/"}>
 			    <div className="logo">
-				N<br/>
-				<span className="beta">beta</span>
-
+				N
 			    </div>
 			</Link>
 			<span className="dropdown">

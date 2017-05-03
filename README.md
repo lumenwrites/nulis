@@ -18,6 +18,8 @@ Tree editor for writers.
 - [ ] Autosave trees by name, so it wouldn't replace them.
 - [ ] Probably shouldn't display droptargets on parents/children at all.
 - [ ] Nulis prefs. Max columns, what else?
+- [ ] Autosave into db
+- [ ] Horizontal scrolling.
 
 ### Bugs
 
