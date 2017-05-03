@@ -50,7 +50,7 @@ class Login extends Component {
 		</fieldset>
 		<fieldset className="form-group">
 		    <label>Email:</label>
-		    <input ref="email" className="form-control" />
+		    <input ref="email" autoFocus className="form-control" />
 		</fieldset>
 		<fieldset className="form-group">
 		    <label>Password:</label>

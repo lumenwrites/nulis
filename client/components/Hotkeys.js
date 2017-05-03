@@ -36,12 +36,12 @@ class Hotkeys extends Component {
 	});
 
 	/* Select */
-	Mousetrap(document.body).bind(['ctrl+j', 'down', "tab"], ()=>{
+	Mousetrap(document.body).bind(['ctrl+j', 'down'], ()=>{
 	    this.props.selectCard('down');
 	    return false;
 	});
 
-	Mousetrap(document.body).bind(['ctrl+k','up', "shift+tab"], ()=>{
+	Mousetrap(document.body).bind(['ctrl+k','up'], ()=>{
 	    this.props.selectCard('up');
 	    return false;
 	});
