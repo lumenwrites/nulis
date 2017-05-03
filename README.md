@@ -16,7 +16,7 @@ Tree editor for writers.
 - [ ] Up/Down between card groups
 - [ ] Gear in the card to change color/setting.
 - [ ] Autosave trees by name, so it wouldn't replace them.
-- [ ] probably shouldn't display droptargets on parents/children at all.
+- [ ] Probably shouldn't display droptargets on parents/children at all.
 - [ ] Nulis prefs. Max columns, what else?
 
 ### Bugs

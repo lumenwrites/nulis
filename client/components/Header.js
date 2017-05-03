@@ -210,43 +210,45 @@ class Header extends Component {
 	                          showModal={this.showModal}/>
 		</Modal>
 
-				
-		<div className="left main-menu">
-		    <Link to={"/"}>
-			<div className="logo">
-			    N<br/>
-			    <span className="beta">beta</span>
+		
 
-			</div>
-		    </Link>
-		    <span className="dropdown">
-			<a className="btn">Tree</a>
-			<ul className="dropdown-menu">
-			    <li key="new">
-				<a onClick={()=> {
-					this.props.loadTemplate('Blank');
-					browserHistory.push('/new');
-				    }}>
-				    <i className="fa fa-plus"></i>
-				    New Tree
-				</a>
-			    </li>
-	                    {this.props.authenticated?
-			     <li key="trees" className={(atMyTrees ? "hidden":"")}>
-				<Link to="/trees">
-				    <i className="fa fa-th"></i>
-				    My Trees
-				</Link>
-			    </li>
-			   : null}
+		<div className="main-menu">
+		    <div className="left">
+			<Link to={"/"}>
+			    <div className="logo">
+				N<br/>
+				<span className="beta">beta</span>
+
+			    </div>
+			</Link>
+			<span className="dropdown">
+			    <a className="btn">Tree</a>
+			    <ul className="dropdown-menu">
+				<li key="new">
+				    <a onClick={()=> {
+					    this.props.loadTemplate('Blank');
+					    browserHistory.push('/new');
+					}}>
+					<i className="fa fa-plus"></i>
+					New Tree
+				    </a>
+				</li>
+				{this.props.authenticated?
+				 <li key="trees" className={(atMyTrees ? "hidden":"")}>
+				     <Link to="/trees">
+					 <i className="fa fa-th"></i>
+					 My Trees
+				     </Link>
+				 </li>
+				 : null}
 	                    {this.props.authenticated?	
 			     <li key="saveonline" className={(atMyTrees ? "hidden":"")}>
-				<a onClick={()=> this.props.saveTree(this.props.tree) }>
-				    <i className="fa fa-cloud"></i>
-				    Save Online
-				</a> 
-			    </li>
-			 :
+				 <a onClick={()=> this.props.saveTree(this.props.tree) }>
+				     <i className="fa fa-cloud"></i>
+				     Save Online
+				 </a> 
+			     </li>
+			     :
 			     <li key="saveonline">
 				 <a onClick={()=>
 				     this.showModal("join")}>
@@ -255,144 +257,147 @@ class Header extends Component {
 				 </a> 
 			     </li>	 
 			    }
-			    <li key="open">
-				<a  onClick={()=>this.refs.openFile.click()}>
-				    <i className="fa fa-folder-open-o"></i>
-				    Open File...
-				</a> 
-			    </li>
-			    <li key="save" className={(atMyTrees ? "hidden":"")}>
-				<a onClick={this.saveFile}>
-				    <i className="fa fa-hdd-o"></i>
-				    Save File...
-				</a> 
-			    </li>			    
-			    <hr/>
-			    <li key="templates" className="disabled">
-				<a  onClick={this.saveFile}>
-				    Templates:
-				</a> 
-			    </li>			    
-			    { this.renderTemplatesList() }
-			</ul>
-		    </span>		    
-		    <span className={"dropdown " + (atMyTrees ? "hidden":"")}>
-			<a className="btn">Edit</a>
-			<ul className="dropdown-menu">
-			    <li key="undo">
-				<a  onClick={()=>this.props.undo()}>
-				    Undo
-				    <span className="label label-default right">
-					Ctrl+Z
-				    </span>
-				</a> 
-			    </li>
-			    <li key="redo">
-				<a  onClick={()=>this.props.redo()}>
-				    Redo
-				    <span className="label label-default right">
-					Ctrl+Shift+Z
-				    </span>
-				</a> 
-			    </li>
-			    <li key="delete">
-				<a onClick={()=>this.props.deleteCard()}>
-				    Delete Card
-				    <span className="label label-default right">
-					Ctrl+Bksp
-				    </span>
-				</a>
-			    </li>
-			    <hr/>
-			    <li key="settings">
-				<a onClick={()=>this.showModal("tree")}>
-				    Tree Settings
-				</a> 
-			    </li>
-			    <hr/>
-			    <li className="hidden" key="prefs">
-				<a  onClick={this.saveFile}>
-				    Nulis Preferences
-				</a> 
-			    </li>
-			</ul>
-		    </span>
-		    <span className="dropdown">
-			<a className="btn">Profile</a>
-			 {this.props.authenticated?
-			  <ul className="dropdown-menu">
-			      <li className="hidden" key="accountprefs">
-				  <a onClick={this.props.logout}>
-				      Preferences
-				  </a>
-			      </li>
-			      <li  className="hidden" key="upgrade">
-				  <a  onClick={()=>this.showModal("upgrade")}>
-				      Upgrade Account
-				  </a>
-			      </li>
-			      <hr/>
-			      <li key="logout">
-				  <a onClick={this.props.logout}>
-				      Logout
-				  </a>
-			      </li>
-			  </ul>
-			  :
-			  <ul className="dropdown-menu">
-			      <li key="login">
-				  <a onClick={()=>this.showModal("login")}>
-				      Login
-				  </a>
-			      </li>
-			      <li key="join">
-				  <a onClick={()=>this.showModal("join")}>
-				      Create Account
-				  </a>
-			      </li>
-			  </ul>
-			 }
-		    </span>
+		<li key="open">
+		    <a  onClick={()=>this.refs.openFile.click()}>
+			<i className="fa fa-folder-open-o"></i>
+			Open File...
+		    </a> 
+		</li>
+		<li key="save" className={(atMyTrees ? "hidden":"")}>
+		    <a onClick={this.saveFile}>
+			<i className="fa fa-hdd-o"></i>
+			Save File...
+		    </a> 
+		</li>			    
+		<hr/>
+		<li key="templates" className="disabled">
+		    <a  onClick={this.saveFile}>
+			Templates:
+		    </a> 
+		</li>			    
+		{ this.renderTemplatesList() }
+			    </ul>
+			</span>		    
+			<span className={"dropdown " + (atMyTrees ? "hidden":"")}>
+			    <a className="btn">Edit</a>
+			    <ul className="dropdown-menu">
+				<li key="undo">
+				    <a  onClick={()=>this.props.undo()}>
+					Undo
+					<span className="label label-default right">
+					    Ctrl+Z
+					</span>
+				    </a> 
+				</li>
+				<li key="redo">
+				    <a  onClick={()=>this.props.redo()}>
+					Redo
+					<span className="label label-default right">
+					    Ctrl+Shift+Z
+					</span>
+				    </a> 
+				</li>
+				<li key="delete">
+				    <a onClick={()=>this.props.deleteCard()}>
+					Delete Card
+					<span className="label label-default right">
+					    Ctrl+Bksp
+					</span>
+				    </a>
+				</li>
+				<hr/>
+				<li key="settings">
+				    <a onClick={()=>this.showModal("tree")}>
+					Tree Settings
+				    </a> 
+				</li>
+				<hr/>
+				<li className="hidden" key="prefs">
+				    <a  onClick={this.saveFile}>
+					Nulis Preferences
+				    </a> 
+				</li>
+			    </ul>
+			</span>
+			<span className="dropdown">
+			    <a className="btn">Profile</a>
+			    {this.props.authenticated?
+			     <ul className="dropdown-menu">
+				 <li className="hidden" key="accountprefs">
+				     <a onClick={this.props.logout}>
+					 Preferences
+				     </a>
+				 </li>
+				 <li  className="hidden" key="upgrade">
+				     <a  onClick={()=>this.showModal("upgrade")}>
+					 Upgrade Account
+				     </a>
+				 </li>
+				 <hr/>
+				 <li key="logout">
+				     <a onClick={this.props.logout}>
+					 Logout
+				     </a>
+				 </li>
+			     </ul>
+			     :
+			     <ul className="dropdown-menu">
+				 <li key="login">
+				     <a onClick={()=>this.showModal("login")}>
+					 Login
+				     </a>
+				 </li>
+				 <li key="join">
+				     <a onClick={()=>this.showModal("join")}>
+					 Create Account
+				     </a>
+				 </li>
+			     </ul>
+			    }
+			</span>
 
-		    <span className="dropdown">
-			<a className="btn">About</a>
-			<ul className="dropdown-menu">
-			    <li key="about">
-				<a onClick={()=>{
-					this.props.loadTemplate("About");
-					browserHistory.push('/about');
-				    }}>
-				    About Nulis</a>
-			    </li>
-			    <li key="desktop" className={" "+(isDesktop ? "hidden":"")}>
-				<a onClick={()=>this.showModal("desktop")}>
-				    Nulis Desktop</a>
-			    </li>
-			    <li key="support">
-				<a onClick={()=>this.showModal("support")}>
-				    Contact Support
-				</a>
-			    </li>
-			    <li key="subreddit">
-				<a href="https://www.reddit.com/r/nulis"
-				   target="_blank">
-				    Subreddit
-				</a>
-			    </li>
-			</ul>
-		    </span>
-		    
+			<span className="dropdown">
+			    <a className="btn">About</a>
+			    <ul className="dropdown-menu">
+				<li key="about">
+				    <a onClick={()=>{
+					    this.props.loadTemplate("About");
+					    browserHistory.push('/about');
+					}}>
+					About Nulis</a>
+				</li>
+				<li key="desktop" className={" "+(isDesktop ? "hidden":"")}>
+				    <a onClick={()=>this.showModal("desktop")}>
+					Nulis Desktop</a>
+				</li>
+				<li key="support">
+				    <a onClick={()=>this.showModal("support")}>
+					Contact Support
+				    </a>
+				</li>
+				<li key="subreddit">
+				    <a href="https://www.reddit.com/r/nulis"
+				       target="_blank">
+					Subreddit
+				    </a>
+				</li>
+			    </ul>
+			</span>
+			{/* End left */}
+		    </div>
+
+		    {atMyTrees ?
+		     <h1>My Trees</h1>
+		     :
+		     <a onClick={()=>this.showModal("tree")}>
+			 <h1>{this.props.tree.name}</h1>
+		     </a>
+		    }
+			{/* End main menu */}		
 		</div>
 
-		{atMyTrees ?
-		 <h1>My Trees</h1>
-		 :
-		 <a onClick={()=>this.showModal("tree")}>
-		 <h1>{this.props.tree.name}</h1>
-		 </a>
-		 }
 
-		<div className={"right " + (atMyTrees ? "hidden":"")}>
+		<div className={"stats " + (atMyTrees ? "hidden":"")}>
 		    <span className="autosaved hidden">
 			{this.props.tree.modified ? "" : "Autosaved" }
 		    </span>
@@ -401,20 +406,12 @@ class Header extends Component {
 			<div className="progress-inner">
 			</div>
 		    </div>		    
-		    
+
 		    <input className="search" ref="search"
 			   value={this.props.tree.query}
 			   onChange={(event)=>
 			       this.props.updateSearchQuery(event.target.value)}/>
 		    <i className="fa fa-search"/>
-		    {/*  
-		    <a className={"btn right " +
-			   (this.props.tree.editing ? "gray" : "") }
-		       onClick={()=>
-			   this.props.setEditing(!this.props.tree.editing)}>
-			<i className="fa fa-eye"></i>
-		    </a>
-		      */}
 		</div>
 		<div className="right debugging-header">
 		    {/* <a className="btn" onClick={this.createTree}>New</a> */}
@@ -435,8 +432,8 @@ class Header extends Component {
 		    <pre className="small hidden">
 			{JSON.stringify(this.props.tree, null, 4)}
 		    </pre>
-
 		</div>
+
 
 		<div className="clearfix"></div>
 		{/* Magical invisible component that opens and parses files

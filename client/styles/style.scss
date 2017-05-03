@@ -87,6 +87,7 @@ textarea {
     }
 }
 
+/* Modals */
 .modal-header {
     padding: 20px 40px;
 }
@@ -238,6 +239,19 @@ textarea {
 	font-size: 18px;
     }
 
+    .main-menu {
+	@media (max-width: 600px) {	
+	    width:100%;
+	}
+    }
+    .stats {
+	float:right;
+	@media  (max-width: 600px) {
+	    margin-top: 10px;
+	    width:100%;
+	}
+	
+    }
     .autosaved {
 	color: #b3b3b3;
 	margin-top:6px;
@@ -249,6 +263,9 @@ textarea {
 	padding: 4px;
 	margin-bottom: -2px;
 	border: 1px solid rgba(202, 204, 210, 0.7);
+	@media  (max-width: 600px) {	
+	    width:100%;
+	}
     }
     .fa-search, .fa-filter {
 	color:#caccd2;
@@ -704,7 +721,7 @@ textarea::-webkit-scrollbar {
 
     .form-group {
         margin-bottom: 15px;
-	width: 400px;
+	max-width: 400px;
 	margin: auto;
     }
     .btn {

@@ -23,7 +23,6 @@ import handleScroll, { scrollTo  } from '../utils/handleScroll';
 class Main extends Component {
     constructor(props){
 	super(props);
-
 	this.renderCards = this.renderCards.bind(this);
     }
 
@@ -106,16 +105,24 @@ class Main extends Component {
     /* ==== Rendering columns ==== */
     /* Loop over columns, add them to the app. */
     renderColumns(columns) {
+	var maxColumns = 5;
+
 	var columnWidthDivide = columns.length-1;
 	var columnCentered = false;
-	if (columns.length > 5) {
+	if (columns.length > maxColumns) {
 	    /* Maximum number of columns is 5 */
-	    columnWidthDivide = 5;
+	    columnWidthDivide = maxColumns;
 	}
 	if (columns.length <= 3) {
 	    /* If there's less than 3 columns - keep the width to 1/3rd. */
 	    columnWidthDivide = 3;
 	    columnCentered = true;
+	}
+
+	var mobile = window.innerWidth < 600;
+	/* On mobile */
+	if (mobile) {
+	    columnWidthDivide = 1;
 	}
 
 	return columns.map((column, i) => {
@@ -171,6 +178,10 @@ class Main extends Component {
 	    width = `calc(100vw + ${(columns.length-6)*20}vw)`;
 	}
 
+	/* On mobile */
+	if (window.innerWidth < 600) {
+	    width = `${(columns.length-1)*100}vw`;
+	}	
 	return (
 	    <div className="columns-wrapper">
 		    <div className="columns"
