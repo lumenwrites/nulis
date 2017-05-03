@@ -22,11 +22,15 @@ Tree editor for writers.
 ### Bugs
 
 ### Devops
+- Log errors.
+- Autorestart server when it crashes.
+- CI. proper deployment/testing and crap.
 
 ### Desktop
 
 
 # Future/Maybe
+- copy tree
 - Open Recent menu.
 - Cut/Paste cards/subtrees.
 - Collapse branches/cards.

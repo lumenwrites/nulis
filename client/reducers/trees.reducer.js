@@ -8,7 +8,17 @@ export default function(state=INITIAL_STATE, action) {
     switch(action.type) {
 	case 'LIST_TREES':
 	    var trees = action.payload;
+
 	    return trees;	    
+	case 'DELETE_TREE':
+	    var deletedTree = action.payload;
+	    var trees = state;
+	    console.log(JSON.stringify(trees));
+	    trees = trees.filter((t)=>{
+		return t.slug != deletedTree.slug;
+	    });
+	    return [...trees];	    
+
 	default:
 	    return state;
     }

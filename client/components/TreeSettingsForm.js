@@ -24,7 +24,8 @@ class TreeSettingsForm extends Component {
 		<form onSubmit={this.onSubmit.bind(this)}>
 		    <label>Name:</label>
 		    <input ref="name" className="form-control"
-			   placeholder={this.props.tree.name}
+			   defaultValue={this.props.tree.name}
+			   placeholder="Tree name..."
 		    ></input>
 		    {/*  
 			<input ref="treename" className="form-control"

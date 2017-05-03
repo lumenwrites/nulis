@@ -144,6 +144,10 @@ export function deleteTree(tree) {
 	     .then(response => {
 		 console.log("Deleted tree");
 		 browserHistory.push('/trees');
+		 dispatch({
+		     type: 'DELETE_TREE',
+		     payload: tree
+		 });
 	     });
     }
 }
