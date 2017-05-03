@@ -56,3 +56,4 @@ Tree editor for writers.
 - Gingko upload image
 - Published tree settings.
 - Tags
+- Mobile for reals - bar with actions.

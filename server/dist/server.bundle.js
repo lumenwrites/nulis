@@ -499,6 +499,9 @@ function deleteTree(req, res) {
     var slug = req.params.slug;
     console.log("Deleting tree.");
     Tree.findOne({ slug: slug }).exec(function (err, tree) {
+        if (t.author != req.user.email) {
+            res.status(401).end();
+        }
         if (err) {
             res.status(500).send(err);
         }
@@ -561,11 +564,13 @@ function createTree(req, res, next) {
 function updateTree(req, res, next) {
     /* Getting the tree from the POST request sent to me by react */
     var tree = req.body;
-    /* Just in case, set tree's author to email passed to me by the passport */
-    tree.author = req.user.email;
+
     var options = { upsert: true, new: true, setDefaultsOnInsert: true };
     /* Find a tree by id and create it if it doesn't exist */
     Tree.findOne({ slug: tree.slug }, function (err, t) {
+        if (t.author != req.user.email) {
+            res.status(401).end();
+        }
         if (err) {
             return next(err);
         }

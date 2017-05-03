@@ -62,6 +62,7 @@ export function join({email, password}) {
 		 // - save JWT token
 		 console.log("Returned token " + response.data.token);
 		 localStorage.setItem('token', response.data.token);
+		 localStorage.setItem('email', response.data.email);		 
 		 // - redirect to /feature
 		 browserHistory.push('/');
 	     })

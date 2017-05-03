@@ -80,7 +80,9 @@ class Header extends Component {
 	browserHistory.push('/file/'+tree.name);
     }    
     saveFile(event) {
-	event.preventDefault();
+	if (event) {
+	    event.preventDefault();
+	}
 	/* Take my tree from state and stringify it */
 	var tree = this.props.tree;
 	tree.modified = false;
@@ -241,22 +243,19 @@ class Header extends Component {
 				     </Link>
 				 </li>
 				 : null}
-	                    {this.props.authenticated?	
-			     <li key="saveonline" className={(atMyTrees ? "hidden":"")}>
-				 <a onClick={()=> this.props.saveTree(this.props.tree) }>
-				     <i className="fa fa-cloud"></i>
-				     Save Online
-				 </a> 
-			     </li>
-			     :
-			     <li key="saveonline">
-				 <a onClick={()=>
-				     this.showModal("join")}>
-				     <i className="fa fa-cloud"></i>
-				     Save Online
-				 </a> 
-			     </li>	 
-			    }
+	        {/* Show "Save Online" if I'm the author, or it's a template. */}
+		{this.props.authenticated 
+	         && (localStorage.getItem('email')==this.props.tree.author
+		     || !this.props.tree.author) ?
+		<li key="saveonline"
+		    className={(atMyTrees ? "hidden":"")}>
+		    <a onClick={()=>
+					 this.props.saveTree(this.props.tree) }>
+			<i className="fa fa-cloud"></i>
+			Save Online
+		    </a> 
+		</li>
+		 : null}
 		<li key="open">
 		    <a  onClick={()=>this.refs.openFile.click()}>
 			<i className="fa fa-folder-open-o"></i>
@@ -306,11 +305,16 @@ class Header extends Component {
 				    </a>
 				</li>
 				<hr/>
+				{/* Show tree settings only to the author */}
+				{this.props.authenticated
+				 && localStorage.getItem('email')==
+				     this.props.tree.author ?
 				<li key="settings">
 				    <a onClick={()=>this.showModal("tree")}>
 					Tree Settings
 				    </a> 
 				</li>
+				: null}
 				<hr/>
 				<li className="hidden" key="prefs">
 				    <a  onClick={this.saveFile}>
@@ -389,9 +393,15 @@ class Header extends Component {
 		    {atMyTrees ?
 		     <h1>My Trees</h1>
 		     :
+		     /* Show tree settings only if I'm the author. */
+		     this.props.authenticated
+		     && localStorage.getItem('email')== this.props.tree.author ?
 		     <a onClick={()=>this.showModal("tree")}>
 			 <h1>{this.props.tree.name}</h1>
 		     </a>
+		     :
+		     /* Otherwise just show the name. */
+		     <h1>{this.props.tree.name}</h1>
 		    }
 			{/* End main menu */}		
 		</div>
