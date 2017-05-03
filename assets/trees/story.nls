@@ -1,6 +1,7 @@
 {
-    "name": "story",
-    "slug": "",
+    "_id": "590a31dd348beb446dd319d4",
+    "name": "Story",
+    "slug": "story-ka9ia0u",
     "cards": {
         "id": "root",
         "children": [
@@ -89,9 +90,10 @@
         ]
     },
     "__v": 0,
+    "author": "raymestalez3@gmail.com",
+    "editing": true,
     "modified": false,
     "activeCard": "0",
     "updatedAt": null,
-    "createdAt": null,
-    "editing": true
+    "createdAt": null
 }
