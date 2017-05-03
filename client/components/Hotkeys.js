@@ -40,6 +40,7 @@ class Hotkeys extends Component {
 	    this.props.selectCard('down');
 	    return false;
 	});
+
 	Mousetrap(document.body).bind(['ctrl+k','up', "shift+tab"], ()=>{
 	    this.props.selectCard('up');
 	    return false;
@@ -112,6 +113,10 @@ class Hotkeys extends Component {
 	    this.props.redo();
 	    return false;
 	});
+	
+	/* Unbind */
+	/* Mousetrap.unbind('tab.form-control');*/
+	
 
     }
 

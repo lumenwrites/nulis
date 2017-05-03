@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
@@ -51,6 +52,12 @@ class Header extends Component {
 	});
 	Mousetrap(document.body).bind(['alt+n'], ()=>{
 	    this.props.loadTemplate('Blank');
+	    return false;
+	});
+	/* Focus on search */
+	Mousetrap(document.body).bind(['ctrl+/'], ()=>{
+	    console.log("focus!");
+	    ReactDOM.findDOMNode(this.refs.search).focus();	    
 	    return false;
 	});
 	
@@ -395,8 +402,11 @@ class Header extends Component {
 			</div>
 		    </div>		    
 		    
-		    <input className="search hidden"/>
-		    <i className="fa fa-search hidden"/>
+		    <input className="search" ref="search"
+			   value={this.props.tree.query}
+			   onChange={(event)=>
+			       this.props.updateSearchQuery(event.target.value)}/>
+		    <i className="fa fa-search"/>
 		    {/*  
 		    <a className={"btn right " +
 			   (this.props.tree.editing ? "gray" : "") }

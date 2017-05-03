@@ -7,11 +7,9 @@ Tree editor for writers.
 # Main
 
 ### Big
-- [ ] Search
-- [ ] Tags
+- [ ] Export markdown
 - [ ] Card splitting and merging
 - [ ] Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.
-- [ ] Export markdown
 - [ ] Payments.
 
 ### Small
@@ -57,3 +55,4 @@ Tree editor for writers.
 - Draw.io revision history
 - Gingko upload image
 - Published tree settings.
+- Tags

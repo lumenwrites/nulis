@@ -16,7 +16,7 @@ class Editor extends Component {
 
     componentDidMount(){
 	if (this.props.card.id == this.props.tree.activeCard
-	    && this.editor) {
+	    && this.editor && document.activeElement.className != "search") {
 	    /* If the card is active - focus on it */
 	    this.editor.simplemde.codemirror.focus();
 	    /* And move the cursor to the end. */
@@ -39,7 +39,8 @@ class Editor extends Component {
 	       cursor.ch = 300;
 	       this.editor.simplemde.codemirror.setCursor(cursor);
 	     */
-	    if (this.props.card.id == this.props.tree.activeCard) {
+	    if (this.props.card.id == this.props.tree.activeCard
+		&& document.activeElement.className != "search") {
 		/* Every time I switch a card - focus the editor */
 		this.editor.simplemde.codemirror.focus();
 	    }
@@ -56,9 +57,23 @@ class Editor extends Component {
     renderMarkdown(markdown) {
 	/* Turn markdown into html */
 	const md = new Remarkable({html: true});
-	markdown = md.render(markdown);
+
+	/* Highlight text */
+	function highlight(str, find) {
+	    var regexp = new RegExp(find, 'ig');
+	    return str.replace(regexp, (match)=>{
+		return `<span class="highlighted">${match}</span>`;
+	    });
+	}
+	var query = this.props.tree.query;
+	if (query) {
+	    markdown = highlight(markdown, query);
+	}
+	
+	var html = md.render(markdown);
+
 	return (
-	    <div dangerouslySetInnerHTML={{__html:markdown}} />
+	    <div dangerouslySetInnerHTML={{__html:html}} />
 	);
     }
 

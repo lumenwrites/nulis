@@ -110,7 +110,9 @@ export default function(state=INITIAL_STATE, action) {
 	    /* Replace state with loaded tree */
 	    /* return tree;*/
 	    return { ...tree, modified: false };	    
-	    
+
+	case 'UPDATE_SEARCH_QUERY':
+	    return { ...tree, query: action.payload };	    	    
 	default:
 	    return state;
     }

@@ -1,23 +1,64 @@
 {
-    "_id": "5908699436c6a00692a9d9d5",
-    "slug": "12-k00aa9c",
-    "name": "test2",
+    "name": "About",
+    "slug": "",
     "cards": {
         "id": "root",
         "children": [
             {
                 "id": "0",
-                "content": "12",
-                "children": [],
+                "content": "![](/media/header.png)\n\n# Welcome to Nulis\nThis is a tree editor for writers. It makes the process of outlining your stories, articles, or books easy, fun, and convenient.\n\nFeel free to edit this page to experiment with it, don't worry, it's a template, you can always reopen it from the `About` menu.\n\nPress `Ctrl+Enter` to try editing cards, click `+` buttons to create new ones, drag cards by the handle(to the left of the card) to rearrange them.\n\nRead on to the second column to learn more.\n\n#three #two",
+                "children": [
+                    {
+                        "creator_id": "0",
+                        "content": "# How it works\nNulis is useful for organizing large amounts of information, beraking down your large writing goals into smaller steps, and working on your writing in manageable chunks. The purpose of Nulis is to help you to write in the state of flow.\n\nNulis allows you to edit your story on multiple different levels. Describe the general idea of your story or an article in the first column, then create child cards to the right of it to add more details. \n\nFor example cards in the second column can describe your story outline, and cards in the third column can describe your scenes.\n\n#one #two",
+                        "position": "right",
+                        "children": [
+                            {
+                                "creator_id": 2,
+                                "content": "# Hotkeys\nTo edit the tree, you need to remember two sets of keys:  \n\n- Directions(can also just use arrows):  \n  `H` - left  \n\t`J` - down   \n\t`K` - up   \n\t`L` - right  \n- Actions:  \n  `Ctrl` - select   \n\t`Ctrl+Shift` - create   \n\t`Alt` - move  \n\t\nYou can combine them to form shortcuts. So for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\n\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\n\n`Alt+F` toggles the fullscreen mode in the editor.\n\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.",
+                                "position": "after",
+                                "children": [],
+                                "id": 3,
+                                "parent_id": 2
+                            },
+                            {
+                                "id": "6-pd13zce",
+                                "content": "# Upcoming features\n- Search.\n- Tags.\n- Conveniently splitting and merging cards.\n- Collapse branches/cards (like in mindmaps).\n- Focus on a subtree.\n- Cut/Paste trees and cards.\n- Export markdown.\n- Possibly plugins and themes.\n- And much more =)",
+                                "children": []
+                            }
+                        ],
+                        "id": 2,
+                        "parent_id": "0"
+                    },
+                    {
+                        "creator_id": 3,
+                        "content": "# Examples\nOpen the `Tree` menu and select one of the templates at the bottom to browse some examples of what can be done in Nulis.\n\n#one",
+                        "position": "after",
+                        "children": [
+                            {
+                                "id": "7-xv43z7n",
+                                "content": "# Snowflake method\nNulis can be extremely convenient for writing stories using a [\"Snowflake Method\"](http://www.advancedfictionwriting.com/articles/snowflake-method/).\n",
+                                "children": []
+                            }
+                        ],
+                        "id": 4,
+                        "parent_id": "0"
+                    },
+                    {
+                        "id": "6-sz03zdq",
+                        "content": "# Pricing\nThis is a very early beta version of this app, so using it is completely free. When it will become more mature, the premium version will cost $5 per month, or $50 per year, or $150 one time payment.\n\nIt will also be possible to get Nulis for free, by inviting other users, or by providing useful feedback.",
+                        "children": []
+                    }
+                ],
                 "parent_id": "root"
             }
         ]
     },
-    "author": "raymestalez3@gmail.com",
-    "__v": 0,
-    "editing": true,
     "modified": false,
-    "activeCard": "0",
+    "activeCard": 4,
     "updatedAt": null,
-    "createdAt": null
+    "createdAt": null,
+    "editing": false,
+    "debugging": "\"one\"",
+    "query": "one"
 }

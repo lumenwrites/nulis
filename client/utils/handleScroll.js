@@ -9,6 +9,9 @@ export function scrollTo(card, column) {
     /* var card = ReactDOM.findDOMNode(card);*/
     var col = document.getElementById('column-'+column)
 
+    /* For search. If couldn't find a card - dont scroll. */
+    if (!(card && col)){ return null;}
+
     var rect = card.getBoundingClientRect();
     var colRect = col.getBoundingClientRect();
 

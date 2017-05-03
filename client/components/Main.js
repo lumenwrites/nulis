@@ -16,7 +16,7 @@ import Hotkeys from './Hotkeys';
 import * as actions from '../actions/index';
 
 /* Utils */
-import { getCard, cardsToColumns, getAllParents, getAllChildren } from '../utils/cards';
+import { getCard, cardsToColumns, getAllParents, getAllChildren, search } from '../utils/cards';
 import handleScroll, { scrollTo  } from '../utils/handleScroll';
 
 @DragDropContext(HTML5Backend)
@@ -24,6 +24,7 @@ class Main extends Component {
     constructor(props){
 	super(props);
 
+	this.renderCards = this.renderCards.bind(this);
     }
 
     componentDidMount(){
@@ -142,14 +143,19 @@ class Main extends Component {
     /* For each card group,
        loop over cards, append them to the card group.  */
     renderCards(cards){
+    	var query = this.props.tree.query;
+
 	return cards.map((card, i) => {
+	    if (!search(card, query)) {
+		return <div key={card.id}></div>;
+	    }
+
 	    return (
 		<Card key={card.id}
 		      card={card}
 		      i={i}
-		      activateCard={this.activateCard}
-		/>
-	   );
+		      activateCard={this.activateCard} />
+	    );
 	});
     }
     

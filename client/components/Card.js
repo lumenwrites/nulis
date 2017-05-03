@@ -106,7 +106,6 @@ class Card extends Component {
 	    </div>
 	);
 
-
 	return (
 	    <div key={card.id}
 	    id={"card-"+card.id}

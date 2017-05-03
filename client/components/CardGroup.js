@@ -4,11 +4,29 @@ import * as actions from '../actions/index';
 
 import { getAllParents, getAllChildren } from '../utils/cards';
 
+import { search } from '../utils/cards';
+
 class CardGroup extends Component {
     render() {
 	var activeCard = this.props.tree.activeCard;	    
 	var isActive = false;
 
+	/* Hide group if all cards filtered out by search */
+
+	var query = this.props.tree.query;
+	if (query) {
+	    var hasCards = false;
+	    this.props.group.cards.map((c)=>{
+		if (search(c, query)) {
+		    hasCards = true;
+		}
+	    });
+	    if (!hasCards) {
+		return <div></div>;
+	    }
+	}
+
+	
 	/* If parent active */
 	if (this.props.group.parent.id == activeCard) {
 	    isActive = true;

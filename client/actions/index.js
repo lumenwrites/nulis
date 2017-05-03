@@ -13,6 +13,16 @@ if (process.env.NODE_ENV === 'development') {
 console.log("API_URL " + API_URL);
 export {API_URL};
 
+
+export function updateSearchQuery(value) {
+    /* unused */
+    return {
+	type: 'UPDATE_SEARCH_QUERY',
+	payload: value
+    }
+}
+
+
 export function updateTreeName(value) {
     /* unused */
     return {
@@ -20,7 +30,6 @@ export function updateTreeName(value) {
 	payload: value
     }
 }
-
 
 export function createCard(direction, card) {
     return {

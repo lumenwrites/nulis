@@ -250,7 +250,7 @@ textarea {
 	margin-bottom: -2px;
 	border: 1px solid rgba(202, 204, 210, 0.7);
     }
-    .fa-search {
+    .fa-search, .fa-filter {
 	color:#caccd2;
 	margin-left: -20px;
     }
@@ -366,6 +366,10 @@ textarea {
     }
     a {
 	color: #008cba;
+    }
+    .highlighted {
+	background: #f66303;
+	color: white;
     }
 }
 
