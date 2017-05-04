@@ -19,5 +19,9 @@ router.route('/auth-test').get(requireAuth, function(req, res){
 router.route('/auth/join').post(profilesControllers.signup);
 router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
+router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
+router.route('/purchase').post(requireAuth, profilesControllers.payment);
+
+
 export default router;
 

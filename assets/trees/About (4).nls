@@ -55,9 +55,9 @@
         ]
     },
     "modified": false,
-    "activeCard": "0",
+    "activeCard": "6-sz03zdq",
     "updatedAt": null,
     "createdAt": null,
-    "editing": false,
+    "editing": true,
     "debugging": "{\"id\":\"6-sz03zdq\",\"content\":\"# Pricing\\nThis is a very early version of this app, so all the early adopters can purchase the unlimited lifetime account for only $20. If you would like to support this project - upgrading your account is the best way to do that.\\n\\nWhen Nulis becomes more mature, the premium version will cost $5 per month, or $50 per year, or $150 one time payment.\",\"children\":[]}"
 }

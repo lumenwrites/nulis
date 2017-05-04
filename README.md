@@ -9,19 +9,16 @@ Tree editor for writers.
 ### Big
 - [ ] Export markdown
 - [ ] Card splitting and merging
-- [ ] Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.
 - [ ] Payments.
 
 ### Small
-- [ ] Up/Down between card groups
-- [ ] Gear in the card to change color/setting.
-- [ ] Autosave trees by name, so it wouldn't replace them.
+- [ ] Autosave into db when card changes..
 - [ ] Probably shouldn't display droptargets on parents/children at all.
-- [ ] Nulis prefs. Max columns, what else?
-- [ ] Autosave into db
 - [ ] Horizontal scrolling.
 
+
 ### Bugs
+- Will need to refactor header.
 
 ### Devops
 - Log errors.
@@ -32,6 +29,10 @@ Tree editor for writers.
 
 
 # Future/Maybe
+- Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.
+- Up/Down between card groups
+- Gear in the card to change color/setting.
+- Nulis prefs. Max columns, what else?
 - copy tree
 - Open Recent menu.
 - Cut/Paste cards/subtrees.

@@ -1,8 +1,10 @@
 
-export default function(state={authenticated:false, email:""}, action) {
+export default function(state={user:{},authenticated:false, email:""}, action) {
     switch(action.type) {
 	case 'AUTH_USER':
 	    return {...state, error: '', authenticated: true };
+	case 'UPDATE_USER':
+	    return {...state, user: action.payload };
 	case 'UNAUTH_USER':
 	    return {...state, error: '', authenticated: false };
 	case 'AUTH_ERROR':

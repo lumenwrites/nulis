@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Mousetrap from 'mousetrap';
 import Remarkable from 'remarkable';
 
 /* Actions */
@@ -24,7 +25,17 @@ class Editor extends Component {
 	    /* console.log(this.editor.simplemde.codemirror);*/
 	}
 	/* this.editor.simplemde.codemirror.options.extraKeys['Ctrl-Z'] = false;	*/
-	
+
+	/* Split */
+	Mousetrap(document.body).bind(['ctrl+alt+j'], ()=>{
+	    var cursor = this.editor.simplemde.codemirror.getCursor();
+	    var doc = this.editor.simplemde.codemirror.getDoc();
+	    var beforeCursor = doc.getRange({line:0,ch:0}, cursor);
+	    var afterCursor = doc.getRange(cursor, {line:1000,ch:1000});	    
+	    console.log("after " + afterCursor);
+	    return false;
+	});
+
     }
 
     componentDidUpdate(prevProps){

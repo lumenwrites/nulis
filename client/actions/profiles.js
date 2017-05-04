@@ -111,3 +111,39 @@ export function fetchMessage() {
 	     });
     }
 }
+
+
+
+export function fetchUser() {
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}
+    };
+    
+    return function(dispatch) {
+	axios.get(`${API_URL}/auth/profile`, config)
+	     .then(response => {
+		 console.log(`Returned User! ` + JSON.stringify(response.data));
+		 dispatch({
+		     type: 'UPDATE_USER',
+		     payload: response.data
+		 });
+	     });
+    }
+}
+
+export function payment(token) {
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}
+    };
+    
+    return function(dispatch) {
+	axios.post(`${API_URL}/purchase`, token, config)
+	     .then(response => {
+		 console.log(`Payment processed!`);
+		 dispatch({
+		     type: 'UPDATE_USER',
+		     payload: response.data.user
+		 });
+	     });
+    }
+}

@@ -93,7 +93,8 @@ module.exports = require("passport");
 
 module.exports = {
     secret: 'secret-key',
-    domain: 'https://nulis.io'
+    domain: 'https://nulis.io',
+    stripeSecret: 'sk_test_zpfqWohjcsr8b1whSZBXvMvn'
 };
 
 /***/ }),
@@ -105,7 +106,7 @@ module.exports = {
 
 /* Mongoose is ORM, like models.py in django */
 var mongoose = __webpack_require__(1);
-var validator = __webpack_require__(26);
+var validator = __webpack_require__(27);
 var Schema = mongoose.Schema;
 var bcrypt = __webpack_require__(19);
 
@@ -127,7 +128,12 @@ var userSchema = new Schema({
 						type: String,
 						required: true,
 						minlength: 4
+			},
+			plan: {
+						type: String,
+						default: "Free"
 			}
+
 });
 
 // On save hook, encrypt password
@@ -299,6 +305,9 @@ router.route('/auth-test').get(requireAuth, function (req, res) {
 router.route('/auth/join').post(profilesControllers.signup);
 router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
+router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
+router.route('/purchase').post(requireAuth, profilesControllers.payment);
+
 exports.default = router;
 
 /***/ }),
@@ -377,6 +386,13 @@ module.exports = require("util");
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+				value: true
+});
+exports.signin = signin;
+exports.signup = signup;
+exports.getUser = getUser;
+exports.payment = payment;
 var jwt = __webpack_require__(22);
 var config = __webpack_require__(3);
 var User = __webpack_require__(4);
@@ -390,14 +406,14 @@ function tokenForUser(user) {
 }
 
 //sign in view
-exports.signin = function (req, res, next) {
+function signin(req, res, next) {
 				// email/pass is already checked, here I just give user a token.
 				// passport has already atteched user object to the request
 				console.log("Email/Pass is correct, returning token ");
 				res.send({ token: tokenForUser(req.user), email: req.body.email });
-};
+}
 
-exports.signup = function (req, res, next) {
+function signup(req, res, next) {
 				var email = req.body.email;
 				var password = req.body.password;
 
@@ -439,7 +455,66 @@ exports.signup = function (req, res, next) {
 												res.send({ token: tokenForUser(user), email: email });
 								});
 				});
-};
+}
+
+function getUser(req, res) {
+				var email = req.user.email;
+
+				// Search for a user with a given email
+				User.findOne({ email: email }, function (err, user) {
+								if (err) {
+												return next(err);
+								}
+								res.send({
+												email: user.email,
+												plan: user.plan
+								});
+				});
+}
+
+function payment(req, res) {
+				console.log("Payment!");
+
+				// Set your secret key: remember to change this to your live secret key in production
+				// See your keys here: https://dashboard.stripe.com/account/apikeys
+				var stripe = __webpack_require__(26)(config.stripeSecret);
+
+				// Token is created using Stripe.js or Checkout!
+				// Get the payment token submitted by the form:
+				var token = req.body.id;
+				console.log(JSON.stringify(req.body));
+
+				// Charge the user's card:
+				var charge = stripe.charges.create({
+								amount: 2000,
+								currency: "usd",
+								description: "Example charge",
+								source: token
+				}, function (err, charge) {
+								if (err) {
+												return res.status(500).send({ error: 'Stripe Payment Error' });
+								};
+								/* Once payment has been processed - update the user.*/
+								User.findOne({ email: req.user.email }, function (err, user) {
+												if (err) {
+																return next(err);
+												}
+												/* Set user's plan to unlimited */
+												user.plan = "Lifetime Unlimited";
+												user.save(function (err, user) {
+																if (err) {
+																				return next(err);
+																}
+																console.log("Purchase completed! User's plan is unlimited.");
+																/* Return updated user */
+																res.send({
+																				message: "Purchase completed! User's plan is unlimited.",
+																				user: user
+																});
+												});
+								});
+				});
+}
 
 /***/ }),
 /* 16 */
@@ -810,6 +885,12 @@ module.exports = require("slug");
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports) {
+
+module.exports = require("stripe");
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("validator");

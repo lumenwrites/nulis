@@ -107,12 +107,9 @@ textarea {
 }
 .panel-pricing {
     padding: 20px;
-    /* background: #f4f4f6; */
-    /* background: #ced2da; */
     /* background: #E3E5E9; */
     margin-bottom: 10px;
 
-    width: calc(50% - 40px);
     /* float: left; */
     margin: 20px;
     border: 1px solid #E3E5E9;
@@ -121,7 +118,10 @@ textarea {
     h2 {
 	font-size: 32px;
 	color: #333333;
-    }
+	float: left;
+	line-height: 60px;
+    }    
+    
     .btn {
 	background: #f66303;
 	color: white;
@@ -137,8 +137,6 @@ textarea {
 
 .panel-download {
     padding: 20px;
-    /* background: #f4f4f6; */
-    /* background: #ced2da; */
     /* background: #E3E5E9; */
     margin-bottom: 10px;
 

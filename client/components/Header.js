@@ -14,12 +14,13 @@ import FileReaderInput from 'react-file-reader-input';
 
 /* Actions */
 import * as actions from '../actions/index';
-import {logout} from '../actions/profiles';
+import {fetchUser, logout} from '../actions/profiles';
 import { ActionCreators } from 'redux-undo';
 var { undo, redo } = ActionCreators;
 
 /* My Components */
 import LoginForm from './LoginForm';
+import PaymentsModal from './PaymentsModal';
 import TreeSettingsForm from './TreeSettingsForm';
 
 class Header extends Component {
@@ -41,6 +42,8 @@ class Header extends Component {
     }
     
     componentDidMount(){
+	this.props.fetchUser();
+	console.log("plan " + this.props.user.plan);
 	/* Shortcuts */
 	Mousetrap(document.body).bind(['ctrl+s'], ()=>{
 	    this.saveFile();
@@ -61,6 +64,18 @@ class Header extends Component {
 	    return false;
 	});
 	
+    }
+
+    componentDidUpdate(pastProps, pastState) {
+	if (this.props.tree.cards != pastProps.tree.cards
+	    && this.props.location.pathname != "/trees"
+	    && this.props.user.plan != "Lifetime Unlimited") {
+	    /* If I have created a card - check if I've reached the limit,
+	       and prompt to upgrade if I did.*/
+	    if(localStorage.getItem('cardsCreated') > 10){
+		this.showModal("upgrade");
+	    }
+	}
     }
 
     /* Opening and saving files */
@@ -115,38 +130,31 @@ class Header extends Component {
 	return templates;
     }
 
-    
+    renderCardLimit() {
+	var cardsCreated = 0;
+	if (localStorage.getItem('cardsCreated')) {
+	    cardsCreated = localStorage.getItem('cardsCreated');
+	}
+
+	if (this.props.user.plan != "Lifetime Unlimited") {
+	    return (
+		<div className="progress-outer"
+		     onClick={()=>this.showModal("upgrade")}>
+		    <div className="progress-inner"
+			 style={{"width" : `${cardsCreated}%`}}>
+		    </div>
+		</div>		    
+	    )
+	}
+    }
     render() {
 	const atMyTrees = this.props.location.pathname == "/trees";
 	const isDesktop = window.__ELECTRON_ENV__ == 'desktop';
 	
 	return (
 	    <div className="header">
-		<Modal className="upgrade"
-		       show={this.state.showModal =="upgrade" ? true : false}
-		       onHide={()=>this.showModal(false)}>
-		    <Modal.Header closeButton>
-			<h1>Upgrade Account</h1>
-		    </Modal.Header>
-		    <div className="panel-modal">
-			<p>You are currently using a free version of Nulis, <br/>
-			    which allows you to create up to 100 cards per month.</p>
-			<p>You can upgrade to the unlimited account for only $20.</p>
-			<p>Your support will help me to cover the server costs, <br/>
-			    and spend more time making Nulis more awesome.</p>
-			<div className="panel-pricing">
-			    <h2>$20</h2>
-			    <a className="btn">Upgrade</a>
-			</div>
-			{/*  
-			<div className="panel-pricing">
-			    <h2>Free</h2>
-			    <a className="btn">Share</a>
-			</div>
-			  */}
-			<div className="clearfix"></div>
-		    </div>
-		</Modal>
+		<PaymentsModal show={this.state.showModal =="upgrade" ? true : false}
+			       onHide={()=>this.showModal(false)} />
 
 		<Modal className="tree"
 		       show={this.state.showModal =="tree" ? true : false}
@@ -332,11 +340,12 @@ class Header extends Component {
 					 Preferences
 				     </a>
 				 </li>
-				 <li  className="hidden" key="upgrade">
+				 {this.props.user.plan != "Lifetime Unlimited" ?
+				 <li  className="" key="upgrade">
 				     <a  onClick={()=>this.showModal("upgrade")}>
 					 Upgrade Account
 				     </a>
-				 </li>
+				 </li> : null}
 				 <hr/>
 				 <li key="logout">
 				     <a onClick={this.props.logout}>
@@ -408,15 +417,11 @@ class Header extends Component {
 
 
 		<div className={"stats " + (atMyTrees ? "hidden":"")}>
-		    <span className="autosaved hidden">
-			{this.props.tree.modified ? "" : "Autosaved" }
+		    <span className="autosaved">
+			{this.props.tree.modified ? "" : "Saved" }
 		    </span>
-		    <div className="progress-outer hidden"
-			 onClick={()=>this.showModal("upgrade")}>
-			<div className="progress-inner">
-			</div>
-		    </div>		    
 
+		    {this.renderCardLimit()}
 		    <input className="search" ref="search"
 			   value={this.props.tree.query}
 			   onChange={(event)=>
@@ -462,9 +467,12 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
-    return { tree: state.tree.present,
-	     allTrees: state.allTrees,
-	     authenticated: state.profiles.authenticated};
+    return {
+	tree: state.tree.present,
+	allTrees: state.allTrees,
+	authenticated: state.profiles.authenticated,
+	user: state.profiles.user
+    };
 }
 
-export default connect(mapStateToProps, {...actions, logout, undo, redo})(Header);
+export default connect(mapStateToProps, {...actions, fetchUser, logout, undo, redo})(Header);

@@ -22,7 +22,12 @@ const userSchema = new Schema({
 	type: String,
 	required: true,
 	minlength: 4
+    },
+    plan: {
+	type: String,
+	default: "Free"
     }
+    
 });
 
 

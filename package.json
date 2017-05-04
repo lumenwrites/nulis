@@ -74,6 +74,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
     "react-simplemde-editor": "^3.6.4",
+    "react-stripe-checkout": "^2.2.5",
     "react-textarea-autosize": "^4.0.5",
     "redux": "^3.0.4",
     "redux-form": "^6.6.3",
@@ -83,6 +84,7 @@
     "remove-markdown": "^0.1.0",
     "save-as": "^0.1.8",
     "slug": "^0.9.1",
+    "stripe": "^4.18.0",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "validator": "^7.0.0"

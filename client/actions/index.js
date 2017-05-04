@@ -32,6 +32,12 @@ export function updateTreeName(value) {
 }
 
 export function createCard(direction, card) {
+    var cardsCreated = 0;
+    if(localStorage.getItem('cardsCreated')){
+	cardsCreated = parseInt(localStorage.getItem('cardsCreated'));
+    }
+    localStorage.setItem('cardsCreated', (cardsCreated+1));
+    
     return {
 	type: 'CREATE_CARD',
 	payload: {direction,card}
