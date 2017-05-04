@@ -142,29 +142,38 @@ userSchema.pre('save', function (next) {
 			// get access to the user model. User is an instance of the user model.
 			var user = this;
 
-			// generate a salt, then run callback.
-			bcrypt.genSalt(10, function (err, salt) {
-						if (err) {
-									return next(err);
-						}
-						// hash(encrypt) the password using the salt
-						bcrypt.hash(user.password, salt, null, function (err, hash) {
+			if (this.isNew) {
+						console.log("Created new user, hashing password");
+						// generate a salt, then run callback.
+						bcrypt.genSalt(10, function (err, salt) {
 									if (err) {
 												return next(err);
 									}
-									// override plain text password with encrypted password
-									user.password = hash;
-									next();
+									// hash(encrypt) the password using the salt
+									bcrypt.hash(user.password, salt, null, function (err, hash) {
+												if (err) {
+															return next(err);
+												}
+												// override plain text password with encrypted password
+												user.password = hash;
+												next();
+									});
 						});
-			});
+			} else {
+						console.log("Updated user.");
+						next();
+			}
 });
 
 // This is like defining a function on the model in models.py
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
+			/* console.log("pwd1 " + candidatePassword);*/
+			/* console.log("pwd2 " + this.password);					*/
 			bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
 						if (err) {
 									return callback(err);
 						}
+						console.log("isMatch " + isMatch);
 						callback(null, isMatch);
 			});
 };
@@ -221,6 +230,7 @@ var localLogin = new LocalStrategy(localOptions, function (email, password, done
 												// if passwords don't match
 												if (!isMatch) {
 																console.log("Passwords don't match. ");
+																console.log(email);
 																return done(null, false);
 												}
 
@@ -412,7 +422,7 @@ function tokenForUser(user) {
 function signin(req, res, next) {
 				// email/pass is already checked, here I just give user a token.
 				// passport has already atteched user object to the request
-				console.log("Email/Pass is correct, returning token ");
+				console.log("Email/Pass is correct, returning token.");
 				res.send({ token: tokenForUser(req.user), email: req.body.email });
 }
 

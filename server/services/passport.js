@@ -34,7 +34,8 @@ const localLogin = new LocalStrategy(localOptions, function(email,password,done)
 	    if (err) { return done(err); }
 	    // if passwords don't match
 	    if (!isMatch) {
-		console.log("Passwords don't match. ")
+		console.log("Passwords don't match. ");
+		console.log(email);
 		return done(null, false);
 	    }
 

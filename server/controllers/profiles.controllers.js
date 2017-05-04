@@ -14,7 +14,7 @@ function tokenForUser(user){
 export function signin(req, res, next) {
     // email/pass is already checked, here I just give user a token.
     // passport has already atteched user object to the request
-    console.log("Email/Pass is correct, returning token ");
+    console.log("Email/Pass is correct, returning token.");
     res.send({token:tokenForUser(req.user), email:req.body.email});
 }
 
