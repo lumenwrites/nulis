@@ -42,7 +42,10 @@ class Header extends Component {
     }
     
     componentDidMount(){
-	this.props.fetchUser();
+	if (localStorage.getItem('token')){
+	    this.props.fetchUser();
+	}
+
 	console.log("plan " + this.props.user.plan);
 	/* Shortcuts */
 	Mousetrap(document.body).bind(['ctrl+s'], ()=>{

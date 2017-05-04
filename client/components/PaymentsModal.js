@@ -25,7 +25,7 @@ class PaymentsModal extends Component {
 		</Modal.Header>
 		<div className="panel-modal">
 		    <p>You are currently using a free version of Nulis,
-			which allows you to create up to 100 cards per month.</p>
+			which allows you to create up to 200 cards per month.</p>
 		    <p>Nulis has launched only recently, so as an early adopter
 			you can purchase the unlimited lifetime account for only 
 			<b> $20</b>.</p>
