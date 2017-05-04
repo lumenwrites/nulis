@@ -200,7 +200,6 @@ class Header extends Component {
 			    suggest a feature - always feel free to send me an email to
 			    <b> raymestalez@gmail.com</b></p>
 		    </div>
-
 		</Modal>
 		
 		

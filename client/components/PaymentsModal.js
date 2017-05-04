@@ -13,7 +13,7 @@ class PaymentsModal extends Component {
 
     sendToken(token) {
 	this.props.payment(token);
-	this.props.showModal(false);
+	this.props.showModal("thankyou");
     }
     render() {
 	return (
@@ -36,7 +36,7 @@ class PaymentsModal extends Component {
 		    <div className="panel-pricing">
 			<h2>Nulis Unlimited</h2>
 			<StripeCheckout token={this.sendToken.bind(this)}
-					stripeKey="pk_test_C93OCodn01Awd4AzCXugSfVL"
+					stripeKey="pk_live_ARCBuuuSIJ2ATgFtXCqpISQV"
 					name="Nulis"
 					description="Tree editor for writers"
 					panelLabel="Upgrade"
