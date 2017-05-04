@@ -23,7 +23,7 @@ export function deleteTree(req, res) {
     var slug = req.params.slug;
     console.log("Deleting tree.");
     Tree.findOne({ slug: slug }).exec((err, tree) => {
-	if (t.author != req.user.email) { res.status(401).end(); }	
+	if (tree.author != req.user.email) { res.status(401).end(); }	
 	if (err) { res.status(500).send(err); }
 	console.log("Deleted tree " + tree.slug);
 	tree.remove(() => {
