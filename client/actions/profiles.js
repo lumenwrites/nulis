@@ -59,6 +59,11 @@ export function join({email, password}) {
 		 // if request is good
 		 // - update state to indicate that I'm signed up
 		 dispatch({ type: 'AUTH_USER'});
+		 dispatch({
+		     type: 'UPDATE_USER',
+		     payload: response.data
+		 });
+		 
 		 // - save JWT token
 		 console.log("Returned token " + response.data.token);
 		 localStorage.setItem('token', response.data.token);

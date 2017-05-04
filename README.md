@@ -15,7 +15,7 @@ Tree editor for writers.
 - [ ] Autosave into db when card changes..
 - [ ] Probably shouldn't display droptargets on parents/children at all.
 - [ ] Horizontal scrolling.
-
+- [ ] Restore password
 
 ### Bugs
 - Will need to refactor header.

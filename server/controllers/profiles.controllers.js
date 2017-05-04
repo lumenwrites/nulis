@@ -46,7 +46,7 @@ export function signup(req, res, next) {
 	    password: password
 	});
 	
-	user.save(function(err){
+	user.save(function(err, user){
 	    //This is a callback that's being caleld once user is saved
 	    if (err) { return next(err); }
 	    console.log("User successfully created! " + email);
@@ -54,7 +54,7 @@ export function signup(req, res, next) {
 	    // Send a responce indicating that user has been created
 	    /* res.json(user);*/
 	    //  res.send({success:'true'});
-	    res.send({token: tokenForUser(user), email:email});	    
+	    res.send({token: tokenForUser(user), email:user.email, plan:user.plan});	    
 	    
 	});
     });
