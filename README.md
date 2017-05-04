@@ -9,7 +9,6 @@ Tree editor for writers.
 ### Big
 - [ ] Export markdown
 - [ ] Card splitting and merging
-- [ ] Payments.
 
 ### Small
 - [ ] Autosave into db when card changes..
