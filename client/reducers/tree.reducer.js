@@ -27,7 +27,7 @@ export default function(state=INITIAL_STATE, action) {
 	    tree = createCard(tree, relativeTo, direction);
 	    tree.editing = true;
 	    tree.modified = true;    
-
+	    tree.saved = false;
 	    /* tree.debugging = "Created card " + direction + " " + creator.id;*/
 	    return tree;
 	case 'DROP_CARD':
@@ -43,12 +43,14 @@ export default function(state=INITIAL_STATE, action) {
 	    tree = createCard(tree, relativeTo, direction, droppedCard);
 	    tree.activeCard = droppedCard.id;
 	    tree.modified = false;
+	    tree.saved = false;
 	    return tree;
 	    
 	case 'UPDATE_CARD':
 	    root = updateCard(card, root);
 	    tree.cards = root;
 	    tree.modified = true;	    
+	    tree.saved = false;
 	    /* tree.debugging = "Updated card <br/>" + card.id + " <br/>" + card.content;*/
 	    /* console.log("Update card " + JSON.stringify(root));*/
 	    return tree;
@@ -61,11 +63,13 @@ export default function(state=INITIAL_STATE, action) {
 	    tree.modified = false;
 	    tree.scroll = true;
 	    tree.activeCard = activeCard.id;
+	    tree.saved = false;
 	    /* tree.debugging = "Move card " + direction + " " + activeCard.id;*/
 	    return tree;
 	case 'SELECT_CARD':
 	    var direction = action.payload;
 	    tree = selectCard(activeCard, tree, direction);
+	    tree.saved = false;
 	    return tree;
 	case 'DELETE_CARD':
 	    /* var rootCopy = immutableCopy(root);*/
@@ -87,6 +91,8 @@ export default function(state=INITIAL_STATE, action) {
 	    tree.cards = updatedRoot;
 	    tree.activeCard = newActiveCard.id;
 	    tree.modified = false;
+	    tree.saved = false;
+
 	    return tree;
 	case 'SET_ACTIVE_CARD':
 	    /* console.log("Set active card");*/
@@ -96,13 +102,13 @@ export default function(state=INITIAL_STATE, action) {
 	case 'SET_EDITING':
 	    return {...state, modified:false, editing: action.payload };
 	case 'UPDATE_TREE_NAME':
-	    return {...state, name: action.payload };	    
+	    return {...state, name: action.payload, saved:false };	    
 	case 'AUTOSAVE_TREE':
 	    return {...state, modified: false };
 	case 'UPDATE_TREE':
 	    var tree = action.payload;
 	    /* Tell it that tree is saved */
-	    return {...state, modified: false, editing:false };
+	    return {...state, modified: false, editing:false, saved:true };
 	case 'LOAD_TREE':
 	    var tree = action.payload;
 	    /* console.log("Loading tree reducer");*/

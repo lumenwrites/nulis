@@ -10,6 +10,11 @@ import * as actions from '../actions/profiles';
 
 
 class PaymentsModal extends Component {
+
+    sendToken(token) {
+	this.props.payment(token);
+	this.props.showModal(false);
+    }
     render() {
 	return (
 	    <Modal className="upgrade"
@@ -30,7 +35,7 @@ class PaymentsModal extends Component {
 
 		    <div className="panel-pricing">
 			<h2>Nulis Unlimited</h2>
-			<StripeCheckout token={this.props.payment}
+			<StripeCheckout token={this.sendToken.bind(this)}
 					stripeKey="pk_test_C93OCodn01Awd4AzCXugSfVL"
 					name="Nulis"
 					description="Tree editor for writers"

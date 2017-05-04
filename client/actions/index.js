@@ -129,9 +129,12 @@ export function saveTree(tree) {
 	     .then(response => {
 		 console.log("Saved tree, redirecting to it.");
 		 browserHistory.push('/tree/'+response.data.slug);
+		 var tree = response.data;
+		 tree.saved = true;
+
 		 dispatch({
 		     type: 'LOAD_TREE',
-		     payload: response.data
+		     payload: tree
 		 });
 	     });
     }
@@ -185,10 +188,12 @@ export function loadTree(slug) {
 	axios.get(tree_url)
 	     .then(response => {
 		 if (response.data) {
+		     var tree = response.data;
+		     tree.saved = true;
 		     /* If returned a tree - return a tree */
 		     dispatch({
 			 type: 'LOAD_TREE',
-			 payload: response.data
+			 payload: tree
 		     });
 		 } else {
 		     console.log(tree_url + " didn't return any tree.");

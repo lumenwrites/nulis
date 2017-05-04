@@ -65,14 +65,21 @@ class Header extends Component {
 	});
 	
     }
-
+    
     componentDidUpdate(pastProps, pastState) {
+	/* If user has created a card - check if he's reached the limit.*/
 	if (this.props.tree.cards != pastProps.tree.cards
-	    && this.props.location.pathname != "/trees"
-	    && this.props.user.plan != "Lifetime Unlimited") {
-	    /* If I have created a card - check if I've reached the limit,
-	       and prompt to upgrade if I did.*/
-	    if(localStorage.getItem('cardsCreated') > 10){
+	    && this.props.location.pathname != "/trees") {
+
+	    /* If unauthenticated user reached a limit - open must login prompt. */
+	    if(this.props.authenticated == false
+	       && localStorage.getItem('cardsCreated') > 100){
+		this.showModal("mustLogin");
+	    }
+
+	    /* If free user reached a limit - open upgrade prompt. */
+	    if (this.props.user.plan == "Free"
+		&& localStorage.getItem('cardsCreated') > 200){
 		this.showModal("upgrade");
 	    }
 	}
@@ -136,12 +143,25 @@ class Header extends Component {
 	    cardsCreated = localStorage.getItem('cardsCreated');
 	}
 
-	if (this.props.user.plan != "Lifetime Unlimited") {
+	if (this.props.authenticated == false) {
+	    /* If the user isn't logged in - opens must login prompt. */
+	    return (
+		<div className="progress-outer"
+		     onClick={()=>this.showModal("mustLogin")}>
+		    <div className="progress-inner"
+			 style={{"width" : `${cardsCreated}%`}}>
+		    </div>
+		</div>		    
+	    )
+	}
+	if (this.props.user.plan == "Free") {
+	    /* Making sure user is on Free account,
+	       opening upgrade prompt.*/
 	    return (
 		<div className="progress-outer"
 		     onClick={()=>this.showModal("upgrade")}>
 		    <div className="progress-inner"
-			 style={{"width" : `${cardsCreated}%`}}>
+			 style={{"width" : `${cardsCreated/2}%`}}>
 		    </div>
 		</div>		    
 	    )
@@ -154,7 +174,8 @@ class Header extends Component {
 	return (
 	    <div className="header">
 		<PaymentsModal show={this.state.showModal =="upgrade" ? true : false}
-			       onHide={()=>this.showModal(false)} />
+			       onHide={()=>this.showModal(false)}
+			       showModal={this.showModal}/>
 
 		<Modal className="tree"
 		       show={this.state.showModal =="tree" ? true : false}
@@ -220,6 +241,13 @@ class Header extends Component {
 		       onHide={()=>this.showModal(false)}>
 	               <LoginForm type={this.state.showModal}
 	                          showModal={this.showModal}/>
+		</Modal>
+
+		<Modal show={this.state.showModal == "mustLogin" ? true : false}
+		       onHide={()=>this.showModal(false)}>
+		    <LoginForm type={this.state.showModal}
+			       showModal={this.showModal}
+			       mustLogin={true}/>
 		</Modal>
 
 		
@@ -340,7 +368,7 @@ class Header extends Component {
 					 Preferences
 				     </a>
 				 </li>
-				 {this.props.user.plan != "Lifetime Unlimited" ?
+				 {this.props.user.plan == "Free" ?
 				 <li  className="" key="upgrade">
 				     <a  onClick={()=>this.showModal("upgrade")}>
 					 Upgrade Account
@@ -418,7 +446,7 @@ class Header extends Component {
 
 		<div className={"stats " + (atMyTrees ? "hidden":"")}>
 		    <span className="autosaved">
-			{this.props.tree.modified ? "" : "Saved" }
+			{this.props.tree.saved ? "Saved" : "" }
 		    </span>
 
 		    {this.renderCardLimit()}

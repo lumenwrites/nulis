@@ -18,7 +18,7 @@ class Login extends Component {
 	    email: ReactDOM.findDOMNode(this.refs.email).value,
 	    password: ReactDOM.findDOMNode(this.refs.password).value
 	};
-	console.log("Credentials " + JSON.stringify(credentials));
+	/* console.log("Credentials " + JSON.stringify(credentials));*/
 
 	const { type } = this.props;
 	if (type == "login") {
@@ -48,6 +48,12 @@ class Login extends Component {
 		      <h1> Create Account </h1>
 		    }
 		</fieldset>
+		{this.props.mustLogin?
+		<fieldset className="form-group">
+		    <p>Unregistered users can create up to 100 cards.<br/>
+			To get more cards, create an account!</p>
+		</fieldset>
+		:null}
 		<fieldset className="form-group">
 		    <label>Email:</label>
 		    <input ref="email" autoFocus className="form-control" />

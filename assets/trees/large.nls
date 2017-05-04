@@ -1,0 +1,364 @@
+{
+    "_id": "590b5d2d870356725aa406cf",
+    "slug": "community-9c0la3w",
+    "name": "Community",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "Community",
+                "children": [
+                    {
+                        "id": "2-3t039gf",
+                        "content": "",
+                        "children": [
+                            {
+                                "id": "50-mw1c39br",
+                                "content": "",
+                                "children": [
+                                    {
+                                        "id": "51-7j1d3992",
+                                        "content": "",
+                                        "children": [
+                                            {
+                                                "id": "52-es1e395l",
+                                                "content": "",
+                                                "children": [
+                                                    {
+                                                        "id": "53-ke1f39ii",
+                                                        "content": "",
+                                                        "children": [
+                                                            {
+                                                                "id": "54-qi1g39tl",
+                                                                "content": "",
+                                                                "children": [
+                                                                    {
+                                                                        "id": "55-bg1h39b3",
+                                                                        "content": "",
+                                                                        "children": [
+                                                                            {
+                                                                                "id": "56-mk1i39bt",
+                                                                                "content": "",
+                                                                                "children": [
+                                                                                    {
+                                                                                        "id": "57-1v1j39wc",
+                                                                                        "content": "",
+                                                                                        "children": []
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "58-up1k39nb",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "59-ez1l39cr",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "60-kc1m39bg",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "61-ph1n39a1",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "62-uk1o395z",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "63-0n1p397a",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "64-5i1q39gy",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "65-e11r39x5",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "66-j71s394s",
+                                "content": "",
+                                "children": []
+                            },
+                            {
+                                "id": "67-o51t39v1",
+                                "content": "",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "3-vc139l8",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "4-6p239ef",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "5-c0339sz",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "6-hc439d0",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "7-m6539cl",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "8-q3639mb",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "9-uk7390b",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "10-yx839mt",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "11-a0939p9",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "12-sea39wt",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "13-xjb39kb",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "14-zmc39b7",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "15-1jd39ut",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "16-3ke39t9",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "17-5pf39bt",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "18-81g39uh",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "19-agh39bx",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "20-cvi391b",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "21-ezj39a1",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "22-hfk399m",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "23-kgl39oc",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "24-oum39h2",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "25-tgn39we",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "26-w8o39qw",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "27-mpp3995",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "28-pqq39ra",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "29-smr39hz",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "30-vds39ur",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "31-yat39d4",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "32-1cu39qa",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "33-4dv39pz",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "34-7cw39mn",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "35-alx39cg",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "36-dyy39k0",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "37-j4z3976",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "38-md1039pe",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "39-pw1139gi",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "40-t01239cj",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "41-wm13397c",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "42-151439z1",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "43-4t1539ri",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "44-8p16393d",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "45-dw17396t",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "46-i018392f",
+                        "content": "",
+                        "children": []
+                    },
+                    {
+                        "id": "47-ls1939c7",
+                        "content": "adfsdf",
+                        "children": []
+                    },
+                    {
+                        "id": "48-qk1a393d",
+                        "content": "asdasdsdsad",
+                        "children": []
+                    },
+                    {
+                        "id": "49-uk1b392v",
+                        "content": "",
+                        "children": []
+                    }
+                ],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
+    "editing": true,
+    "modified": false,
+    "activeCard": "67-o51t39v1",
+    "updatedAt": null,
+    "createdAt": null,
+    "saved": false,
+    "debugging": "{\"direction\":\"after\"}"
+}
