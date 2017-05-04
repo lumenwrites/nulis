@@ -139,7 +139,7 @@ export function payment(token) {
     return function(dispatch) {
 	axios.post(`${API_URL}/purchase`, token, config)
 	     .then(response => {
-		 console.log(`Payment processed!`);
+		 console.log(`Account upgraded!`);
 		 dispatch({
 		     type: 'UPDATE_USER',
 		     payload: response.data.user

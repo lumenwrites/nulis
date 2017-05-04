@@ -29,32 +29,35 @@ class PaymentsModal extends Component {
 		    <p>Nulis has launched only recently, so as an early adopter
 			you can purchase the unlimited lifetime account for only 
 			<b> $20</b>.</p>
-		    <p>Thank you for your support!
-			It helps me to cover the server costs,
-			and spend more time making Nulis more awesome.</p>
-
 		    <div className="panel-pricing">
 			<h2>Nulis Unlimited</h2>
+			<a className="btn right"
+			   onClick={()=>{
+				   this.props.payment({id:"free"});
+				   this.props.showModal("free");
+			       }}>
+			    Upgrade
+			</a>
+			<div className="clearfix"></div>			
+		    </div>
+		    {/*  		    
+			<div className="panel-pricing">
+			<h2>Nulis Unlimited</h2>
 			<StripeCheckout token={this.sendToken.bind(this)}
-					stripeKey="pk_live_ARCBuuuSIJ2ATgFtXCqpISQV"
-					name="Nulis"
-					description="Tree editor for writers"
-					panelLabel="Upgrade"
-					amount={2000}
-					currency="USD"
-					allowRememberMe={false}
-					email={localStorage.getItem('email')}
-					image="https://nulis.io/media/logo.png">
-			    <a className="btn right">Upgrade</a>
+			stripeKey="pk_live_ARCBuuuSIJ2ATgFtXCqpISQV"
+			name="Nulis"
+			description="Tree editor for writers"
+			panelLabel="Upgrade"
+			amount={2000}
+			currency="USD"
+			allowRememberMe={false}
+			email={localStorage.getItem('email')}
+			image="https://nulis.io/media/logo.png">
+			<a className="btn right">Upgrade</a>
 			</StripeCheckout>
 			<div className="clearfix"></div>
 
 		    </div>
-		    {/*  
-			<div className="panel-pricing">
-			<h2>Free</h2>
-			<a className="btn">Share</a>
-			</div>
 		      */}
 		</div>
 	    </Modal>

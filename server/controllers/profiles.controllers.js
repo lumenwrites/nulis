@@ -89,29 +89,45 @@ export function payment(req, res) {
     // Get the payment token submitted by the form:
     var token = req.body.id;
     console.log(JSON.stringify(req.body));
-
-    // Charge the user's card:
-    var charge = stripe.charges.create({
-	amount: 2000,
-	currency: "usd",
-	description: "Example charge",
-	source: token,
-    }, function(err, charge) {
-	if (err) { return res.status(500).send({ error:'Stripe Payment Error' })};
-	/* Once payment has been processed - update the user.*/
+    if (token == "free") {
 	User.findOne({email:req.user.email}, function(err, user){
 	    if (err) { return next(err); }
 	    /* Set user's plan to unlimited */
 	    user.plan = "Lifetime Unlimited";
 	    user.save(function(err, user){
 		if (err) { return next(err); }
-		console.log("Purchase completed! User's plan is unlimited.")
+		console.log("User's plan is set to unlimited.")
 		/* Return updated user */
 		res.send({
-		    message: "Purchase completed! User's plan is unlimited.",
+		    message: "User's plan is set to unlimited.",
 		    user:user
 		}); 
 	    });
 	});
-    });
+    } else {
+	// Charge the user's card:
+	var charge = stripe.charges.create({
+	    amount: 2000,
+	    currency: "usd",
+	    description: "Example charge",
+	    source: token,
+	}, function(err, charge) {
+	    if (err) { return res.status(500).send({ error:'Stripe Payment Error' })};
+	    /* Once payment has been processed - update the user.*/
+	    User.findOne({email:req.user.email}, function(err, user){
+		if (err) { return next(err); }
+		/* Set user's plan to unlimited */
+		user.plan = "Lifetime Unlimited";
+		user.save(function(err, user){
+		    if (err) { return next(err); }
+		    console.log("Purchase completed! User's plan is unlimited.")
+		    /* Return updated user */
+		    res.send({
+			message: "Purchase completed! User's plan is unlimited.",
+			user:user
+		    }); 
+		});
+	    });
+	});
+    }
 }
