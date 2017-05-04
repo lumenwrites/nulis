@@ -24,12 +24,19 @@ const localLogin = new LocalStrategy(localOptions, function(email,password,done)
     User.findOne({email:email}, function(err,user){
 	if (err) { return done(err); }
 	/* if username not found */
-	if (!user) { return done(null, false); }
+	if (!user) {
+	    console.log("User not found. " + email)
+	    return done(null, false);
+	}
+	
 	//compare passwords using the function I've defined in user model
 	user.comparePassword(password, function(err, isMatch){
 	    if (err) { return done(err); }
 	    // if passwords don't match
-	    if (!isMatch) { return done(null, false); }
+	    if (!isMatch) {
+		console.log("Passwords don't match. ")
+		return done(null, false);
+	    }
 
 	    // return user without errors
 	    return done(null, user);
@@ -59,10 +66,10 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
 	if (err) { return done(err, false); }
 	/* console.log("Found user! "); */
 	if (user) {
-	    /* console.log("Login successful! "); */
+	    console.log("JWT login successful! ");
 	    done(null, user);
 	} else {
-	    /* console.log("Login unsuccessful =( "); */
+	    console.log("JWT Login unsuccessful. Probably wrong JWT. ");
 	    done(null, false);	    
 	}
     });

@@ -34,6 +34,7 @@ export function signup(req, res, next) {
 
 	// If a user does exit - return an error
 	if (existingUser) {
+	    console.log("Email is in use. " + email);
 	    return res.status(422).send({
 		error:'Email is in use'
 	    });
@@ -48,7 +49,7 @@ export function signup(req, res, next) {
 	user.save(function(err){
 	    //This is a callback that's being caleld once user is saved
 	    if (err) { return next(err); }
-
+	    console.log("User successfully created! " + email);
 	    // If there's no errors - user is successfully saved
 	    // Send a responce indicating that user has been created
 	    /* res.json(user);*/
@@ -62,7 +63,7 @@ export function signup(req, res, next) {
 
 export function getUser(req, res) {
     const email = req.user.email;
-
+    console.log("Get user. " + email);
     // Search for a user with a given email
     User.findOne({email:email}, function(err, user){
 	if (err) { return next(err); }

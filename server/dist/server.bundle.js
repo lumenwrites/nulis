@@ -209,8 +209,10 @@ var localLogin = new LocalStrategy(localOptions, function (email, password, done
 								}
 								/* if username not found */
 								if (!user) {
+												console.log("User not found. " + email);
 												return done(null, false);
 								}
+
 								//compare passwords using the function I've defined in user model
 								user.comparePassword(password, function (err, isMatch) {
 												if (err) {
@@ -218,6 +220,7 @@ var localLogin = new LocalStrategy(localOptions, function (email, password, done
 												}
 												// if passwords don't match
 												if (!isMatch) {
+																console.log("Passwords don't match. ");
 																return done(null, false);
 												}
 
@@ -251,10 +254,10 @@ var jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
 								}
 								/* console.log("Found user! "); */
 								if (user) {
-												/* console.log("Login successful! "); */
+												console.log("JWT login successful! ");
 												done(null, user);
 								} else {
-												/* console.log("Login unsuccessful =( "); */
+												console.log("JWT Login unsuccessful. Probably wrong JWT. ");
 												done(null, false);
 								}
 				});
@@ -431,6 +434,7 @@ function signup(req, res, next) {
 
 								// If a user does exit - return an error
 								if (existingUser) {
+												console.log("Email is in use. " + email);
 												return res.status(422).send({
 																error: 'Email is in use'
 												});
@@ -447,7 +451,7 @@ function signup(req, res, next) {
 												if (err) {
 																return next(err);
 												}
-
+												console.log("User successfully created! " + email);
 												// If there's no errors - user is successfully saved
 												// Send a responce indicating that user has been created
 												/* res.json(user);*/
@@ -459,7 +463,7 @@ function signup(req, res, next) {
 
 function getUser(req, res) {
 				var email = req.user.email;
-
+				console.log("Get user. " + email);
 				// Search for a user with a given email
 				User.findOne({ email: email }, function (err, user) {
 								if (err) {
