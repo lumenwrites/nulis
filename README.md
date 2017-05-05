@@ -15,6 +15,7 @@ Tree editor for writers.
 - [ ] Probably shouldn't display droptargets on parents/children at all.
 - [ ] Horizontal scrolling.
 - [ ] Restore password
+- [ ] Move away from unsaved tree confirmation.
 
 ### Bugs
 - Will need to refactor header.
