@@ -81,6 +81,14 @@ class Editor extends Component {
 	    markdown = highlight(markdown, query);
 	}
 	
+	/* Render checkboxes */
+	var checkboxRegexp = new RegExp(/\[ \]/, 'ig')
+	markdown = markdown.replace(checkboxRegexp,
+				    '<span class="checkbox" type="checkbox"></span>');
+	checkboxRegexp = new RegExp(/\[(X|V|v)\]/, 'ig')
+	markdown = markdown.replace(checkboxRegexp,
+				    '<span class="checkbox checked" type="checkbox"></span>');	
+
 	var html = md.render(markdown);
 
 	return (

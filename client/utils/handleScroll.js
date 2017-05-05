@@ -29,6 +29,7 @@ export function scrollTo(card, column) {
 
 
 export default function handleScroll(cardId, cards) {
+    console.log(cardId);
     var columns = cardsToColumns(cards);
     var card = getCard(cardId, cards);
     /* console.log("Scrolling to card " + JSON.stringify(cardId, null, 4));*/

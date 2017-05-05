@@ -754,3 +754,56 @@ form label {
     }
 }
 
+
+
+.card {
+    ul {
+	list-style-type: none;
+    }
+    ul > li {
+	text-indent: -10px;
+    }
+    ul > li:before {
+	content: "- ";
+	text-indent: -5px;
+    }
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #808080;
+    border: 1px solid rgba(113, 124, 146, 0.2);
+    background: #FFF;
+    margin: 0;
+    float:left;
+    margin-right: 5px;
+    margin-top: 1.5px;
+    margin-bottom: -2px;
+    margin-left: -10px;    
+}
+.checkbox.checked {
+    background: #3D454B;
+    background: #a5abb7;
+    border: none;
+}
+/* 
+.checkbox {
+    float:left;
+    margin-right: 13px!important;
+}
+.checkbox:after{
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #808080;
+    content: "";
+    background: #FFF;
+    float:left;
+}
+.checkbox:checked:after {
+    background: #f66303;
+    background: #3D454B;
+}
+*/

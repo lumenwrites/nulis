@@ -82,7 +82,7 @@ class Main extends Component {
 	       it means I've just loaded a tree.
 	       Scrolling first card and all it's children, because
 	       if active card from column 2 has no children, column 3 won't scroll. */
-	    handleScroll(0, this.props.tree.cards);
+	    handleScroll(this.props.tree.cards.children[0].id, this.props.tree.cards);
 	    handleScroll(this.props.tree.activeCard, this.props.tree.cards);
 	}
 
@@ -98,7 +98,11 @@ class Main extends Component {
 	if (this.props.tree.activeCard != pastProps.tree.activeCard) {
 	    /* console.log("Active card changed " + this.props.tree.activeCard);*/
 	    handleScroll(this.props.tree.activeCard, this.props.tree.cards);
-	    /* this.props.autosaveTree(this.props.tree);*/
+	    this.props.autosaveTree(this.props.tree);
+	    if (this.props.authenticated
+		&& this.props.tree.author == localStorage.getItem('email')) {
+		this.props.saveTree(this.props.tree);		
+	    }
 	}
     }
 

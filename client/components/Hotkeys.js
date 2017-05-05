@@ -28,6 +28,10 @@ class Hotkeys extends Component {
 	    }
 	    return false;
 	});
+	Mousetrap(document.body).bind(['esc'], ()=>{
+	    this.props.setEditing(false);
+	    return false;
+	});
 
 	Mousetrap(document.body).bind(['ctrl+enter'], ()=>{
 	    console.log("Editing mode!");
@@ -36,20 +40,20 @@ class Hotkeys extends Component {
 	});
 
 	/* Select */
-	Mousetrap(document.body).bind(['ctrl+j', 'down'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+j', 'ctrl+down'], ()=>{
 	    this.props.selectCard('down');
 	    return false;
 	});
 
-	Mousetrap(document.body).bind(['ctrl+k','up'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+k','ctrl+up'], ()=>{
 	    this.props.selectCard('up');
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+h', 'left'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+h', 'ctrl+left'], ()=>{
 	    this.props.selectCard('left');
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+l', 'right'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+l', 'ctrl+right'], ()=>{
 	    this.props.selectCard('right');
 	    return false;
 	});
@@ -99,7 +103,7 @@ class Hotkeys extends Component {
 	*/
 
 	/* Delete */
-	Mousetrap(document.body).bind(['ctrl+backspace'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+backspace', 'del'], ()=>{
 	    this.props.deleteCard();
 	    return false;
 	});
