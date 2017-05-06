@@ -127,7 +127,7 @@ export function fetchUser() {
     return function(dispatch) {
 	axios.get(`${API_URL}/auth/profile`, config)
 	     .then(response => {
-		 console.log(`Returned User! ` + JSON.stringify(response.data));
+		 console.log(`User: ` + JSON.stringify(response.data));
 		 dispatch({
 		     type: 'UPDATE_USER',
 		     payload: response.data

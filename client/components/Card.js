@@ -12,6 +12,7 @@ import * as actions from '../actions/index';
 import { getAllParents, getAllChildren, isActive, getParent,
 	 getCard, getCardRelativeTo } from '../utils/cards';
 import handleScroll from '../utils/handleScroll';
+import { findClass } from '../utils/misc';
 
 /* Components */
 import Editor from './Editor';
@@ -61,6 +62,18 @@ const cardSource = {
 };
 
 
+function bindCheckboxes(cardId){
+    var checkboxes = document.getElementsByClassName(cardId);
+    checkboxes = [].slice.call(checkboxes);
+    if (checkboxes.length) {
+	checkboxes.map((c, i)=>{
+	    c.onclick = ()=> {
+		console.log("Checked " + i);
+		this.props.checkCheckbox(i+1, c.id);
+	    }
+	});
+    }
+}
 // Use decorator to make card draggable and pass it some functions.
 @DragSource('CARD', cardSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
@@ -72,11 +85,19 @@ class Card extends Component {
 	super(props);
 
 	this.updateTree = this.updateTree.bind(this);
+	bindCheckboxes = bindCheckboxes.bind(this);	
     }
 
     componentDidMount(){
+	/* Attaching events to checkboxes after rendering */
+	const { card } = this.props;
+	bindCheckboxes(card.id);
     }
 
+    componentDidUpdate(){
+	const { card } = this.props;
+	bindCheckboxes(card.id);
+    }
     renderMarkdown(markdown) {
 	/* Turn markdown into html */
 	const md = new Remarkable({html: true});

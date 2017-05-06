@@ -116,11 +116,15 @@ class Hotkeys extends Component {
 	});
 
 	/* Edit card color */
-	/* Edit card color */
 	Mousetrap(document.body).bind(['alt+c'], ()=>{
 	    this.props.setCardConfig(!this.props.tree.showCardConfig);
 	    return false;
 	});
+	Mousetrap(document.body).bind(['ctrl+c'], ()=>{
+	    /* this.props.checkCheckbox();*/
+	    return false;
+	});
+
 	/* Unbind */
 	/* Mousetrap.unbind('tab.form-control');*/
 	

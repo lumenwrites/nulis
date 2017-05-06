@@ -66,6 +66,7 @@ class Editor extends Component {
     }
 
     renderMarkdown(markdown) {
+	const { card } = this.props;
 	/* Turn markdown into html */
 	const md = new Remarkable({html: true});
 
@@ -84,10 +85,10 @@ class Editor extends Component {
 	/* Render checkboxes */
 	var checkboxRegexp = new RegExp(/\[ \]/, 'ig')
 	markdown = markdown.replace(checkboxRegexp,
-				    '<span class="checkbox" type="checkbox"></span>');
+				    `<span class="checkbox ${card.id}" id=${card.id}></span>`);
 	checkboxRegexp = new RegExp(/\[(X|V|v)\]/, 'ig')
 	markdown = markdown.replace(checkboxRegexp,
-				    '<span class="checkbox checked" type="checkbox"></span>');	
+				    `<span class="checkbox ${card.id} checked" id=${card.id}></span>`);	
 
 	var html = md.render(markdown);
 

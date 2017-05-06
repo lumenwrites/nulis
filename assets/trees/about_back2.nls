@@ -1,7 +1,6 @@
 {
-    "_id": "590e193013fe94587e7553bc",
     "name": "About",
-    "slug": "about-ah0hasl",
+    "slug": "",
     "cards": {
         "id": "root",
         "children": [
@@ -20,19 +19,16 @@
                                 "position": "after",
                                 "children": [],
                                 "id": 3,
-                                "parent_id": 2,
-                                "color": "#0079BF"
+                                "parent_id": 2
                             },
                             {
                                 "id": "6-pd13zce",
-                                "content": "# Upcoming features\n- [X] Set card colors with `Alt+C`\n- [X] Checkboxes\n- [ ] Conveniently splitting and merging cards.\n- [ ] Collapse branches/cards (like in mindmaps).\n- [ ] Focus on a subtree.\n- [ ] Cut/Paste trees and cards.\n- [ ] Export markdown.\n- [ ] Possibly plugins and themes.\n- [ ] And much more =)",
-                                "children": [],
-                                "color": ""
+                                "content": "# Upcoming features\n- Conveniently splitting and merging cards.\n- Collapse branches/cards (like in mindmaps).\n- Focus on a subtree.\n- Cut/Paste trees and cards.\n- Export markdown.\n- Possibly plugins and themes.\n- And much more =)",
+                                "children": []
                             }
                         ],
                         "id": 2,
-                        "parent_id": "0",
-                        "color": "#0079BF"
+                        "parent_id": "0"
                     },
                     {
                         "creator_id": 3,
@@ -57,22 +53,18 @@
                                 "content": "# Get it for free\nThe first 100 people who will send me an email(**raymestalez@gmail.com**) with some thoughtful feedback, bug reports, or feature suggestions, will get the unlimited lifetime account for free.",
                                 "children": []
                             }
-                        ],
-                        "color": ""
+                        ]
                     }
                 ],
-                "parent_id": "root",
-                "color": "#FFAB4A"
+                "parent_id": "root"
             }
         ]
     },
-    "author": "raymestalez@gmail.com",
-    "__v": 0,
-    "editing": false,
     "modified": false,
     "activeCard": "0",
     "updatedAt": null,
     "createdAt": null,
-    "saved": true,
-    "showCardConfig": false
+    "editing": false,
+    "debugging": "{\"id\":\"8-k0036zv\",\"content\":\"# Get it for free\\nThe first 100 people who will send me an email(**raymestalez@gmail.com**) with some thoughtful feedback, bug reports, or feature suggestions, will get the unlimited lifetime account for free.\",\"children\":[]}",
+    "saved": false
 }

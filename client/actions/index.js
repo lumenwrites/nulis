@@ -46,6 +46,14 @@ export function setCardConfig(boolean) {
     }
 }
 
+export function checkCheckbox(index, cardId) {
+    /* unused */
+    return {
+	type: 'CHECKBOX',
+	payload: {index:index, cardId:cardId}
+    }
+}
+
 
 
 export function createCard(direction, card) {

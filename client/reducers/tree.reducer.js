@@ -104,9 +104,34 @@ export default function(state=INITIAL_STATE, action) {
 	    root = updateCard(activeCard, root);
 	    /* console.log("Set active card");*/
 	    return {...state, cards: root };
-	case 'SET_CARD_CONFIG':
-	    console.log('yes ' + action.payload);
+	case 'CHECKBOX':
+	    var {index, cardId} = action.payload;
+	    var card = getCard(cardId, root);
+	    var content = card.content;
 
+	    var checkboxRegexp = new RegExp(/\[(X| )\]/, 'ig');
+	    var i = 0;
+	    content = content.replace(checkboxRegexp, (match)=>{
+		i++;
+		if (index == i) {
+		    console.log("check");
+		    if (match == "[X]") {
+			return "[ ]";			
+		    } else {
+			return "[X]";						
+		    }
+
+		} 
+		return match;
+	    });
+	    console.log("Checkbox" + content);
+	    card.content = content;
+	    
+	    root = updateCard(card, root);
+
+	    return {...state, cards: root };
+	    
+	case 'SET_CARD_CONFIG':
 	    return {...state, showCardConfig:action.payload };
 
 	case 'SET_SCROLL':
