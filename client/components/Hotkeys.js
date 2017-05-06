@@ -120,10 +120,6 @@ class Hotkeys extends Component {
 	    this.props.setCardConfig(!this.props.tree.showCardConfig);
 	    return false;
 	});
-	Mousetrap(document.body).bind(['ctrl+c'], ()=>{
-	    /* this.props.checkCheckbox();*/
-	    return false;
-	});
 
 	/* Unbind */
 	/* Mousetrap.unbind('tab.form-control');*/
