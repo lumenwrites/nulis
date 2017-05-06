@@ -1,25 +1,24 @@
 {
-    "name": "community",
+    "_id": "590b5d2d870356725aa406cf",
+    "slug": "community-9c0la3w",
+    "name": "Community",
     "cards": {
         "id": "root",
         "children": [
             {
                 "id": "0",
-                "content": "Community episode breakdown.",
-                "children": [
-                    {
-                        "id": "2-ln030gq",
-                        "content": "",
-                        "children": []
-                    }
-                ],
+                "content": "Community",
+                "children": [],
                 "parent_id": "root"
             }
         ]
     },
-    "activeCard": "2-ln030gq",
-    "modified": false,
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
     "editing": true,
-    "slug": "community",
-    "debugging": "\"right\""
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": null,
+    "createdAt": null,
+    "saved": true
 }

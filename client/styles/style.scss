@@ -388,6 +388,19 @@ textarea {
 	background: #f66303;
 	color: white;
     }
+
+    .colors {
+	float:left;
+	width:100%;
+	height:20px;
+	background: white;
+	padding-left:20px;
+	.color-box {
+	    width:20px;
+	    height:20px;
+	    float:right; 
+	}
+    }
 }
 
 

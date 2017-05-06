@@ -31,6 +31,23 @@ export function updateTreeName(value) {
     }
 }
 
+export function setCardColor(color) {
+    /* unused */
+    return {
+	type: 'SET_CARD_COLOR',
+	payload: color
+    }
+}
+export function setCardConfig(boolean) {
+    /* unused */
+    return {
+	type: 'SET_CARD_CONFIG',
+	payload: boolean
+    }
+}
+
+
+
 export function createCard(direction, card) {
     var cardsCreated = 0;
     if(localStorage.getItem('cardsCreated')){

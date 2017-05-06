@@ -64,11 +64,6 @@ class Header extends Component {
 	    this.props.loadTemplate('Blank');
 	    return false;
 	});
-	/* Edit card color */
-	Mousetrap(document.body).bind(['alt+c'], ()=>{
-	    this.setState({showColors:!this.state.showColors});
-	    return false;
-	});
 
 	/* Focus on search */
 	Mousetrap(document.body).bind(['ctrl+/'], ()=>{

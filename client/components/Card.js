@@ -15,6 +15,7 @@ import handleScroll from '../utils/handleScroll';
 
 /* Components */
 import Editor from './Editor';
+import ColorBox from './ColorBox';
 import DropTarget from './DropTarget';
 
 
@@ -73,6 +74,9 @@ class Card extends Component {
 	this.updateTree = this.updateTree.bind(this);
     }
 
+    componentDidMount(){
+    }
+
     renderMarkdown(markdown) {
 	/* Turn markdown into html */
 	const md = new Remarkable({html: true});
@@ -108,9 +112,10 @@ class Card extends Component {
 
 	return (
 	    <div key={card.id}
-	    id={"card-"+card.id}
-	    onDoubleClick={()=>this.props.setEditing(true)}
-	    className={"card "
+		 id={"card-"+card.id}
+		 onDoubleClick={()=>this.props.setEditing(true)}
+		 style={(card.color?{borderLeft: `3px solid ${card.color}`}:null)}
+		 className={"card "
 		     + (active == "card" ? "active " : "")
 		     + (isDragging ? "dragging " : "")		     
 		     + (active == "children" ? "children-active" : "")}>
@@ -120,7 +125,7 @@ class Card extends Component {
 	        {connectDragPreview(<div className="preview-snapshot"></div>)}
 		<DropTarget position="before" card={card}/>
 		<DropTarget position="after" card={card}/>
-		<DropTarget position="right" card={card}/>		
+		<DropTarget position="right" card={card}/>
 		<div className="move-left temp btn-plus"
 		     onClick={() => this.props.moveCard("left")}>left</div>
 		<div className="move-right temp btn-plus"
@@ -148,6 +153,9 @@ class Card extends Component {
 		     onClick={() => this.props.deleteCard()}>X</div>
 
 		<Editor card={this.props.card} />
+		<ColorBox show={(this.props.tree.showCardConfig
+			         && card.id == this.props.tree.activeCard) }/>
+		<div className="clearfix"></div>
 		<div className="debugging-info">
 		    <span className="grey">
 			Id:

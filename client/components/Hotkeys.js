@@ -8,10 +8,7 @@ var { undo, redo } = ActionCreators;
 import Mousetrap from 'mousetrap';
 
 /* Actions */
-import { createCard, updateCard, deleteCard,
-	 moveCard, activateCard, setEditing,
-	 updateTree, loadTree, selectCard } from '../actions/index';
-
+import * as actions from '../actions/index';
 
 class Hotkeys extends Component {
     componentDidMount(){
@@ -103,7 +100,7 @@ class Hotkeys extends Component {
 	*/
 
 	/* Delete */
-	Mousetrap(document.body).bind(['ctrl+backspace', 'del'], ()=>{
+	Mousetrap(document.body).bind(['ctrl+backspace'], ()=>{
 	    this.props.deleteCard();
 	    return false;
 	});
@@ -117,7 +114,13 @@ class Hotkeys extends Component {
 	    this.props.redo();
 	    return false;
 	});
-	
+
+	/* Edit card color */
+	/* Edit card color */
+	Mousetrap(document.body).bind(['alt+c'], ()=>{
+	    this.props.setCardConfig(!this.props.tree.showCardConfig);
+	    return false;
+	});
 	/* Unbind */
 	/* Mousetrap.unbind('tab.form-control');*/
 	
@@ -138,7 +141,5 @@ function mapStateToProps(state) {
     return { tree: state.tree.present };
 }
 
-export default connect(mapStateToProps, {loadTree, createCard, updateCard, deleteCard,
-					 moveCard, activateCard, setEditing, selectCard,
-					 updateTree, undo, redo})(Hotkeys);
+export default connect(mapStateToProps, actions)(Hotkeys);
 

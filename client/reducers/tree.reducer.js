@@ -97,6 +97,18 @@ export default function(state=INITIAL_STATE, action) {
 	case 'SET_ACTIVE_CARD':
 	    /* console.log("Set active card");*/
 	    return {...state, activeCard: action.payload };
+	case 'SET_CARD_COLOR':
+	    var color = action.payload;
+	    activeCard.color = color;
+
+	    root = updateCard(activeCard, root);
+	    /* console.log("Set active card");*/
+	    return {...state, cards: root };
+	case 'SET_CARD_CONFIG':
+	    console.log('yes ' + action.payload);
+
+	    return {...state, showCardConfig:action.payload };
+
 	case 'SET_SCROLL':
 	    return {...state, scroll: action.payload };	    
 	case 'SET_EDITING':
