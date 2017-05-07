@@ -68,7 +68,12 @@ class Editor extends Component {
     renderMarkdown(markdown) {
 	const { card } = this.props;
 	/* Turn markdown into html */
-	const md = new Remarkable({html: true});
+	const md = new Remarkable({
+	    html: true,
+	    xhtmlOut: true,
+	    breaks: true,
+	    linkify: true
+	});
 
 	/* Highlight text */
 	function highlight(str, find) {

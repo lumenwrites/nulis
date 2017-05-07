@@ -667,9 +667,13 @@ textarea::-webkit-scrollbar {
 }
 .CodeMirror-fullscreen {
     background: white;
-    z-index: 140;
+    z-index: 200;    
     .CodeMirror-scroll {
 	padding: 40px;
+    }
+    .editor-preview-side, .editor-preview-active, .editor-preview-active-side{
+	/* Doesn't work, card buttons still on top? */
+	z-index: 201;    
     }
 }
 
@@ -775,10 +779,16 @@ form label {
     }
     ul > li {
 	text-indent: -10px;
+	p {
+	    text-indent: 0;
+	    /* Weird hack to fix paragraphs going to a new line */
+	    margin-top: -20px;
+	}
     }
     ul > li:before {
 	content: "- ";
 	text-indent: -5px;
+	display:inline;
     }
 }
 
@@ -791,7 +801,7 @@ form label {
     margin: 0;
     float:left;
     margin-right: 5px;
-    margin-top: 1.5px;
+    margin-top: 0px;
     margin-bottom: -2px;
     margin-left: -10px;    
 }

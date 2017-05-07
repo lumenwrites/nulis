@@ -63,12 +63,14 @@ const cardSource = {
 
 
 function bindCheckboxes(cardId){
+    /* After markdown has rendered, grab the checkboxes */
     var checkboxes = document.getElementsByClassName(cardId);
     checkboxes = [].slice.call(checkboxes);
     if (checkboxes.length) {
+	/* And assign the onclick function */
 	checkboxes.map((c, i)=>{
 	    c.onclick = ()=> {
-		console.log("Checked " + i);
+		/* Action that tells reducer to check/uncheck markdown checkbox */
 		this.props.checkCheckbox(i+1, c.id);
 	    }
 	});

@@ -1,6 +1,6 @@
 {
     "_id": "590ca66aa81c68066e5eaf08",
-    "slug": "nulis-ie09ae8",
+    "slug": "",
     "name": "Nulis",
     "cards": {
         "id": "root",
@@ -11,17 +11,17 @@
                 "children": [
                     {
                         "id": "4-t2237p2",
-                        "content": "# Next up\n- Export markdown\n- Card splitting and merging\n- Checkboxes",
+                        "content": "# Next up\n- [ ] Export markdown\n- [ ] Card splitting and merging\n- [X] Checkboxes",
                         "children": []
                     },
                     {
                         "id": "7-wv537st",
-                        "content": "# Small\n- Autosave into db when card changes.\n- Probably shouldn't display droptargets on parents/children at all.\n- Horizontal scrolling.\n- Move away from unsaved tree confirmation.\n- create tree in a new tab\n- Password reset.\n- Copy/paste tree/cards. Later - text.\n- Card - change color like in hou. Shortcut for card prefs.\n- Install metrics. \n- Install a convenient admin.",
+                        "content": "# Small\n- [ ] Autosave into db when card changes.\n- [ ] Probably shouldn't display droptargets on parents/children at all.\n- [ ] Horizontal scrolling.\n- [ ] Move away from unsaved tree confirmation.\n- [ ] create tree in a new tab\n- [ ] Password reset.\n- [ ] Copy/paste tree/cards. Later - text.\n- [ ] Card - change color like in hou. Shortcut for card prefs.\n- [ ] Install metrics. \n- [ ] Install a convenient admin.",
                         "children": []
                     },
                     {
                         "id": "9-tl737a1",
-                        "content": "# Bugs/Clean Up\n- Will need to refactor header.\n- Left arrow switches card to the left.\n- New tree from /trees didn't scroll?\n- Alt+left not reparents?\nDevOps:\n- Log errors.\n- Autorestart server when it crashes.\n- CI. proper deployment/testing and crap.",
+                        "content": "# Bugs/Clean Up\n- [ ] Will need to refactor header.\n- [ ] Left arrow switches card to the left.\n- [ ] New tree from /trees didn't scroll?\n- [ ] Alt+left not reparents?\nDevOps:\n- [ ] Log errors.\n- [ ] Autorestart server when it crashes.\n- [ ] CI. proper deployment/testing and crap.",
                         "children": []
                     },
                     {
@@ -67,12 +67,10 @@
     },
     "author": "raymestalez@gmail.com",
     "__v": 0,
-    "editing": true,
+    "editing": false,
     "modified": false,
     "activeCard": "4-t2237p2",
     "updatedAt": null,
     "createdAt": null,
-    "saved": true,
-    "debugging": "\"right\"",
-    "scroll": true
+    "saved": true
 }

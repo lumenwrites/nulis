@@ -64,11 +64,6 @@ class Header extends Component {
 	    this.props.loadTemplate('Blank');
 	    return false;
 	});
-	/* Edit card color */
-	Mousetrap(document.body).bind(['alt+c'], ()=>{
-	    this.setState({showColors:!this.state.showColors});
-	    return false;
-	});
 
 	/* Focus on search */
 	Mousetrap(document.body).bind(['ctrl+/'], ()=>{
@@ -127,6 +122,7 @@ class Header extends Component {
 	    var firstLine = firstCard.content.split('\n')[0];
 	    tree.name = removeMd(firstLine).substring(0,40);
 	}
+	tree.slug = "";
 	var contents = JSON.stringify(tree, null, 4);
 	/* Use magical component to save it into a file */
 	var blob = new Blob([contents],
@@ -336,14 +332,12 @@ class Header extends Component {
 				     </Link>
 				 </li>
 				 : null}
-	        {/* Show "Save Online" if I'm the author, or it's a template. */}
-		{this.props.authenticated 
-	         && (localStorage.getItem('email')==this.props.tree.author
-		     || !this.props.tree.author) ?
+	        {/* Show "Save Online" if I'm logged in and it's not saved yet. */}
+		{(this.props.authenticated && !this.props.tree.author) ?
 		<li key="saveonline"
 		    className={(atMyTrees ? "hidden":"")}>
 		    <a onClick={()=>
-					 this.props.saveTree(this.props.tree) }>
+			this.props.saveTree(this.props.tree) }>
 			<i className="fa fa-cloud"></i>
 			Save Online
 		    </a> 

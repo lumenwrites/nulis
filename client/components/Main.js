@@ -41,6 +41,7 @@ class Main extends Component {
 	} else if (this.props.params && this.props.params.slug) {
 	    console.log("I'm at a tree url - load the tree.");
 	    this.props.loadTree(this.props.params.slug);
+
 	} else if (this.props.route && this.props.route.tree) {
 	    console.log("I'm passing the template - load the template.");
 	    this.props.loadTemplate(this.props.route.tree);
@@ -99,9 +100,11 @@ class Main extends Component {
 	    /* console.log("Active card changed " + this.props.tree.activeCard);*/
 	    handleScroll(this.props.tree.activeCard, this.props.tree.cards);
 	    this.props.autosaveTree(this.props.tree);
+	    /* Autosave if I'm logging, I'm an author, and it's already in the db  */
 	    if (this.props.authenticated
 		&& this.props.tree.author == localStorage.getItem('email')) {
-		/* this.props.saveTree(this.props.tree);		*/
+		console.log("Active card changed, autosaving.");
+		this.props.saveTree(this.props.tree);		
 	    }
 	}
     }
