@@ -7,8 +7,6 @@ ENV PROJECT_DIR=/home/nulis
 ENV CLIENT_DIR=/home/nulis/client
 ENV SERVER_DIR=/home/nulis/server
 
-RUN npm install -g forever
-
 # Copy project files into /home/nulis folder.
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
