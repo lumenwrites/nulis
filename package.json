@@ -9,7 +9,8 @@
     "buildserver": "NODE_ENV=production cd ./server && webpack --config ./webpack.config.server.js --progress",
     "buildclient": "NODE_ENV=production cd ./client &&  webpack -p --config ./webpack.config.js --progress",
     "build": "NODE_ENV=production cd ./client &&  webpack -p --config ./webpack.config.js --progress &&  cd ../server && webpack --config ./webpack.config.server.js --progress",
-    "serve": "cd ./server && NODE_ENV=production node ./index.js > log.txt"
+    "serve": "cd ./server && NODE_ENV=production forever ./index.js > log.txt"
+      
   },
   "repository": {
     "type": "git",

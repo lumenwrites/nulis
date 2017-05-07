@@ -1,3 +1,4 @@
 [33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
 [33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
-[32minfo[39m:    Forever processing file: [90m./index.js[39m
+Connecting to the db at mongodb://db:27017/nulis
+Server is running on port 3000!

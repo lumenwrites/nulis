@@ -19,6 +19,7 @@ services:
     volumes:
       - ./client:/home/nulis/client
       - ./server:/home/nulis/server
-      - ./desktop:/home/nulis/desktop            
+      - ./desktop:/home/nulis/desktop
+      - ./package.json:/home/nulis/package.json
     environment:
       MONGO_URL: mongodb://db:27017/nulis
