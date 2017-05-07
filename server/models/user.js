@@ -26,8 +26,11 @@ const userSchema = new Schema({
     plan: {
 	type: String,
 	default: "Free"
+    },
+    createdAt: {
+	type: Date,
+	default: null
     }
-    
 });
 
 
@@ -39,6 +42,8 @@ userSchema.pre('save', function(next){
 
     if (this.isNew) {
 	console.log("Created new user, hashing password")
+	this.createdAt = new Date();
+
 	// generate a salt, then run callback.
 	bcrypt.genSalt(10, function(err, salt){
 	    if (err) { return next(err); }
@@ -47,6 +52,7 @@ userSchema.pre('save', function(next){
 		if (err) { return next(err); }
 		// override plain text password with encrypted password
 		user.password = hash;
+
 		next();
 	    });
 	});

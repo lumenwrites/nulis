@@ -35,7 +35,7 @@ export function deleteTree(req, res) {
 export function listTrees (req, res, next) {
     console.log('List trees ' + req.user.email);
     /* Return the list of all trees */
-    Tree.find({author:req.user.email}).then((allTrees)=>{
+    Tree.find({author:req.user.email}).sort('-updatedAt').then((allTrees)=>{
 	console.log('all trees' + JSON.stringify(allTrees));
 	return res.send(allTrees);
     });
@@ -92,6 +92,7 @@ export function updateTree (req, res, next) {
 	if (err) { return next(err); }
 	/* If tree does exist - update it. */
 	console.log("Updating tree. Received from react: " + JSON.stringify(tree));
+	tree.updatedAt = new Date();
 	Tree.findOneAndUpdate({slug:tree.slug}, tree, (err, t) => {
 	    if (err) { return next(err); }
 	    /* console.log("Updated tree! " + JSON.stringify(t));*/

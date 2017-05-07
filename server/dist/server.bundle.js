@@ -132,8 +132,11 @@ var userSchema = new Schema({
 			plan: {
 						type: String,
 						default: "Free"
+			},
+			createdAt: {
+						type: Date,
+						default: null
 			}
-
 });
 
 // On save hook, encrypt password
@@ -144,6 +147,8 @@ userSchema.pre('save', function (next) {
 
 			if (this.isNew) {
 						console.log("Created new user, hashing password");
+						this.createdAt = new Date();
+
 						// generate a salt, then run callback.
 						bcrypt.genSalt(10, function (err, salt) {
 									if (err) {
@@ -156,6 +161,7 @@ userSchema.pre('save', function (next) {
 												}
 												// override plain text password with encrypted password
 												user.password = hash;
+
 												next();
 									});
 						});
@@ -624,7 +630,7 @@ function deleteTree(req, res) {
 function listTrees(req, res, next) {
     console.log('List trees ' + req.user.email);
     /* Return the list of all trees */
-    Tree.find({ author: req.user.email }).then(function (allTrees) {
+    Tree.find({ author: req.user.email }).sort('-updatedAt').then(function (allTrees) {
         console.log('all trees' + JSON.stringify(allTrees));
         return res.send(allTrees);
     });
@@ -685,6 +691,7 @@ function updateTree(req, res, next) {
         }
         /* If tree does exist - update it. */
         console.log("Updating tree. Received from react: " + JSON.stringify(tree));
+        tree.updatedAt = new Date();
         Tree.findOneAndUpdate({ slug: tree.slug }, tree, function (err, t) {
             if (err) {
                 return next(err);
@@ -730,11 +737,11 @@ var treeSchema = new Schema({
 						index: true
 			},
 			createdAt: {
-						type: Number,
+						type: Date,
 						default: null
 			},
 			updatedAt: {
-						type: Number,
+						type: Date,
 						default: null
 			},
 			cards: {
@@ -762,6 +769,14 @@ var treeSchema = new Schema({
 
 treeSchema.set('autoIndex', false);
 
+treeSchema.pre('save', function (next) {
+			var now = new Date();
+			this.updatedAt = now;
+			if (!this.createdAt) {
+						this.createdAt = now;
+			}
+			next();
+});
 // Create model class
 var TreeModel = mongoose.model('tree', treeSchema);
 

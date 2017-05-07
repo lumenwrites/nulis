@@ -103,7 +103,7 @@ export default function(state=INITIAL_STATE, action) {
 
 	    root = updateCard(activeCard, root);
 	    /* console.log("Set active card");*/
-	    return {...state, cards: root };
+	    return {...state, cards: root, saved:false };
 	case 'CHECKBOX':
 	    var {index, cardId} = action.payload;
 	    var card = getCard(cardId, root);
@@ -129,7 +129,7 @@ export default function(state=INITIAL_STATE, action) {
 	    
 	    root = updateCard(card, root);
 
-	    return {...state, cards: root };
+	    return {...state, cards: root, saved:false };
 	    
 	case 'SET_CARD_CONFIG':
 	    return {...state, showCardConfig:action.payload };

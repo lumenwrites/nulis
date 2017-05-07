@@ -6,6 +6,8 @@ import { browserHistory } from 'react-router';
 /* Actions */
 import * as actions from '../actions/index';
 
+/* Utils */
+import handleScroll, { scrollTo  } from '../utils/handleScroll';
 
 class Trees extends Component {
     constructor(props){
@@ -37,13 +39,10 @@ class Trees extends Component {
 	});
 	var newTree = [
 	    <div key="new" className="tree">
-		<a onClick={()=> {
-			this.props.loadTemplate('Blank');
-			browserHistory.push('/new');
-		    }}>
+		<Link to="new">
 		    <i className="fa fa-plus"></i>
 		    New Tree
-		</a>
+		</Link>
 	    </div>
 	]
 	return newTree.concat(treeList)
