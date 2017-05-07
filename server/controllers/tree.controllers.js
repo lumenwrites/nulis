@@ -56,7 +56,7 @@ export function listTemplates (req, res, next) {
 export function createTree (req, res, next) {
     /* Getting the tree from the POST request sent to me by react */
     var tree = req.body;
-    console.log("Creating tree. Received from react: " + JSON.stringify(tree));
+    console.log("Creating tree. Received from react: " + tree.name);
     if (!tree.name) {
 	/* If I haven't set a name - set it to the first line */
 	var firstCard = tree.cards.children[0];
