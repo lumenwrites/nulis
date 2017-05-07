@@ -27,12 +27,18 @@ class Hotkeys extends Component {
 	});
 	Mousetrap(document.body).bind(['esc'], ()=>{
 	    this.props.setEditing(false);
+	    this.props.saveTree(this.props.tree);
 	    return false;
 	});
 
 	Mousetrap(document.body).bind(['ctrl+enter'], ()=>{
 	    console.log("Editing mode!");
+	    var editingNow = this.props.tree.editing;
 	    this.props.setEditing(!this.props.tree.editing);
+	    if (editingNow) {
+		/* If I've been editing - save it. */
+		this.props.saveTree(this.props.tree);
+	    }
 	    return false;
 	});
 
