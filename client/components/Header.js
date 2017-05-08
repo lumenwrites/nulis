@@ -58,7 +58,22 @@ class Header extends Component {
 		    :null}
 		    <MenuProfile />
 		    <MenuAbout />
-		    <CardLimit location={this.props.location} />
+		    {atMyTrees?
+		     <h1>My Trees</h1>
+		     :
+		     <h1>{this.props.tree.name}</h1>
+		    }
+	        {!atMyTrees
+		 && this.props.user
+		 && this.props.user.email == this.props.tree.author
+		 && this.props.tree.source == "Online"
+		 && this.props.tree.saved ?
+		 <span className="autosaved">
+		     [saved]
+		 </span>
+		 : null
+		}
+		<CardLimit location={this.props.location} />
 		</div>
 
 		<div className={"stats " + (atMyTrees ? "hidden":"")}>

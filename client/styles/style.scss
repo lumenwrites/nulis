@@ -245,6 +245,9 @@ textarea {
 	font-weight: normal;
 	color: rgba(77, 77, 77, 0.69);
 	font-size: 18px;
+	@media  (max-width: 600px) {
+	    display:none;
+	}
     }
 
     .fa-floppy-o {
@@ -268,9 +271,10 @@ textarea {
 	color: #b3b3b3;
 	margin-top:6px;
 	font-size: 12px;
-	margin-top:6px;
+	margin-top:10px;
 	margin-right:10px;
 	margin-left: 5px;
+	line-height: 32px;
     }
     .search {
 	padding: 4px;
@@ -299,7 +303,11 @@ textarea {
     cursor: pointer;
     margin: 0;
     margin-left: 10px;
-    margin-top: 10px;    
+    margin-top: 10px;
+    @media  (max-width: 600px) {
+	display:none;
+    }
+
     .progress-inner {
 	width: 25%;
 	height: 100%;
