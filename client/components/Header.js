@@ -24,6 +24,7 @@ import ModalLogin from './ModalLogin';
 import ModalPayments from './ModalPayments';
 import ModalThankYou from './ModalThankYou';
 import ModalFree from './ModalFree';
+import ModalShare from './ModalShare';
 import ModalDesktop from './ModalDesktop';
 import ModalSupport from './ModalSupport';
 import ModalTreeSettings from './ModalTreeSettings';
@@ -48,6 +49,7 @@ class Header extends Component {
 		<ModalPayments />
 		<ModalThankYou />				
 		<ModalFree />
+		<ModalShare />
 		<ModalDesktop />
 		<ModalSupport />				
 		
@@ -73,7 +75,7 @@ class Header extends Component {
 		 </span>
 		 : null
 		}
-		<CardLimit location={this.props.location} />
+		{/*<CardLimit location={this.props.location} />*/}
 		</div>
 
 		<div className={"stats " + (atMyTrees ? "hidden":"")}>

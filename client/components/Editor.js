@@ -6,6 +6,7 @@ import Remarkable from 'remarkable';
 
 /* Actions */
 import * as cardsActions from '../actions/cards.actions';
+import {updateSearchQuery} from '../actions/trees.actions';
 
 /* Vendor components */
 import SimpleMDE from 'react-simplemde-editor';
@@ -26,10 +27,34 @@ function bindCheckboxes(cardId){
     }
 }
 
+function bindTags(cardId, query){
+    /* After markdown has rendered, grab the tags */
+    var tags = document.getElementsByClassName("tag-"+cardId);
+    tags = [].slice.call(tags);
+    if (tags.length) {
+	/* And assign the onclick function */
+	tags.map((c, i)=>{
+	    c.onclick = (event)=> {
+		var tag = event.target.innerHTML;
+		console.log("Tag " + tag);
+		console.log("Query " + tag);		
+		if (query.includes(tag)) {
+		    this.props.updateSearchQuery(query.replace(tag,""));
+		} else {
+		    var queryWithTag = query + " " + tag;
+		    this.props.updateSearchQuery(queryWithTag.trim());
+		}
+
+	    }
+	});
+    }
+}
+
 class Editor extends Component {
     constructor(props){
 	super(props);
-	bindCheckboxes = bindCheckboxes.bind(this);	
+	bindCheckboxes = bindCheckboxes.bind(this);
+	bindTags = bindTags.bind(this);		
     }
 
     componentDidMount(){
@@ -55,7 +80,12 @@ class Editor extends Component {
 
 	/* Attaching events to checkboxes after rendering */
 	const { card } = this.props;
+	var { query } = this.props.tree;
+	if (!query) {
+	    query = "";
+	}
 	bindCheckboxes(card.id);
+	bindTags(card.id, query);
     }
 
     componentDidUpdate(prevProps){
@@ -85,7 +115,12 @@ class Editor extends Component {
 	} else {
 	    /* Reattaching events to checkboxes after updating */
 	    const { card } = this.props;
+	    var { query } = this.props.tree;
+	    if (!query) {
+		query = "";
+	    }
 	    bindCheckboxes(card.id);
+	    bindTags(card.id, query);
 	}
     }
 
@@ -112,15 +147,24 @@ class Editor extends Component {
 	}
 	
 	/* Render checkboxes */
-	var checkboxRegexp = new RegExp(/\[ \]/, 'ig')
+	var checkboxRegexp = new RegExp(/\[ \]/, 'ig');
 	markdown = markdown.replace(checkboxRegexp,
 				    `<span class="checkbox ${card.id}" id=${card.id}></span>`);
-	checkboxRegexp = new RegExp(/\[(X|V|v)\]/, 'ig')
+	checkboxRegexp = new RegExp(/\[(X|V|v)\]/, 'ig');
 	markdown = markdown.replace(checkboxRegexp,
 				    `<span class="checkbox ${card.id} checked" id=${card.id}></span>`);	
 
-	var html = md.render(markdown);
+	/* Render tags */
+	var tagsRegexp = new RegExp(/(\#[a-z\d-]+\b)/, 'ig');
+	markdown = markdown.replace(tagsRegexp, (match)=>
+	    `<span class="tag tag-${card.id}">${match}</span>`);
 
+	var html = md.render(markdown);
+	/* Collapse */
+	if (false) {
+	    var firstLine = html.split('\n')[0];
+	    html = firstLine+"<div class='btn collapsed'><i class='fa fa-ellipsis-h'></i></div>";
+	}
 	return (
 	    <div dangerouslySetInnerHTML={{__html:html}} />
 	);
@@ -177,4 +221,4 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-export default connect(mapStateToProps, cardsActions)(Editor);
+export default connect(mapStateToProps, {...cardsActions, updateSearchQuery})(Editor);

@@ -96,15 +96,6 @@ textarea {
     padding: 40px;
     padding-top: 10px;
 }
-.upgrade {
-    h1 {
-	text-align: center;
-    }
-
-    .panel-modal {
-	text-align: center;	
-    }
-}
 .panel-pricing {
     padding: 20px;
     /* background: #E3E5E9; */
@@ -157,6 +148,58 @@ textarea {
     }
 }
 }
+
+.panel-referral {
+    background-color: #dddddd;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-body {
+}
+
+.upgrade {
+    .modal-content{
+	max-height: 95vh;
+	overflow-y: auto;
+    }
+    .modal-content::-webkit-scrollbar { 
+	display: none; 
+    }
+    .modal-content {
+	position: fixed;
+	right: auto;
+	bottom: auto;
+	left: 50%;
+	transform: translate(-50%,0);
+	outline: 0;
+	width: 90vw;
+    }
+}
+
+.panel-pricing {
+    width: calc(25% - 10px);
+    float:left;
+    margin:10px;
+    margin-left:0;
+    text-align:center;
+    @media (max-width: 1122px) {	
+	width: calc(50% - 20px);
+    }
+    
+    @media (max-width: 600px) {	
+	width: 100%;
+	margin:10px 0;
+    }
+
+    h2 {
+	float:none;
+    }
+    .btn {
+	width: 100%;
+    }
+}
+
 
 .disabled a {
     cursor: default!important;
@@ -850,6 +893,36 @@ form label {
     background: #a5abb7;
     border: none;
 }
+
+.tag {
+    background: #ced2da;
+    padding: 0px 5px;
+    border-radius: 2px;
+    background: #c0c4ce;
+    border-radius: 0;
+    /* color: #111213; */
+}
+
+.collapsed {
+    padding: 0;
+    width: calc(100% - 4px);
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    height: 10px;
+    line-height: 0;
+}
+
+.collapsed-children {
+    padding: 0;
+    height: calc(100% - 4px);
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 10px;
+    display:none;
+}
+
 /* 
 .checkbox {
     float:left;

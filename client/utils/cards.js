@@ -465,8 +465,16 @@ export function search(card, query) {
     var content = card.content;
     /* content = removeMd(content);*/
     content = content.toLowerCase();
-    query = query.toLowerCase();    
+    query = query.toLowerCase();
+    var words = query.split(" ");
+    console.log(words);
+    var found = true;
+    words.map((w)=>{
+	if (w && !(content.includes(w.trim()))) {
+	    console.log("found " + w);
+	    found = false;
+	} 
+    });
 
-    return content.includes(query);
+    return found
 }
-

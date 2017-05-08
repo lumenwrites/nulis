@@ -2,7 +2,7 @@
 var INITIAL_STATE = {
     maxColumns: 5,
     theme: "Light",
-    showModal: false
+    showModal: ""
 }
 
 export default function(state=INITIAL_STATE, action) {

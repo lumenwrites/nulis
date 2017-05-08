@@ -1,5 +1,4 @@
 {
-    "_id": "590ca66aa81c68066e5eaf08",
     "slug": "",
     "name": "Nulis",
     "cards": {
@@ -21,7 +20,7 @@
                     },
                     {
                         "id": "9-tl737a1",
-                        "content": "# Bugs/Clean Up\n- [ ] Will need to refactor header.\n- [X] New tree from /trees didn't scroll?\nDevOps:\n- [X] Log errors.\n- [ ] Autorestart server when it crashes.",
+                        "content": "# Bugs/Clean Up\n- [X] Will need to refactor header.\n- [ ] New tree from /trees didn't scroll?\nDevOps:\n- [X] Log errors.\n- [X] Autorestart server when it crashes.",
                         "children": []
                     },
                     {
@@ -69,9 +68,11 @@
     "__v": 0,
     "editing": false,
     "modified": false,
-    "activeCard": "7-wv537st",
-    "updatedAt": "2017-05-07T03:03:11.199Z",
+    "activeCard": "4-t2237p2",
+    "updatedAt": "2017-05-08T04:44:49.066Z",
     "createdAt": null,
     "saved": true,
-    "debugging": "{\"id\":\"15-jx037zx\",\"content\":\"# Future\\n- Open Recent menu.\\n- Cut/Paste cards/subtrees.\\n- Collapse branches/cards.\\n- Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.\\n- Up/Down between card groups\\n- Copy tree\\n- Download all trees.\\n- Hotkeys. Go to beginning/end of group/column\\n  Move to the beginning/end of the group.\\n- Published tree settings.\\n- Settings: Max columns, separate branches.\\n- CI. proper deployment/testing and crap.\\n- Install metrics.\\n- Install a convenient admin.\",\"children\":[{\"id\":\"16-t41373b\",\"content\":\"# Far future/Maybe\\n- Stats. Github streaks. Word count.\\n- Code syntax highlighting. Latex/Mathjax.\\n- Gingko upload image\\n- Mobile.- bar with actions\\n- Paste text, turn into cards.\\n- Custom hotkeys\\n- Create custom templates\\n- dark theme\\n- Tags\\n- shortcut reference\\n\\n- Collab. people want it.\\n- Lock scrolling, as the giant table.\\n- non-moveable fields?\\n- Backend/Frontend apis. Auto-generate trees?\\n- Export presentation\\n- Insert snippets\\n- Tree has stylesheet field for custom styles/themes.\\n- Tables. Embed html plots https://plot.ly/.\\n- Zoom\\n- Android app\\n- Sync with dropbox\\n- Plugins/addons\\n- Themes. Dark.\\n- Link to a card.\\n- Tutorial(guiding you through clicks, like screeps)\\n- Hide menu in fullscreen mode - just cards and hotkeys.\\n- Draw.io revision history\",\"children\":[]},{\"id\":\"13-urb37yh\",\"content\":\"# Desktop\",\"children\":[]}]}"
+    "source": "Online",
+    "debugging": "\"\"",
+    "query": ""
 }

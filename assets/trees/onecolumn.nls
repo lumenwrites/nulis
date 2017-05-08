@@ -1,0 +1,76 @@
+{
+    "name": "About",
+    "source": "Template",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "![](/media/header.png)\n\n# Welcome to Nulis\nThis is a tree editor for writers. It makes the process of outlining your stories, articles, or books easy, fun, and convenient.\n\nFeel free to edit this page to experiment with it, don't worry, it's a template, you can always reopen it from the `About` menu.\n\nPress `Ctrl+Enter` to try editing cards, click `+` buttons to create new ones, drag cards by the handle(to the left of the card) to rearrange them.\n\nRead on to the second column to learn more.",
+                "children": [],
+                "parent_id": "root",
+                "color": "#FFAB4A"
+            },
+            {
+                "id": "6-sz03zdq",
+                "content": "# Pricing\nThis is a very early version of this app, so all the early adopters can purchase the unlimited lifetime account for only $20. If you would like to support this project - upgrading your account is the best way to do that.\n\nWhen Nulis becomes more mature, the premium version will cost $5 per month, or $50 per year, or $150 one time payment.",
+                "children": [],
+                "color": ""
+            },
+            {
+                "id": "8-k0036zv",
+                "content": "# Get it for free\nThe first 100 people who will send me an email(**raymestalez@gmail.com**) with some thoughtful feedback, bug reports, or feature suggestions, will get the unlimited lifetime account for free.",
+                "children": []
+            },
+            {
+                "creator_id": 3,
+                "content": "# Examples\nOpen the `Tree` menu and select one of the templates at the bottom to browse some examples of what can be done in Nulis.",
+                "position": "after",
+                "children": [],
+                "id": 4,
+                "parent_id": "0"
+            },
+            {
+                "id": "7-xv43z7n",
+                "content": "# Snowflake method\nNulis can be extremely convenient for writing stories using a [\"Snowflake Method\"](http://www.advancedfictionwriting.com/articles/snowflake-method/).\n",
+                "children": []
+            },
+            {
+                "creator_id": "0",
+                "content": "# How it works\nNulis is useful for organizing large amounts of information, beraking down your large writing goals into smaller steps, and working on your writing in manageable chunks. The purpose of Nulis is to help you to write in the state of flow.\n\nNulis allows you to edit your story on multiple different levels. Describe the general idea of your story or an article in the first column, then create child cards to the right of it to add more details. \n\nFor example cards in the second column can describe your story outline, and cards in the third column can describe your scenes.",
+                "position": "right",
+                "children": [],
+                "id": 2,
+                "parent_id": "0",
+                "color": "#0079BF"
+            },
+            {
+                "id": "6-pd13zce",
+                "content": "# Upcoming features\n- [X] Set card colors with `Alt+C`\n- [X] Checkboxes\n- [ ] Conveniently splitting and merging cards.\n- [ ] Collapse branches/cards (like in mindmaps).\n- [ ] Focus on a subtree.\n- [ ] Cut/Paste trees and cards.\n- [ ] Export markdown.\n- [ ] Possibly plugins and themes.\n- [ ] And much more =)",
+                "children": [],
+                "color": ""
+            },
+            {
+                "creator_id": 2,
+                "content": "# Hotkeys\nTo edit the tree, you need to remember two sets of keys:  \n\n- Directions(can also just use arrows):  \n  `H` - left  \n\t`J` - down   \n\t`K` - up   \n\t`L` - right  \n- Actions:  \n  `Ctrl` - select   \n\t`Ctrl+Shift` - create   \n\t`Alt` - move  \n\t\nYou can combine them to form shortcuts. So for example to create a card to the right, you would press `Ctrl+Shift+L`, and to move the card down you'd press `Alt+J`. Try it now!\n\nTo switch between editing/preview modes use `Ctrl+Enter`. Double click and `Enter` also work for entering the edit mode.\n\n`Alt+F` toggles the fullscreen mode in the editor.\n\n`Ctrl+/` focuses your input on search bar, allowing you to quickly filter the cards.\n\nAlso, you can delete cards with `Ctrl+Backspace`, and undo things with `Ctrl-Z`.",
+                "position": "after",
+                "children": [],
+                "id": 3,
+                "parent_id": 2,
+                "color": "#0079BF"
+            }
+        ]
+    },
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
+    "editing": false,
+    "modified": false,
+    "activeCard": "8-k0036zv",
+    "updatedAt": null,
+    "createdAt": null,
+    "saved": false,
+    "showCardConfig": false,
+    "debugging": "\"left\"",
+    "scroll": true,
+    "slug": ""
+}

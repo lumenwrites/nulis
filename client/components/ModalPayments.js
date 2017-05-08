@@ -26,11 +26,48 @@ class ModalPayments extends Component {
 		<div className="panel-modal">
 		    <p>You are currently using a free version of Nulis,
 			which allows you to create up to 200 cards per month.</p>
-		    <p>Nulis has launched only recently, so as an early adopter
-			you can purchase the unlimited lifetime account for only 
-			<b> $20</b>.</p>
+		    <p>Upgrade your account to create unlimited cards (both online and on desktop), get priority support, early access to new features, and help me to make this project even more awesome!</p>
+		    <h1> Plans: </h1>
+
 		    <div className="panel-pricing">
-			<h2>Nulis Unlimited</h2>
+			<h2>Referral</h2>
+			<p>Get Nulis for free</p>
+			<a className="btn right"
+			   onClick={()=>{
+				   this.props.setShowModal("share");
+			       }}>
+			    Learn How
+			</a>
+			<div className="clearfix"></div>			
+		    </div>
+
+		    <div className="panel-pricing">
+			<h2>Monthly</h2>
+			<p> $5/month </p>
+			<a className="btn right"
+			   onClick={()=>{
+				   this.props.setShowModal("share");
+			       }}>
+			    Upgrade
+			</a>
+			<div className="clearfix"></div>			
+		    </div>
+
+		    <div className="panel-pricing">
+			<h2>Yearly</h2>
+			<p> $40/year (save 33.3%) </p>
+			<a className="btn right"
+			   onClick={()=>{
+				   this.props.setShowModal("share");
+			       }}>
+			    Upgrade
+			</a>
+			<div className="clearfix"></div>			
+		    </div>
+		    
+		    <div className="panel-pricing">
+			<h2>Lifetime</h2>
+			<p>$150 one-time payment</p>
 			<a className="btn right"
 			   onClick={()=>{
 				   this.props.payment({id:"free"});
@@ -40,6 +77,7 @@ class ModalPayments extends Component {
 			</a>
 			<div className="clearfix"></div>			
 		    </div>
+		    
 		    {/*  		    
 			<div className="panel-pricing">
 			<h2>Nulis Unlimited</h2>
