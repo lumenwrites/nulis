@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
 
 import { DropTarget } from 'react-dnd';
 
@@ -20,11 +19,11 @@ const dropTarget = {
 }))
 class Target extends Component {
     render() {
-	const { canDrop, isOver, isDragging, connectDropTarget } = this.props;
-	/* console.log("Drop target props " + JSON.stringify(this.props));*/
+	const { canDrop, isOver, connectDropTarget } = this.props;
+
 	/* Highlight it */
 	var isActive = canDrop && isOver;
-	/* if (isOver) { console.log("Over."); } */
+
 	return connectDropTarget(
 	    <div className={"drop-target "
 			  + (isActive ? "active " : " ")

@@ -1,7 +1,7 @@
 {
     "_id": "590a31dd348beb446dd319d4",
     "name": "Story",
-    "slug": "story-ka9ia0u",
+    "source":"Template",    	    
     "cards": {
         "id": "root",
         "children": [

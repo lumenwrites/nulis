@@ -162,9 +162,11 @@ textarea {
     cursor: default!important;
 }
 
+.dropdown {
+    float: left;
+}
 .dropdown:hover .dropdown-menu {
     display: block;
-
     i {
 	margin-right: 10px;
     }
@@ -199,10 +201,16 @@ textarea {
 /* Main component */
 .header {
     width: 100%;
+    height: 52px;
     background: white;
     padding: 10px;
     border-top: 3px solid #f66303; /*#2196F3*/
     /* box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.06); */
+
+    @media (max-width: 600px) {	
+	height: 94px;
+    }
+
     .btn {
 	margin: 0px 5px;
     }    
@@ -239,6 +247,10 @@ textarea {
 	font-size: 18px;
     }
 
+    .fa-floppy-o {
+	margin:5px;
+    }
+
     .main-menu {
 	@media (max-width: 600px) {	
 	    width:100%;
@@ -257,7 +269,8 @@ textarea {
 	margin-top:6px;
 	font-size: 12px;
 	margin-top:6px;
-	margin-right:10px;	
+	margin-right:10px;
+	margin-left: 5px;
     }
     .search {
 	padding: 4px;
@@ -284,7 +297,9 @@ textarea {
     width:100px;
     border: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;    
     .progress-inner {
 	width: 25%;
 	height: 100%;
@@ -295,6 +310,9 @@ textarea {
 /* Columns */
 .columns-wrapper {
     height: calc(100% - 52px);
+    @media (max-width: 600px) {	
+	height: calc(100% - 94px);
+    }
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -553,10 +571,19 @@ textarea::-webkit-scrollbar {
     bottom: -10px;
     right: 60px;
 }
-.delete-card {
-    top: -10px;
-    right: 10px;
+
+
+.btn-delete {
+    display:none;
+    z-index: 10;
+    text-align: center;
+    color: rgba(136, 136, 136, 0.4);
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    cursor: pointer;
 }
+
 
 .handle:hover {
     background:#d8dadc;

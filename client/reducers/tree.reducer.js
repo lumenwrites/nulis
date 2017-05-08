@@ -75,19 +75,23 @@ export default function(state=INITIAL_STATE, action) {
 	    /* var rootCopy = immutableCopy(root);*/
 	    /* Which card to select after deleting this one */
 	    /* Select the card above this one by default */
-	    var newActiveCard = getCardRelativeTo(activeCard, root, "up");
-	    if (newActiveCard == activeCard) {
+	    var toDelete = activeCard;
+	    if (action.payload) {
+		toDelete = action.payload;
+	    }
+	    var newActiveCard = getCardRelativeTo(toDelete, root, "up");
+	    if (newActiveCard == toDelete) {
 		/* If the card is already at the top of the column,
 		   select the one below  */
-		newActiveCard = getCardRelativeTo(activeCard, root, "down");
-		if (newActiveCard == activeCard) {
+		newActiveCard = getCardRelativeTo(toDelete, root, "down");
+		if (newActiveCard == toDelete) {
 		    /* If there's no card below it -
 		       then it's the last card in the column,
 		       so select it's parent*/
-		    newActiveCard = getCardRelativeTo(activeCard, root, "left");
+		    newActiveCard = getCardRelativeTo(toDelete, root, "left");
 		}
 	    }
-	    var updatedRoot = deleteCard(activeCard, root);
+	    var updatedRoot = deleteCard(toDelete, root);
 	    tree.cards = updatedRoot;
 	    tree.activeCard = newActiveCard.id;
 	    tree.modified = false;

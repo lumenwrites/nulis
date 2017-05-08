@@ -1,0 +1,57 @@
+{
+    "_id": "590eb9cca942390019ec53f3",
+    "slug": "",
+    "name": "My next brilliant story",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "# My next brilliant story\nWhat if sharks could ride lasor-raptors, and had to defent the white house against the fleet of alien spaceships?",
+                "children": [
+                    {
+                        "id": "2-0c036a1",
+                        "content": "# Act 1 - Aliens Attack\nThe peaceful world of shark-raptors has been disturbed by a horrible event...",
+                        "children": [
+                            {
+                                "id": "5-ko336yn",
+                                "content": "# Scene One\nAnd so it begins.... The war between worlds, stopped by the unlikeliest of love stories.",
+                                "children": []
+                            },
+                            {
+                                "id": "6-8t436ya",
+                                "content": "# Scene two",
+                                "children": []
+                            },
+                            {
+                                "id": "7-ri536v3",
+                                "content": "# Scene three",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "3-u61369z",
+                        "content": "# Act 2 - Trials and Tribulations\nIt all would be lost if one young rule-breaking raptor would not fall in love with a pretty career-oriented shark.",
+                        "children": []
+                    },
+                    {
+                        "id": "4-e0236y8",
+                        "content": "# Act 3 - The end of tomorrow\nThe final battle was almost lost until the psychic dolphins came to the resque.",
+                        "children": []
+                    }
+                ],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
+    "editing": true,
+    "modified": false,
+    "activeCard": "6-8t436ya",
+    "updatedAt": "2017-05-07T06:11:33.521Z",
+    "createdAt": "2017-05-07T06:08:12.819Z",
+    "saved": false,
+    "debugging": "{\"id\":\"5-ko336yn\",\"content\":\"# Scene One\\nAnd so it begins.... The war between worlds, stopped by the unlikeliest of love stories.\",\"children\":[]}"
+}

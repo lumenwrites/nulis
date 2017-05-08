@@ -24,14 +24,6 @@ function logPageView() {
     window.scrollTo(0, 0);
 }
 
-// Sign in
-const token = localStorage.getItem('token');
-// if user has a token - sign him in
-if (token) {
-    store.dispatch({ type: 'AUTH_USER' });
-    console.log("index.js: localStorage contains token, so sign user in.");  
-}
-
 
 ReactDOM.render(
     <Provider store={store}>

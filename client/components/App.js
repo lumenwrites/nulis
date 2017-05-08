@@ -7,16 +7,20 @@ import '../styles/font-awesome.min.css';
 import '../styles/simplemde.min.css';
 import '../styles/style.scss';
 
-/* Vendor components */
-/* import dragula from 'react-dragula'; */
-
 /* My Components */
 import Header from './Header';
 import Hotkeys from './Hotkeys';
 
-
+/* Actions */
+import { fetchUser } from '../actions/profiles.actions';
 
 class App extends Component {
+    componentDidMount() {
+	if (localStorage.getItem('token')){
+	    this.props.fetchUser();
+	}
+    }
+
     render() {
 	const { children } = this.props;
 	
@@ -30,4 +34,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(null, { fetchUser })(App);

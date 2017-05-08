@@ -8,7 +8,8 @@ var { undo, redo } = ActionCreators;
 import Mousetrap from 'mousetrap';
 
 /* Actions */
-import * as actions from '../actions/index';
+import * as cardsActions from '../actions/cards.actions';
+import * as treesActions from '../actions/trees.actions';
 
 class Hotkeys extends Component {
     componentDidMount(){
@@ -147,5 +148,5 @@ function mapStateToProps(state) {
     return { tree: state.tree.present };
 }
 
-export default connect(mapStateToProps, actions)(Hotkeys);
+export default connect(mapStateToProps, {...cardsActions, ...treesActions})(Hotkeys);
 

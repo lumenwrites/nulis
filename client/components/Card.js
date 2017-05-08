@@ -6,13 +6,12 @@ import Remarkable from 'remarkable';
 import { DragSource, DragTarget } from 'react-dnd';
 
 /* Actions */
-import * as actions from '../actions/index';
+import * as cardsActions from '../actions/cards.actions';
+import {setEditing} from '../actions/trees.actions';
 
 /* Utils */
-import { getAllParents, getAllChildren, isActive, getParent,
-	 getCard, getCardRelativeTo } from '../utils/cards';
-import handleScroll from '../utils/handleScroll';
-import { findClass } from '../utils/misc';
+import { getAllChildren, isActive, getParent, getCard } from '../utils/cards';
+import {cardSource} from '../utils/dragAndDrop';
 
 /* Components */
 import Editor from './Editor';
@@ -20,62 +19,6 @@ import ColorBox from './ColorBox';
 import DropTarget from './DropTarget';
 
 
-/* Drag and Drop */
-/* Implements the drag source contract. */
-const cardSource = {
-    beginDrag(props) {
-	// Return the data describing the dragged item
-	const item = { cardId: props.card.id };
-	return item;
-    },
-
-    endDrag(props, monitor, component) {
-	const item = monitor.getItem();
-	const dropResult = monitor.getDropResult();
-	if (dropResult) {
-	    /* Trigger this once the card is dropped */
-	    var card = null;
-	    var parent = null;
-	    var children = null;
-	    var childrenIds = null;	    	    
-
-	    var dropIt = true;
-	    card = getCard(item.cardId,props.tree.cards);
-	    parent = getParent(card, props.tree.cards);
-	    children = getAllChildren(card, props.tree.cards);
-	    childrenIds = children.map((c)=>c.id);
-	    
-
-	    /* If I'm not dropping the card on itself
-	       or on it's own parent, or on one of it's children.  */
-	    if (item.cardId != dropResult.parentId
-		&& !(parent.id == dropResult.parentId && dropResult.position=="right")
-		&& !childrenIds.includes(dropResult.parentId)) {
-		/* Trigger action that will move the card */
-		/* console.log( `Dropped ${item.cardId} into ${dropResult.parentId}!`);*/
-		props.dropCard(dropResult.position, dropResult.parentId, props.card);
-	    } else {
-		console.log("Cancel DnD. Trying to drop onto itself/parent/children.");
-	    }
-	}
-    }
-};
-
-
-function bindCheckboxes(cardId){
-    /* After markdown has rendered, grab the checkboxes */
-    var checkboxes = document.getElementsByClassName(cardId);
-    checkboxes = [].slice.call(checkboxes);
-    if (checkboxes.length) {
-	/* And assign the onclick function */
-	checkboxes.map((c, i)=>{
-	    c.onclick = ()=> {
-		/* Action that tells reducer to check/uncheck markdown checkbox */
-		this.props.checkCheckbox(i+1, c.id);
-	    }
-	});
-    }
-}
 // Use decorator to make card draggable and pass it some functions.
 @DragSource('CARD', cardSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
@@ -83,55 +26,17 @@ function bindCheckboxes(cardId){
     isDragging: monitor.isDragging()
 }))
 class Card extends Component {
-    constructor(props){
-	super(props);
-
-	this.updateTree = this.updateTree.bind(this);
-	bindCheckboxes = bindCheckboxes.bind(this);	
-    }
-
     componentDidMount(){
-	/* Attaching events to checkboxes after rendering */
-	const { card } = this.props;
-	bindCheckboxes(card.id);
     }
 
     componentDidUpdate(){
-	const { card } = this.props;
-	bindCheckboxes(card.id);
-    }
-    renderMarkdown(markdown) {
-	/* Turn markdown into html */
-	const md = new Remarkable({html: true});
-	markdown = md.render(markdown);
-	return (
-	    <div dangerouslySetInnerHTML={{__html:markdown}} />
-	);
     }
 
-    /* Handle events */
-    updateTree(){
-	var tree = this.props.tree;
-	this.props.updateTree(tree);
-	this.props.setEditing(false);
-    }
-    
-
-    
     render() {
 	const { card } = this.props;
-	var active = isActive(card, this.props.tree.cards, this.props.tree.activeCard);
-	if (active) {
-	    /* console.log("Card " + card.id + " active " + active);*/
-	}
-	
 	const { isDragging, connectDragSource, connectDragPreview } = this.props;
-
-	var preview = (
-	    <div className={"card active padding-left-10"}>
-		{card.content.substring(0,30)+"..."}
-	    </div>
-	);
+	
+	var active = isActive(card, this.props.tree.cards, this.props.tree.activeCard);
 
 	return (
 	    <div key={card.id}
@@ -149,33 +54,19 @@ class Card extends Component {
 		<DropTarget position="before" card={card}/>
 		<DropTarget position="after" card={card}/>
 		<DropTarget position="right" card={card}/>
-		<div className="move-left temp btn-plus"
-		     onClick={() => this.props.moveCard("left")}>left</div>
-		<div className="move-right temp btn-plus"
-		     onClick={() => this.props.moveCard("right")}>right</div>
-		<div className="move-up temp btn-plus"
-		     onClick={() => this.props.moveCard("up")}>up</div>
-		<div className="move-down temp btn-plus"
-		     onClick={() => this.props.moveCard("down")}>down</div>
-		
 		<div className="add-top btn-plus"
-		     onClick={() => this.props.createCard("before", card)}>
-			+
-		</div>
+		     onClick={() => this.props.createCard("before", card)}>+</div>
 		<div className="add-right btn-plus"
 		     onClick={() => this.props.createCard("right", card)}>+</div>
 		<div className="add-bottom btn-plus"
 		     onClick={() => this.props.createCard("after", card)}>+</div>
-		{/*  
-		<div className="edit-card temp btn-plus"
-		     onClick={() => this.props.setEditing(true)}>edit</div>
-		  */}
-		<div className="save-card temp btn-plus"
-		     onClick={() => this.updateTree()}>save</div>
-		<div className="delete-card temp btn-plus"
-		     onClick={() => this.props.deleteCard()}>X</div>
+		<div className="btn-delete"
+		     onClick={() => this.props.deleteCard(card)}>
+		    &#10060;
+		</div>
 
 		<Editor card={this.props.card} />
+
 		<ColorBox show={(this.props.tree.showCardConfig
 			         && card.id == this.props.tree.activeCard) }/>
 		<div className="clearfix"></div>
@@ -188,7 +79,6 @@ class Card extends Component {
 			Parent:
 			<span className="black">{getParent(card, this.props.tree.cards).id}</span>
 		    </span>
-
 		</div>
 	    </div>
 	);
@@ -203,13 +93,12 @@ function collect(connect, monitor) {
 	isDragging: monitor.isDragging()
     };
 }
-/* Magic connecting component to redux */
+
+
 function mapStateToProps(state) {
     return { tree: state.tree.present };
 }
-/* First argument allows to access state */
-/* Second allows to fire actions */
-var card = connect(mapStateToProps, actions)(Card);
+var card = connect(mapStateToProps, {setEditing})(Card);
 
 /* Connect drag and drop to the card */
 export default DragSource('CARD', cardSource, collect)(card);

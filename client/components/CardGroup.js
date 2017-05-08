@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
 
-import { getAllParents, getAllChildren } from '../utils/cards';
-
+/* Actions */
+import * as cardsActions from '../actions/cards.actions';
+/* Utils */
+import { getAllParents } from '../utils/cards';
 import { search } from '../utils/cards';
 
 class CardGroup extends Component {
     render() {
-	var activeCard = this.props.tree.activeCard;	    
+	var { activeCard } = this.props.tree;	    
 	var isActive = false;
 
 	/* Hide group if all cards filtered out by search */
-
 	var query = this.props.tree.query;
 	if (query) {
 	    var hasCards = false;
@@ -26,13 +26,11 @@ class CardGroup extends Component {
 	    }
 	}
 
-	
 	/* If parent active */
 	if (this.props.group.parent.id == activeCard) {
-	    isActive = true;
 	    isActive = "parents";		
 	}
-	/* If one of it's cards is active */
+	/* If one of group's cards is active */
 	this.props.group.cards.map((c)=>{
 	    if (c.id == activeCard) {
 		isActive = "group";
@@ -63,4 +61,4 @@ class CardGroup extends Component {
 function mapStateToProps(state) {
     return { tree: state.tree.present };
 } 
-export default connect(mapStateToProps, actions)(CardGroup);
+export default connect(mapStateToProps, cardsActions)(CardGroup);

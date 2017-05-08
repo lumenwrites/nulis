@@ -6,20 +6,20 @@ import { Modal } from 'react-bootstrap';
 import StripeCheckout from 'react-stripe-checkout';
 
 /* Actions */
-import * as actions from '../actions/profiles';
+import {payment} from '../actions/profiles.actions';
+import {setShowModal} from '../actions/preferences.actions';
 
 
-class PaymentsModal extends Component {
-
+class ModalPayments extends Component {
     sendToken(token) {
 	this.props.payment(token);
-	this.props.showModal("thankyou");
+	this.props.setShowModal("thankyou");
     }
     render() {
 	return (
 	    <Modal className="upgrade"
-		   show={this.props.show}
-		   onHide={this.props.onHide}>
+		   show={this.props.showModal =="upgrade" ? true : false}
+		   onHide={()=>this.props.setShowModal(false)}>
 		<Modal.Header closeButton>
 		    <h1>Upgrade Account</h1>
 		</Modal.Header>
@@ -34,7 +34,7 @@ class PaymentsModal extends Component {
 			<a className="btn right"
 			   onClick={()=>{
 				   this.props.payment({id:"free"});
-				   this.props.showModal("free");
+				   this.props.setShowModal("free");
 			       }}>
 			    Upgrade
 			</a>
@@ -68,8 +68,9 @@ class PaymentsModal extends Component {
 
 function mapStateToProps(state) {
     return {
-    	authenticated: state.profiles.authenticated
+    	user: state.profiles.user,
+    	showModal: state.preferences.showModal
     };
 }
 
-export default connect(mapStateToProps, actions)(PaymentsModal);
+export default connect(mapStateToProps, {payment, setShowModal})(ModalPayments);

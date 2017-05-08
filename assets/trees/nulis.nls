@@ -16,17 +16,17 @@
                     },
                     {
                         "id": "7-wv537st",
-                        "content": "# Small\n- [ ] Autosave into db when card changes.\n- [ ] Probably shouldn't display droptargets on parents/children at all.\n- [ ] Horizontal scrolling.\n- [ ] Move away from unsaved tree confirmation.\n- [ ] create tree in a new tab\n- [ ] Password reset.\n- [ ] Copy/paste tree/cards. Later - text.\n- [ ] Card - change color like in hou. Shortcut for card prefs.\n- [ ] Install metrics. \n- [ ] Install a convenient admin.",
+                        "content": "# Small\n- [X] Autosave into db when card changes.\n- [X] Move away from unsaved tree confirmation.\n- [X] create tree in a new tab\n- [X] Card - change color like in hou. Shortcut for card prefs.\n- [ ] Probably shouldn't display droptargets on parents/children at all.\n- [ ] Horizontal scrolling.\n- [ ] Password reset.\n- [ ] Copy/paste tree/cards. Later - text.",
                         "children": []
                     },
                     {
                         "id": "9-tl737a1",
-                        "content": "# Bugs/Clean Up\n- [ ] Will need to refactor header.\n- [ ] Left arrow switches card to the left.\n- [ ] New tree from /trees didn't scroll?\n- [ ] Alt+left not reparents?\nDevOps:\n- [ ] Log errors.\n- [ ] Autorestart server when it crashes.\n- [ ] CI. proper deployment/testing and crap.",
+                        "content": "# Bugs/Clean Up\n- [ ] Will need to refactor header.\n- [X] New tree from /trees didn't scroll?\nDevOps:\n- [X] Log errors.\n- [ ] Autorestart server when it crashes.",
                         "children": []
                     },
                     {
                         "id": "15-jx037zx",
-                        "content": "# Future\n- Open Recent menu.\n- Cut/Paste cards/subtrees.\n- Collapse branches/cards.\n- Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.\n- Up/Down between card groups\n- Copy tree\n- Download all trees.\n- Hotkeys. Go to beginning/end of group/column\n  Move to the beginning/end of the group.\n- Published tree settings.\n- Settings: Max columns, separate branches.",
+                        "content": "# Future\n- Open Recent menu.\n- Cut/Paste cards/subtrees.\n- Collapse branches/cards.\n- Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.\n- Up/Down between card groups\n- Copy tree\n- Download all trees.\n- Hotkeys. Go to beginning/end of group/column\n  Move to the beginning/end of the group.\n- Published tree settings.\n- Settings: Max columns, separate branches.\n- CI. proper deployment/testing and crap.\n- Install metrics.\n- Install a convenient admin.",
                         "children": [
                             {
                                 "id": "16-t41373b",
@@ -48,14 +48,14 @@
                 "children": [
                     {
                         "id": "18-n7g37ps",
-                        "content": "- AI resources.\n- Community/RAM breakdown.\n- Snowflake method.\n\n//AP resources.  \n- Webdev resources.\n- Comedy process+post.\n- All startup lecture notes!!!!! takeaways.",
+                        "content": "- AI resources.\n- Community/RaM script breakdown.\n- Snowflake method.\n\n//AP resources.  \n- Webdev resources.\n- Comedy process+post.\n- All startup lecture notes!!!!! takeaways.",
                         "children": []
                     }
                 ]
             },
             {
                 "id": "21-97j37vb",
-                "content": "# User interviews.\n - Think on and list optimal questions.\n - Proactively ask users specific things, intentional, high leverage.\n- Targeted emails/pms to writers.\n",
+                "content": "# Community\n - User Interviews - think on and list optimal questions, proactively ask specific things.\n- Targeted emails/pms to writers.\n- Write explainer video script, explain why and mission.\n",
                 "children": []
             },
             {
@@ -69,8 +69,9 @@
     "__v": 0,
     "editing": false,
     "modified": false,
-    "activeCard": "4-t2237p2",
-    "updatedAt": null,
+    "activeCard": "7-wv537st",
+    "updatedAt": "2017-05-07T03:03:11.199Z",
     "createdAt": null,
-    "saved": true
+    "saved": true,
+    "debugging": "{\"id\":\"15-jx037zx\",\"content\":\"# Future\\n- Open Recent menu.\\n- Cut/Paste cards/subtrees.\\n- Collapse branches/cards.\\n- Focus on subtree, goalscape style. Workflowy-like breadcrumb of parents.\\n- Up/Down between card groups\\n- Copy tree\\n- Download all trees.\\n- Hotkeys. Go to beginning/end of group/column\\n  Move to the beginning/end of the group.\\n- Published tree settings.\\n- Settings: Max columns, separate branches.\\n- CI. proper deployment/testing and crap.\\n- Install metrics.\\n- Install a convenient admin.\",\"children\":[{\"id\":\"16-t41373b\",\"content\":\"# Far future/Maybe\\n- Stats. Github streaks. Word count.\\n- Code syntax highlighting. Latex/Mathjax.\\n- Gingko upload image\\n- Mobile.- bar with actions\\n- Paste text, turn into cards.\\n- Custom hotkeys\\n- Create custom templates\\n- dark theme\\n- Tags\\n- shortcut reference\\n\\n- Collab. people want it.\\n- Lock scrolling, as the giant table.\\n- non-moveable fields?\\n- Backend/Frontend apis. Auto-generate trees?\\n- Export presentation\\n- Insert snippets\\n- Tree has stylesheet field for custom styles/themes.\\n- Tables. Embed html plots https://plot.ly/.\\n- Zoom\\n- Android app\\n- Sync with dropbox\\n- Plugins/addons\\n- Themes. Dark.\\n- Link to a card.\\n- Tutorial(guiding you through clicks, like screeps)\\n- Hide menu in fullscreen mode - just cards and hotkeys.\\n- Draw.io revision history\",\"children\":[]},{\"id\":\"13-urb37yh\",\"content\":\"# Desktop\",\"children\":[]}]}"
 }

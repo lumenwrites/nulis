@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { browserHistory } from 'react-router';
-import { Link } from 'react-router';
-
 /* Actions */
-import {setCardColor} from '../actions/index';
-
+import {setCardColor} from '../actions/cards.actions';
 
 class ColorBox extends Component {
     renderColors() {

@@ -4,24 +4,20 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 
 /* Actions */
-import * as actions from '../actions/index';
+import * as treesActions from '../actions/trees.actions';
 
 /* Utils */
-import handleScroll, { scrollTo  } from '../utils/handleScroll';
+import handleScroll from '../utils/handleScroll';
 
-class Trees extends Component {
-    constructor(props){
-	super(props);
-    }
-
+class TreeManager extends Component {
     componentDidMount(){
 	this.props.listTrees();
     }
 
     renderTreeList() {
 	var { allTrees } = this.props;
-	/* console.log(allTrees);*/
 	if (!allTrees) { return <div></div> }
+	
 	var treeList = allTrees.map((t)=>{
 	    var capitalized = t.name.charAt(0).toUpperCase() + t.name.slice(1);
 	    return (
@@ -46,7 +42,6 @@ class Trees extends Component {
 	    </div>
 	]
 	return newTree.concat(treeList)
-	/* return treeList;*/
     }
     render() {
 	return (
@@ -57,13 +52,11 @@ class Trees extends Component {
     }
 }
 
-
 function mapStateToProps(state) {
     return {
-	allTrees: state.allTrees,
-	authenticated: state.profiles.authenticated
+	allTrees: state.allTrees
     };
 }
 
-export default connect(mapStateToProps, actions)(Trees);
+export default connect(mapStateToProps, treesActions)(TreeManager);
     

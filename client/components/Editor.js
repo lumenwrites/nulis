@@ -5,26 +5,43 @@ import Mousetrap from 'mousetrap';
 import Remarkable from 'remarkable';
 
 /* Actions */
-import { createCard, updateCard, deleteCard, setActiveCard,
-	 moveCard, activateCard, setEditing, selectCard,
-	 updateTree, loadTree } from '../actions/index';
+import * as cardsActions from '../actions/cards.actions';
 
 /* Vendor components */
 import SimpleMDE from 'react-simplemde-editor';
 
 
+function bindCheckboxes(cardId){
+    /* After markdown has rendered, grab the checkboxes */
+    var checkboxes = document.getElementsByClassName(cardId);
+    checkboxes = [].slice.call(checkboxes);
+    if (checkboxes.length) {
+	/* And assign the onclick function */
+	checkboxes.map((c, i)=>{
+	    c.onclick = ()=> {
+		/* Action that tells reducer to check/uncheck markdown checkbox */
+		this.props.checkCheckbox(i+1, c.id);
+	    }
+	});
+    }
+}
+
 class Editor extends Component {
+    constructor(props){
+	super(props);
+	bindCheckboxes = bindCheckboxes.bind(this);	
+    }
 
     componentDidMount(){
 	if (this.props.card.id == this.props.tree.activeCard
 	    && this.editor && document.activeElement.className != "search") {
-	    /* If the card is active - focus on it */
+	    /* If the card is active - focus on editor. */
 	    this.editor.simplemde.codemirror.focus();
 	    /* And move the cursor to the end. */
 	    this.editor.simplemde.codemirror.setCursor(4);
 	    /* console.log(this.editor.simplemde.codemirror);*/
 	}
-	/* this.editor.simplemde.codemirror.options.extraKeys['Ctrl-Z'] = false;	*/
+	/* this.editor.simplemde.codemirror.options.extraKeys['Ctrl-Z'] = false; */
 
 	/* Split */
 	Mousetrap(document.body).bind(['ctrl+alt+j'], ()=>{
@@ -36,6 +53,9 @@ class Editor extends Component {
 	    return false;
 	});
 
+	/* Attaching events to checkboxes after rendering */
+	const { card } = this.props;
+	bindCheckboxes(card.id);
     }
 
     componentDidUpdate(prevProps){
@@ -62,6 +82,10 @@ class Editor extends Component {
 		   and the cursor is at the beginning - move cursor to the end. */
 		    this.editor.simplemde.codemirror.setCursor(4);	   
 	    }
+	} else {
+	    /* Reattaching events to checkboxes after updating */
+	    const { card } = this.props;
+	    bindCheckboxes(card.id);
 	}
     }
 
@@ -142,7 +166,6 @@ class Editor extends Component {
 	    </div>
 
 	)
-	/* otherwise - render markdown */
     }
 }
 
@@ -154,4 +177,4 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-export default connect(mapStateToProps, { updateCard, selectCard, setActiveCard })(Editor);
+export default connect(mapStateToProps, cardsActions)(Editor);

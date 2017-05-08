@@ -1,6 +1,7 @@
 {
     "slug": "",
     "name": "",
+    "source":"Template",    	    
     "cards": {
         "id": "root",
         "children": [

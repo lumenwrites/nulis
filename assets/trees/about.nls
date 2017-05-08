@@ -1,7 +1,7 @@
 {
     "_id": "590e193013fe94587e7553bc",
     "name": "About",
-    "slug": "about-ah0hasl",
+    "source":"Template",    	    
     "cards": {
         "id": "root",
         "children": [
