@@ -12,6 +12,7 @@ class CardLimit extends Component {
     componentDidUpdate(pastProps, pastState) {
 	/* If user has created a card - check if he's reached the limit.*/
 	if (this.props.tree.cards != pastProps.tree.cards
+	    && this.props.tree.saved == false
 	    && this.props.location.pathname != "/trees") {
 
 	    /* If unauthenticated user reached a limit - open must login prompt. */

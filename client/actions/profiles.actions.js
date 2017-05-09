@@ -99,6 +99,7 @@ export function logout() {
     console.log("Logging out.")
     console.log("Removing token from local storage, removing user from state.");
     localStorage.removeItem('token');
+    localStorage.removeItem('cardsCreated');    
     return {
 	type: 'UNAUTH_USER'
     };

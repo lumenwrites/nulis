@@ -165,6 +165,7 @@ export default function(state=INITIAL_STATE, action) {
 	    return {...state, saved:true  };
 	case 'LOAD_TREE':
 	    var tree = action.payload;
+	    tree.saved = true;
 	    return { ...tree, scroll: true };	    
 
 	case 'UPDATE_SEARCH_QUERY':

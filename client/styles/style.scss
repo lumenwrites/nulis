@@ -349,6 +349,7 @@ textarea {
     margin: 0;
     margin-left: 10px;
     margin-top: 10px;
+    overflow: hidden;
     @media  (max-width: 700px) {
 	display:none;
     }
