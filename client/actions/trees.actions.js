@@ -59,13 +59,13 @@ export function createTree(tree) {
 
 export function updateTree(tree) {
     var tree_url = `${API_URL}/tree/${tree.slug}`;
-    console.log("Updating a tree " + tree.name);
+    /* console.log("Updating a tree " + tree.name);*/
 
     delete tree._id;
     return function(dispatch) {
 	axios.post(tree_url, tree, config)
 	     .then(response => {
-		 console.log("Updated a tree.");
+		 /* console.log("Updated a tree in db.");*/
 		 var tree = response.data.name;
 		 dispatch({
 		     type: 'UPDATED_TREE',

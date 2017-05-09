@@ -70,5 +70,5 @@ export default function handleScroll(cardId, cards, columns) {
 	    scrolledColumns.push(c.index);
 	}
     });
-    console.log("Scrolled columns " + scrolledColumns);    
+    /* console.log("Scrolled columns " + scrolledColumns);    */
 }

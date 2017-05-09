@@ -431,7 +431,7 @@ export function sortByKey(array, key) {
    columns-groups-cards structure for rendering */
 export function cardsToColumns (cards) {
     var columns = [];
-    console.log("Converting cards to columns");
+    /* console.log("Converting cards to columns");*/
     /* Using a nested function as a hack to keep columns in a variable */
     function convertCardsToColumns (parent, columnIndex) {
 	/* Get all the children of the parent */

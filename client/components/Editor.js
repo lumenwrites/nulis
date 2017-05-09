@@ -53,11 +53,21 @@ function bindTags(cardId, query){
 class Editor extends Component {
     constructor(props){
 	super(props);
+	this.state = {content: ""};
 	bindCheckboxes = bindCheckboxes.bind(this);
 	bindTags = bindTags.bind(this);		
     }
 
+    componentWillReceiveProps(nextProps) {
+	if (this.state.content != nextProps.card.content) {
+	    /* console.log("Update Card");*/
+	}
+    }
+    
+    
     componentDidMount(){
+	/* this.setState({content:this.props.card.content});*/
+
 	if (this.props.card.id == this.props.tree.activeCard
 	    && this.editor && document.activeElement.className != "search") {
 	    /* If the card is active - focus on editor. */
@@ -67,6 +77,7 @@ class Editor extends Component {
 	    /* console.log(this.editor.simplemde.codemirror);*/
 	}
 	/* this.editor.simplemde.codemirror.options.extraKeys['Ctrl-Z'] = false; */
+	/* this.editor.simplemde.codemirror.options.extraKeys['Ctrl-H'] = false;*/	
 
 	/* Split */
 	Mousetrap(document.body).bind(['ctrl+alt+j'], ()=>{
@@ -182,13 +193,12 @@ class Editor extends Component {
 		 value={card.content}
 		 id={"editor-"+card.id}
 		 className="text-editor mousetrap"
-		 value={card.content}
-		 onChange={(value) => {
-			 if (value != card.content) {
-			     {/* console.log("Change!") */}
-			     this.props.updateCard(card, value)
-			 }
-		     }}
+	    onChange={(value) => {
+		if (value != this.props.card.content) {
+		    this.props.updateCard(this.props.card, value);
+		}
+		/* this.setState({ content: value });*/
+	    }}
 		 options={{
 		     spellChecker: false,
 		     height: 10,

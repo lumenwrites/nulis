@@ -32,19 +32,16 @@ class Main extends Component {
 
     shouldComponentUpdate(nextProps) {
 	/* Update only if tree changes, ignore changes to user or prefs */
-	return this.props.tree != nextProps.tree;
+	/* return this.props.tree != nextProps.tree;*/
+	return true
     }    
 
     componentWillReceiveProps(nextProps) {
 	if (this.props.tree.cards != nextProps.tree.cards) {
 	    /* Regenerating columns only when needed,
 	       putting it into var I can use anywhere. */
-	    console.log("Cards changed, regenerating columns.");
+	    /* console.log("Cards changed, regenerating columns.");*/
 	    this.columns = cardsToColumns(nextProps.tree.cards)
-	} else if (this.props.tree != nextProps.tree) {
-	    console.log("Updated tree");
-	    console.log(this.props.tree);
-	    console.log(nextProps.tree);	    
 	}
     }
     componentDidMount(){
@@ -89,10 +86,20 @@ class Main extends Component {
 
 	/* Asked to scroll */
 	if (this.props.tree.scroll) {
-	    console.log("Asked to scroll, scrolling to " + this.props.tree.activeCard);
+	    /* console.log("Asked to scroll, scrolling to " + tree.activeCard);*/
 	    handleScroll(this.props.tree.activeCard,
 			 this.props.tree.cards,
 			 this.columns);
+	}
+
+	/* When the active card changes - activate it.  */
+	if (tree.activeCard != pastTree.activeCard) {
+	    /* Autosave tree if it's online and I'm the author.  */
+	    if (tree.saved == false
+		&& tree.source == "Online"
+		&& tree.author == user.email) {
+		this.props.updateTree(this.props.tree);
+	    }
 	}
 
 	/* Warning that tree wasn't saved. */
@@ -104,15 +111,6 @@ class Main extends Component {
 	}
 	*/
 
-	/* When the active card changes - activate it.  */
-	if (tree.activeCard != pastTree.activeCard) {
-	    /* Autosave tree if it's online and I'm the author.  */
-	    if (tree.saved == false
-		&& tree.source == "Online"
-		&& tree.author == user.email) {
-		this.props.updateTree(this.props.tree);
-	    }
-	}
     }
 
 
@@ -183,9 +181,9 @@ class Main extends Component {
 
     
     render() {
-	console.log("Rendering main");
+	/* console.log("Rendering main");*/
 	if (!this.columns) {
-	    console.log("Hasn't fetched tree yet, returning nothing");
+	    /* console.log("Hasn't fetched tree yet, returning nothing");*/
 	    return <div></div>
 	};
 	/* Maximum number of columns you can see on the screen */
