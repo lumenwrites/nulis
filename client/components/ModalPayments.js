@@ -46,7 +46,8 @@ class ModalPayments extends Component {
 			<p> $5/month </p>
 			<a className="btn right"
 			   onClick={()=>{
-				   this.props.setShowModal("share");
+				   this.props.payment({id:"Monthly"});
+				   this.props.setShowModal("free");
 			       }}>
 			    Upgrade
 			</a>
@@ -58,7 +59,8 @@ class ModalPayments extends Component {
 			<p> $40/year (save 33.3%) </p>
 			<a className="btn right"
 			   onClick={()=>{
-				   this.props.setShowModal("share");
+				   this.props.payment({id:"Yearly"});
+				   this.props.setShowModal("free");
 			       }}>
 			    Upgrade
 			</a>
@@ -70,7 +72,7 @@ class ModalPayments extends Component {
 			<p>$150 one-time payment</p>
 			<a className="btn right"
 			   onClick={()=>{
-				   this.props.payment({id:"free"});
+				   this.props.payment({id:"Lifetime Unlimited"});
 				   this.props.setShowModal("free");
 			       }}>
 			    Upgrade

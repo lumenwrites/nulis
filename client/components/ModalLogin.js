@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 /* Vendor Components */
 import { Modal } from 'react-bootstrap';
+import Cookies from "js-cookie";
 
 /* Actions */
 import {login,join} from '../actions/profiles.actions';
@@ -17,11 +18,15 @@ class ModalLogin extends Component {
 	    email: ReactDOM.findDOMNode(this.refs.email).value,
 	    password: ReactDOM.findDOMNode(this.refs.password).value
 	};
-
+	
 	const type = this.props.showModal;
 	if (type == "login") {
 	    this.props.login(credentials);
 	} else {
+	    /* If I'm creating a new account */
+	    /* Passing the cookies I've set in App.js */
+	    credentials.referral = Cookies.get('referral');
+	    credentials.source = Cookies.get('source');	   
 	    this.props.join(credentials);
 	}
 	this.props.setShowModal(false);

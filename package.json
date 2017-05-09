@@ -10,7 +10,6 @@
     "buildclient": "NODE_ENV=production cd ./client &&  webpack -p --config ./webpack.config.js --progress",
     "build": "NODE_ENV=production cd ./client &&  webpack -p --config ./webpack.config.js --progress &&  cd ../server && webpack --config ./webpack.config.server.js --progress",
     "serve": "cd ./server && NODE_ENV=production forever ./index.js > log.txt"
-      
   },
   "repository": {
     "type": "git",
@@ -53,6 +52,7 @@
     "file-loader": "^0.11.1",
     "forever": "^0.15.3",
     "gsap": "^1.19.1",
+    "js-cookie": "^2.1.4",
     "jwt-simple": "^0.5.0",
     "lodash": "^3.10.1",
     "mongoose": "^4.9.6",

@@ -3,14 +3,31 @@ import { getCard, createCard, updateCard, deleteCard, moveCard,
 	 getAllChildren, getCardRelativeTo, selectCard, immutableCopy } from '../utils/cards';
 import { DEFAULT_TREE } from '../data';
 /* List of all posts and an active post  */
-var INITIAL_STATE = DEFAULT_TREE;
+/* var INITIAL_STATE = DEFAULT_TREE;*/
+
+var INITIAL_STATE = {
+    name: "",
+    cards: {
+	id:"root",
+	children: [
+	    {
+		id: "default",
+		content: "Default tree.",
+		children: []
+	    }
+	]
+    },
+    activeCard: "0",
+    editing: false,
+    query: ""
+};
 
 export default function(state=INITIAL_STATE, action) {
     var tree = JSON.parse(JSON.stringify(state));
     var root = JSON.parse(JSON.stringify(state.cards));
     var card = action.payload;
     var activeCard = getCard(tree.activeCard, tree.cards);
-    tree.debugging = JSON.stringify(action.payload);
+    /* tree.debugging = JSON.stringify(action.payload);*/
     
     switch(action.type) {
 	case 'CREATE_CARD':
@@ -26,8 +43,8 @@ export default function(state=INITIAL_STATE, action) {
 	    var direction =  action.payload.direction;
 	    tree = createCard(tree, relativeTo, direction);
 	    tree.editing = true;
-	    tree.modified = true;    
 	    tree.saved = false;
+	    tree.scroll = true;
 	    /* tree.debugging = "Created card " + direction + " " + creator.id;*/
 	    return tree;
 	case 'DROP_CARD':
@@ -42,15 +59,17 @@ export default function(state=INITIAL_STATE, action) {
 	    /* Create card relative to the card I've dropped it after */
 	    tree = createCard(tree, relativeTo, direction, droppedCard);
 	    tree.activeCard = droppedCard.id;
-	    tree.modified = false;
 	    tree.saved = false;
+	    tree.scroll = true;
+
 	    return tree;
 	    
 	case 'UPDATE_CARD':
 	    root = updateCard(card, root);
 	    tree.cards = root;
-	    tree.modified = true;	    
 	    tree.saved = false;
+	    tree.scroll = false;	    
+	    
 	    /* tree.debugging = "Updated card <br/>" + card.id + " <br/>" + card.content;*/
 	    /* console.log("Update card " + JSON.stringify(root));*/
 	    return tree;
@@ -60,7 +79,6 @@ export default function(state=INITIAL_STATE, action) {
 	    tree.cards = root;
 	    /* Even though it's a lie,
 	       it gets the Main component to rescroll after moving. */
-	    tree.modified = false;
 	    tree.scroll = true;
 	    tree.activeCard = activeCard.id;
 	    tree.saved = false;
@@ -70,6 +88,7 @@ export default function(state=INITIAL_STATE, action) {
 	    var direction = action.payload;
 	    tree = selectCard(activeCard, tree, direction);
 	    tree.saved = false;
+	    tree.scroll = true;	    
 	    return tree;
 	case 'DELETE_CARD':
 	    /* var rootCopy = immutableCopy(root);*/
@@ -94,20 +113,19 @@ export default function(state=INITIAL_STATE, action) {
 	    var updatedRoot = deleteCard(toDelete, root);
 	    tree.cards = updatedRoot;
 	    tree.activeCard = newActiveCard.id;
-	    tree.modified = false;
 	    tree.saved = false;
-
+	    tree.scroll = true;
 	    return tree;
 	case 'SET_ACTIVE_CARD':
 	    /* console.log("Set active card");*/
-	    return {...state, activeCard: action.payload };
+	    return {...state, activeCard: action.payload, scroll:true };
 	case 'SET_CARD_COLOR':
 	    var color = action.payload;
 	    activeCard.color = color;
 
 	    root = updateCard(activeCard, root);
 	    /* console.log("Set active card");*/
-	    return {...state, cards: root, saved:false };
+	    return {...state, cards: root, saved:false, scroll:false };
 	case 'CHECKBOX':
 	    var {index, cardId} = action.payload;
 	    var card = getCard(cardId, root);
@@ -135,33 +153,22 @@ export default function(state=INITIAL_STATE, action) {
 	    
 	    root = updateCard(card, root);
 
-	    return {...state, cards: root, saved:false };
+	    return {...state, cards: root, saved:false, scroll:false };
 	    
 	case 'SET_CARD_CONFIG':
-	    return {...state, showCardConfig:action.payload };
-
-	case 'SET_SCROLL':
-	    return {...state, scroll: action.payload };	    
+	    return {...state, showCardConfig:action.payload, scroll:false };
 	case 'SET_EDITING':
-	    return {...state, modified:false, editing: action.payload };
-	case 'UPDATE_TREE_NAME':
-	    return {...state, name: action.payload, saved:false };	    
-	case 'AUTOSAVE_TREE':
-	    return {...state, modified: false };
-	case 'UPDATE_TREE':
-	    var tree = action.payload;
+	    return {...state, editing: action.payload, scroll:true };
+	case 'UPDATED_TREE':
+	    var changes = action.payload;
 	    /* Tell it that tree is saved */
-	    return {...state, modified: false, editing:false, saved:true };
+	    return {...state, saved:true  };
 	case 'LOAD_TREE':
 	    var tree = action.payload;
-	    /* console.log("Loading tree reducer");*/
-	    /* console.log(JSON.stringify(action.payload, null, 4));	    */
-	    /* Replace state with loaded tree */
-	    /* return tree;*/
-	    return { ...tree, modified: false };	    
+	    return { ...tree, scroll: true };	    
 
 	case 'UPDATE_SEARCH_QUERY':
-	    return { ...tree, query: action.payload };	    	    
+	    return { ...tree, query: action.payload, scroll:true };	    	    
 	default:
 	    return state;
     }

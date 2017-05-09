@@ -26,19 +26,32 @@ import {unsavedWarning} from '../utils/misc';
 class Main extends Component {
     constructor(props){
 	super(props);
+	this.columns = null;
 	this.renderCards = this.renderCards.bind(this);
     }
 
+    shouldComponentUpdate(nextProps) {
+	/* Update only if tree changes, ignore changes to user or prefs */
+	return this.props.tree != nextProps.tree;
+    }    
+
+    componentWillReceiveProps(nextProps) {
+	if (this.props.tree.cards != nextProps.tree.cards) {
+	    /* Regenerating columns only when needed,
+	       putting it into var I can use anywhere. */
+	    console.log("Cards changed, regenerating columns.");
+	    this.columns = cardsToColumns(nextProps.tree.cards)
+	} else if (this.props.tree != nextProps.tree) {
+	    console.log("Updated tree");
+	    console.log(this.props.tree);
+	    console.log(nextProps.tree);	    
+	}
+    }
     componentDidMount(){
 	if (window.__ELECTRON_ENV__ == 'desktop'
 	    && this.props.location.pathname == "/") {
 	    console.log("I'm on desktop - load the blank template.");
 	    this.props.loadTemplate('Blank');
-	    /* Hacky way to fix initial scrolling on desktop.
-	       It really should be working as is....*/
-	    setTimeout(()=> {
-		handleScroll(0, this.props.tree.cards);
-	    }, 50);
 	} else if (this.props.params && this.props.params.slug) {
 	    console.log("I'm at a tree url - load the tree.");
 	    this.props.loadTree(this.props.params.slug);
@@ -48,7 +61,8 @@ class Main extends Component {
 	} else if (this.props.route && this.props.route.tree) {
 	    console.log("I'm passing the template - load the template.");
 	    this.props.loadTemplate(this.props.route.tree);
-	} else if (this.props.user && this.props.location.pathname == "/") {
+	} else if (localStorage.getItem('token')
+		   && this.props.location.pathname == "/") {
 	    console.log("User is authenticated, redirecting to /trees.");
 	    browserHistory.push('/trees');
 	} else if (this.props.location.pathname == "/") {
@@ -72,29 +86,14 @@ class Main extends Component {
 	    this.props.loadTemplate(this.props.params.template);
 	}
 
-	if (tree.editing != pastTree.editing){
-	    /* In preview vs markdown mode cards height is different, need to rescroll.*/
-	    console.log("Changed preview mode, rescroll.");
-	    handleScroll(tree.activeCard, tree.cards);	    
-	}
-
-	if (tree.cards != pastTree.cards && tree.saved == true) {
-	    console.log("Tree has finished loading, rescroll.");
-	    /* If the cards have changed, but modified is still false,
-	       it means I've just loaded a tree.
-	       Scrolling first card and all it's children, because
-	       if active card from column 2 has no children, column 3 won't scroll. */
-	    handleScroll(tree.cards.children[0].id, tree.cards);
-	    handleScroll(tree.activeCard, tree.cards);
-	}
 
 	/* Asked to scroll */
-	/* 
 	if (this.props.tree.scroll) {
-	    console.log("Updated, scroll to " + this.props.tree.activeCard);
-	    handleScroll(this.props.tree.activeCard, this.props.tree.cards);
+	    console.log("Asked to scroll, scrolling to " + this.props.tree.activeCard);
+	    handleScroll(this.props.tree.activeCard,
+			 this.props.tree.cards,
+			 this.columns);
 	}
-	 */
 
 	/* Warning that tree wasn't saved. */
 	/* 
@@ -107,7 +106,6 @@ class Main extends Component {
 
 	/* When the active card changes - activate it.  */
 	if (tree.activeCard != pastTree.activeCard) {
-	    handleScroll(this.props.tree.activeCard, this.props.tree.cards);
 	    /* Autosave tree if it's online and I'm the author.  */
 	    if (tree.saved == false
 		&& tree.source == "Online"
@@ -120,10 +118,11 @@ class Main extends Component {
 
     /* ==== Rendering columns ==== */
     /* Loop over columns, add them to the app. */
-    renderColumns(columns) {
+    renderColumns() {
+	const columns = this.columns;
 	const {maxColumns} = this.props.preferences;
 
-	var columnWidthDivide = columns.length-1;
+	var columnWidthDivide = columns.length;
 	var columnCentered = false;
 	if (columns.length > maxColumns) {
 	    /* Maximum number of columns is 5 */
@@ -158,7 +157,7 @@ class Main extends Component {
     /* For each column,
        loop over card groups, append them to the column */
     renderCardGroups(column) {
-	return column.map((cardGroup, i)=>{
+	return column.cardGroups.map((cardGroup, i)=>{
 	    return(<CardGroup key={i} group={cardGroup} renderCards={this.renderCards}/>);
 	});
     }
@@ -184,11 +183,15 @@ class Main extends Component {
 
     
     render() {
-	const columns = cardsToColumns(this.props.tree.cards);
+	console.log("Rendering main");
+	if (!this.columns) {
+	    console.log("Hasn't fetched tree yet, returning nothing");
+	    return <div></div>
+	};
 	/* Maximum number of columns you can see on the screen */
 	const {maxColumns} = this.props.preferences;
 	/* Total number of columns */
-	var numberOfColumns = columns.length - 1;
+	var numberOfColumns = this.columns.length;
 	var oneColumnWidth = 100/maxColumns;
 	var extraColumns = numberOfColumns - maxColumns;
 	var width = "100%";
@@ -205,9 +208,9 @@ class Main extends Component {
 	}	
 	return (
 	    <div className="columns-wrapper">
-		    <div className="columns"
+		    <div className="columns-container"
 			 style={{ width: width }}>
-			{ this.renderColumns(columns) }
+			{ this.renderColumns() }
 		    </div>
 		    <MetaInfo/>
 	    </div>
@@ -220,8 +223,8 @@ function mapStateToProps(state) {
     /* console.log("State tree " + JSON.stringify(state.tree));*/
     return {
 	tree: state.tree.present,
-    	user: state.profiles.user,
-    	preferences: state.preferences
+    	preferences: state.preferences,
+    	user: state.profiles.user	
     };
 }
 /* First argument allows to access state */

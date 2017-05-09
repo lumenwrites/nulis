@@ -22,7 +22,7 @@ class ModalShare extends Component {
 		    <p>There are two ways to get the unlimited version of Nulis for free. </p>
 		    <p>1. Share this link with your friends:</p>
 		    <div className="panel-referral">
-			https://nulis.io/?ref=9f183554
+			https://nulis.io/?ref={this.props.referralCode}
 		    </div>
 		    <p> You will get extra 100 cards for every person who signs up using this link, and they get 100 extra cards as well.<br/> If you will invite 10 people - you get a lifetime unlimited account for free.</p>
 		    <p>2. Write a blog post about Nulis, send a link to <b>raymestalez@gmail.com</b> - and I will give you an unlimited account.</p>
@@ -41,7 +41,8 @@ class ModalShare extends Component {
 
 function mapStateToProps(state) {
     return {
-	showModal: state.preferences.showModal
+	showModal: state.preferences.showModal,
+	referralCode: state.profiles.user.referralCode	
     };
 }
 

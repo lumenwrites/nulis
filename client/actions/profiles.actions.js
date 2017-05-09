@@ -9,13 +9,13 @@ export function fetchUser() {
 	headers:  { authorization: localStorage.getItem('token')}
     };
 
-    console.log("profiles.actions:");
-    console.log("Fetching user.");
+    /* console.log("profiles.actions:");*/
+    /* console.log("Fetching user.");*/
     return function(dispatch) {
 	axios.get(`${API_URL}/auth/profile`, config)
 	     .then(response => {
-		 console.log("profiles.actions:");
-		 console.log("Saving user to state " + response.data.email + " Plan: " + response.data.plan);
+		 /* console.log("profiles.actions:");*/
+		 console.log("Saving user to state " + JSON.stringify(response.data));
 		 dispatch({
 		     type: 'AUTH_USER',
 		     payload: response.data
@@ -25,12 +25,8 @@ export function fetchUser() {
 }
 
 
-export function login({email, password}) {
+export function login(credentials) {
     return function(dispatch) {
-	var credentials = {
-	    "email": email,
-	    "password": password
-	}
 	console.log("profiles.actions:");
 	console.log("Sending email and password.");
 	axios.post(`${API_URL}/auth/login`, credentials)
@@ -61,14 +57,12 @@ export function login({email, password}) {
 }
 
 
-export function join({email, password}) {
+export function join(credentials) {
     return function(dispatch) {
-	var credentials = {
-	    "email": email,
-	    "password": password
-	}
 	console.log("profiles.actions:");
 	console.log("Sending email and password.");
+	console.log("ref " + credentials.referral);
+	console.log("src " + credentials.source);	
 	axios.post(`${API_URL}/auth/join`, credentials)
 	     .then(response => {
 		 console.log("profiles.actions:");

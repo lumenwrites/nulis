@@ -169,7 +169,7 @@ export function getCardsColumn(card, columns) {
     /* Loop through the columns */
     var cardsColumn = null;
     columns.map((column, columnIndex)=>{
-	column.map((cardGroup)=>{
+	column.cardGroups.map((cardGroup)=>{
 	    cardGroup.cards.map((c)=>{
 		/* Searching for the first child */
 		if (c.id == card.id) {
@@ -189,7 +189,7 @@ export function getFirstChildren(card, columns) {
     /* Loop through the columns */
     columns.forEach((column, columnIndex)=>{
 	var children = []
-	column.forEach((cardGroup)=>{
+	column.cardGroups.forEach((cardGroup)=>{
 	    /* Searching through all the cards in the column */
 	    cardGroup.cards.forEach((c)=>{
 		/* Looking for a match with one of the children */
@@ -431,30 +431,36 @@ export function sortByKey(array, key) {
    columns-groups-cards structure for rendering */
 export function cardsToColumns (cards) {
     var columns = [];
-    
+    console.log("Converting cards to columns");
     /* Using a nested function as a hack to keep columns in a variable */
-    function convertCardsToColumns (parent, column) {
+    function convertCardsToColumns (parent, columnIndex) {
 	/* Get all the children of the parent */
 	var cards = parent.children;
 	/* Loop over the cards and add them to the card group */
 	var cardGroup = {parent: parent, cards:[]};
-	cards.map((card) => {
-	    /* Add card to the card group */
-	    cardGroup.cards.push(card);
+	cardGroup.cards = cards.map((card) => {
 	    if (card.children.length) {
-		convertCardsToColumns(card, column + 1);
+		convertCardsToColumns(card, columnIndex + 1);
 	    }
+	    /* Add card to the card group */
+	    return card;
 	});
-	/* If column exists - add this card group to it, otherwise create it. */
-	if (columns[column]) {
-	    columns[column].push(cardGroup);
-	} else {
-	    columns[column]=[cardGroup];
+
+	/* Create a column if it doesn't exist */
+	if (!columns[columnIndex]) {
+	    /* console.log(`Column ${columnIndex} doesn't exist yet, create it.`);*/
+	    columns[columnIndex] = {
+		index: columnIndex,
+		cardGroups: []
+	    }
 	}
+	/* Add card group to the column. */
+	columns[columnIndex].cardGroups.push(cardGroup);
     }
 
-    convertCardsToColumns(cards, 1);
-
+    convertCardsToColumns(cards, 0);
+    /* console.log("Converted cards to columns");*/
+    /* console.log(columns);    */
     return columns;
 }
 

@@ -65,14 +65,11 @@ export function updateTree(tree) {
     return function(dispatch) {
 	axios.post(tree_url, tree, config)
 	     .then(response => {
-		 console.log("Updated a tree, redirecting to it.");
-		 browserHistory.push('/tree/'+response.data.slug);
-		 var tree = response.data;
-		 tree.saved = true;
-		 tree.source = "Online";	
+		 console.log("Updated a tree.");
+		 var tree = response.data.name;
 		 dispatch({
-		     type: 'LOAD_TREE',
-		     payload: tree
+		     type: 'UPDATED_TREE',
+		     payload: {name:tree.name}
 		 });
 	     });
     }

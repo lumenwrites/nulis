@@ -21,6 +21,8 @@ export function signin(req, res, next) {
 export function signup(req, res, next) {
     const email = req.body.email;
     const password = req.body.password;    
+    const referral = req.body.referral;
+    const source = req.body.source;    
 
     if (!email || !password) {
 	return res.status(422).send({
@@ -43,18 +45,38 @@ export function signup(req, res, next) {
 	// If a user doesn't exist - create and save user record
 	const user = new User({
 	    email: email,
-	    password: password
+	    password: password,
+	    referral: referral,
+	    source: source
 	});
-	
+	if (referral) {
+	    /* If user was referred, give him 100 free cards.  */
+	    user.cardLimit = 300;
+	    /* Find a user who invited this guy, give him cards, increase invited */
+	    User.findOne({referralCode:referral}, function(err, referrer){
+		if (err) { return next(err); }
+		console.log("User was invited by " + referrer.email);
+		referrer.cardLimit = referrer.cardLimit + 100;
+		referrer.invited = referrer.invited + 1;
+		referrer.save();
+	    });
+	}
+	if (source == "rational") {
+	    /* Free account link */
+	    user.plan = "Lifetime Unlimited";
+	}	
 	user.save(function(err, user){
 	    //This is a callback that's being caleld once user is saved
 	    if (err) { return next(err); }
 	    console.log("User successfully created! " + email);
-	    // If there's no errors - user is successfully saved
-	    // Send a responce indicating that user has been created
-	    /* res.json(user);*/
-	    //  res.send({success:'true'});
-	    res.send({token: tokenForUser(user), email:user.email, plan:user.plan});	    
+	    /* Return the user I've just created */
+	    res.send({
+		token: tokenForUser(user),
+		email:user.email,
+		plan:user.plan,
+		referralCode: user.referralCode,
+	    	cardLimit: user.cardLimit
+	    });	    
 	    
 	});
     });
@@ -69,7 +91,9 @@ export function getUser(req, res) {
 	if (err) { return next(err); }
 	res.send({
 	    email:user.email,
-	    plan: user.plan
+	    plan: user.plan,
+	    referralCode: user.referralCode,
+	    cardLimit: user.cardLimit
 	});	    
     });
 }
@@ -90,11 +114,14 @@ export function payment(req, res) {
     // Get the payment token submitted by the form:
     var token = req.body.id;
     console.log(JSON.stringify(req.body));
-    if (token == "free") {
+    if (token == "Monthly"
+	|| token == "Yearly"
+	|| token == "Lifetime Unlimited") {
+	/* Surprise free account. Setting account according to the upgrade he chose. */
 	User.findOne({email:req.user.email}, function(err, user){
 	    if (err) { return next(err); }
 	    /* Set user's plan to unlimited */
-	    user.plan = "Lifetime Unlimited";
+	    user.plan = token;
 	    user.save(function(err, user){
 		if (err) { return next(err); }
 		console.log("User's plan is set to unlimited.")

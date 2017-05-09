@@ -37,7 +37,7 @@ class MenuEdit extends Component {
 			</a> 
 		    </li>
 		    <li key="delete">
-			<a onClick={this.props.deleteCard}>
+			<a onClick={()=>{this.props.deleteCard()}}>
 			    Delete Card
 			    <span className="label label-default right">
 				Ctrl+Bksp

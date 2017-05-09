@@ -1,5 +1,5 @@
 /* Main elements */
-html, body, .app, .columns, .main-wrapper {
+html, body, .app, .columns-container, .main-wrapper {
     height: 100%;
     background: #e9eaec;
     background: hsla(220, 14%, 83%, 0.5);
@@ -377,7 +377,7 @@ textarea {
 ::-moza-scrollbar {
     display:none;
 }
-.columns {
+.columns-container {
     height: 100%;
     /* position: absolute; */
     display: flex;
@@ -387,7 +387,7 @@ textarea {
 .columns.centered {
 }
 
-.columns .column {
+.columns-container .column {
     width: 33.33%;
     height: 100%;
     background: #f5f5f7;

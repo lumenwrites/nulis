@@ -15,13 +15,16 @@ class CardLimit extends Component {
 	    && this.props.location.pathname != "/trees") {
 
 	    /* If unauthenticated user reached a limit - open must login prompt. */
-	    if(!this.props.user && localStorage.getItem('cardsCreated') > 100){
+	    /* Checking it using localStorage,
+	       otherwise it pops up before user is fetched. */
+	    if(!localStorage.getItem('token')
+	       && localStorage.getItem('cardsCreated') > 100){
 		this.props.setShowModal("mustLogin");
 	    }
 
 	    /* If free user reached a limit - open upgrade prompt. */
 	    if (this.props.user.plan == "Free"
-		&& localStorage.getItem('cardsCreated') > 200){
+		&& localStorage.getItem('cardsCreated') > this.props.user.cardLimit){
 		this.props.setShowModal("upgrade");
 	    }
 	}
@@ -34,7 +37,7 @@ class CardLimit extends Component {
 	    cardsCreated = localStorage.getItem('cardsCreated');
 	}
 
-	if (!this.props.user) {
+	if (!localStorage.getItem('token')) {
 	    /* If the user isn't logged in - opens must login prompt. */
 	    return (
 		<div className="progress-outer"
@@ -51,7 +54,7 @@ class CardLimit extends Component {
 		<div className="progress-outer"
 		     onClick={()=>this.props.setShowModal("upgrade")}>
 		    <div className="progress-inner"
-			 style={{"width" : `${cardsCreated/2}%`}}>
+			 style={{"width" : `${(cardsCreated/this.props.user.cardLimit)*100}%`}}>
 		    </div>
 		</div>		    
 	    )

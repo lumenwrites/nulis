@@ -28,9 +28,8 @@ export function scrollTo(card, column) {
 }
 
 
-export default function handleScroll(cardId, cards) {
+export default function handleScroll(cardId, cards, columns) {
     /* console.log(cardId);*/
-    var columns = cardsToColumns(cards);
     var card = getCard(cardId, cards);
     /* console.log("Scrolling to card " + JSON.stringify(cardId, null, 4));*/
     var allParents = getAllParents(card, cards);
@@ -39,19 +38,37 @@ export default function handleScroll(cardId, cards) {
     var firstChildren = getFirstChildren(card, columns);
     /* console.log("First children " + JSON.stringify(allParents));*/
 
+    var scrolledColumns = [];
+    
     /* Scroll to all of it's parents */
     allParents.map((p)=> {
 	var cardsColumn = getCardsColumn(p, columns);
 	scrollTo(p, cardsColumn);
+	scrolledColumns.push(cardsColumn);
     });
     /* Scroll to the active card */
     var column = getCardsColumn(card, columns);
     scrollTo(card, column);
+    scrolledColumns.push(column);
 
     /* console.log("Scrolling to\n" + card.content.substring(0, 30));*/
     /* Scroll to all of it's first children */
     firstChildren.map((c)=> {
 	var childsColumn = getCardsColumn(c, columns);
 	scrollTo(c, childsColumn);
+	scrolledColumns.push(childsColumn);
     });
+
+    /* After scrolling card, parents, and children,
+       there might be unscrolled column, because active card has no children in it.
+       So make sure that every column is scrolled. */
+    columns.map((c, i)=>{
+	if (scrolledColumns.indexOf(c.index) == -1) {
+	    /* console.log("Found unscrolled column " + c.index);*/
+	    var firstCard = c.cardGroups[0].cards[0];
+	    scrollTo(firstCard, c.index);
+	    scrolledColumns.push(c.index);
+	}
+    });
+    console.log("Scrolled columns " + scrolledColumns);    
 }

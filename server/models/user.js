@@ -1,8 +1,8 @@
 /* Mongoose is ORM, like models.py in django */
-const mongoose = require('mongoose');
-const validator = require('validator');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
+import mongoose, {Schema} from 'mongoose';
+import validator from 'validator';
+import bcrypt from 'bcrypt-nodejs';
+import cuid from 'cuid';
 
 // Define model. 
 const userSchema = new Schema({
@@ -23,9 +23,29 @@ const userSchema = new Schema({
 	required: true,
 	minlength: 4
     },
+    referralCode: {
+	type: String,
+	default: ""
+    },
+    referral: {
+	type: String,
+	default: ""
+    },
+    source: {
+	type: String,
+	default: ""
+    },
     plan: {
 	type: String,
 	default: "Free"
+    },
+    cardLimit: {
+	type: Number,
+	default: 200
+    },
+    invited: {
+	type: Number,
+	default: 0
     },
     createdAt: {
 	type: Date,
@@ -39,11 +59,11 @@ const userSchema = new Schema({
 userSchema.pre('save', function(next){
     // get access to the user model. User is an instance of the user model.
     const user = this;
-
+    
     if (this.isNew) {
 	console.log("Created new user, hashing password")
 	this.createdAt = new Date();
-
+	this.referralCode = cuid.slug();
 	// generate a salt, then run callback.
 	bcrypt.genSalt(10, function(err, salt){
 	    if (err) { return next(err); }
