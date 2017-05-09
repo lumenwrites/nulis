@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -104,14 +104,27 @@ module.exports = {
 "use strict";
 
 
-/* Mongoose is ORM, like models.py in django */
-var mongoose = __webpack_require__(1);
-var validator = __webpack_require__(27);
-var Schema = mongoose.Schema;
-var bcrypt = __webpack_require__(19);
+var _mongoose = __webpack_require__(1);
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _validator = __webpack_require__(27);
+
+var _validator2 = _interopRequireDefault(_validator);
+
+var _bcryptNodejs = __webpack_require__(20);
+
+var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
+
+var _cuid = __webpack_require__(6);
+
+var _cuid2 = _interopRequireDefault(_cuid);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Define model. 
-var userSchema = new Schema({
+/* Mongoose is ORM, like models.py in django */
+var userSchema = new _mongoose.Schema({
 			email: {
 						type: String,
 						unique: true,
@@ -120,7 +133,7 @@ var userSchema = new Schema({
 						lowercase: true,
 						minlength: 1,
 						validate: {
-									validator: validator.isEmail,
+									validator: _validator2.default.isEmail,
 									message: '{VALUE} is not a valid email'
 						}
 			},
@@ -129,9 +142,29 @@ var userSchema = new Schema({
 						required: true,
 						minlength: 4
 			},
+			referralCode: {
+						type: String,
+						default: ""
+			},
+			referral: {
+						type: String,
+						default: ""
+			},
+			source: {
+						type: String,
+						default: ""
+			},
 			plan: {
 						type: String,
 						default: "Free"
+			},
+			cardLimit: {
+						type: Number,
+						default: 200
+			},
+			invited: {
+						type: Number,
+						default: 0
 			},
 			createdAt: {
 						type: Date,
@@ -148,14 +181,14 @@ userSchema.pre('save', function (next) {
 			if (this.isNew) {
 						console.log("Created new user, hashing password");
 						this.createdAt = new Date();
-
+						this.referralCode = _cuid2.default.slug();
 						// generate a salt, then run callback.
-						bcrypt.genSalt(10, function (err, salt) {
+						_bcryptNodejs2.default.genSalt(10, function (err, salt) {
 									if (err) {
 												return next(err);
 									}
 									// hash(encrypt) the password using the salt
-									bcrypt.hash(user.password, salt, null, function (err, hash) {
+									_bcryptNodejs2.default.hash(user.password, salt, null, function (err, hash) {
 												if (err) {
 															return next(err);
 												}
@@ -175,7 +208,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
 			/* console.log("pwd1 " + candidatePassword);*/
 			/* console.log("pwd2 " + this.password);					*/
-			bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+			_bcryptNodejs2.default.compare(candidatePassword, this.password, function (err, isMatch) {
 						if (err) {
 									return callback(err);
 						}
@@ -185,7 +218,7 @@ userSchema.methods.comparePassword = function (candidatePassword, callback) {
 };
 
 // Create model class
-var ModelClass = mongoose.model('user', userSchema);
+var ModelClass = _mongoose2.default.model('user', userSchema);
 
 // Export model
 module.exports = ModelClass;
@@ -202,9 +235,9 @@ module.exports = ModelClass;
 // So this is essentially @IsAuthenticated
 
 var passport = __webpack_require__(2);
-var JwtStrategy = __webpack_require__(6).Strategy;
+var JwtStrategy = __webpack_require__(7).Strategy;
 var LocalStrategy = __webpack_require__(23);
-var ExtractJwt = __webpack_require__(6).ExtractJwt;
+var ExtractJwt = __webpack_require__(7).ExtractJwt;
 var User = __webpack_require__(4);
 var config = __webpack_require__(3);
 
@@ -289,10 +322,16 @@ passport.use(localLogin);
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("passport-jwt");
+module.exports = require("cuid");
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("passport-jwt");
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,7 +351,7 @@ var passportService = __webpack_require__(5);
 var requireAuth = passport.authenticate('jwt', { session: false });
 var requireSignin = passport.authenticate('local', { session: false });
 
-var profilesControllers = __webpack_require__(15);
+var profilesControllers = __webpack_require__(16);
 
 // Make every request go through the passport profilesentication check:
 router.route('/auth-test').get(requireAuth, function (req, res) {
@@ -330,7 +369,7 @@ router.route('/purchase').post(requireAuth, profilesControllers.payment);
 exports.default = router;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -342,7 +381,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = __webpack_require__(0);
 
-var _tree = __webpack_require__(16);
+var _tree = __webpack_require__(17);
 
 var treeControllers = _interopRequireWildcard(_tree);
 
@@ -363,50 +402,50 @@ router.route('/tree/:slug').delete(requireAuth, treeControllers.deleteTree);
 exports.default = router;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("http");
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("morgan");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+	value: true
 });
 exports.signin = signin;
 exports.signup = signup;
@@ -417,147 +456,174 @@ var config = __webpack_require__(3);
 var User = __webpack_require__(4);
 
 function tokenForUser(user) {
-				// sub means subject. a property describing who it is about
-				// encoding it with a secret random string
-				var timestamp = new Date().getTime();
-				// iat - issued at time
-				return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+	// sub means subject. a property describing who it is about
+	// encoding it with a secret random string
+	var timestamp = new Date().getTime();
+	// iat - issued at time
+	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
 //sign in view
 function signin(req, res, next) {
-				// email/pass is already checked, here I just give user a token.
-				// passport has already atteched user object to the request
-				console.log("Email/Pass is correct, returning token.");
-				res.send({ token: tokenForUser(req.user), email: req.body.email });
+	// email/pass is already checked, here I just give user a token.
+	// passport has already atteched user object to the request
+	console.log("Email/Pass is correct, returning token.");
+	res.send({ token: tokenForUser(req.user), email: req.body.email });
 }
 
 function signup(req, res, next) {
-				var email = req.body.email;
-				var password = req.body.password;
+	var email = req.body.email;
+	var password = req.body.password;
+	var referral = req.body.referral;
+	var source = req.body.source;
 
-				if (!email || !password) {
-								return res.status(422).send({
-												error: 'Provide email and password'
-								});
+	if (!email || !password) {
+		return res.status(422).send({
+			error: 'Provide email and password'
+		});
+	}
+	console.log("Credentials " + email);
+	// Search for a user with a given email
+	User.findOne({ email: email }, function (err, existingUser) {
+		if (err) {
+			return next(err);
+		}
+
+		// If a user does exit - return an error
+		if (existingUser) {
+			console.log("Email is in use. " + email);
+			return res.status(422).send({
+				error: 'Email is in use'
+			});
+		}
+
+		// If a user doesn't exist - create and save user record
+		var user = new User({
+			email: email,
+			password: password,
+			referral: referral,
+			source: source
+		});
+		if (referral) {
+			/* If user was referred, give him 100 free cards.  */
+			user.cardLimit = 300;
+			/* Find a user who invited this guy, give him cards, increase invited */
+			User.findOne({ referralCode: referral }, function (err, referrer) {
+				if (err) {
+					return next(err);
 				}
-				console.log("Credentials " + email);
-				// Search for a user with a given email
-				User.findOne({ email: email }, function (err, existingUser) {
-								if (err) {
-												return next(err);
-								}
-
-								// If a user does exit - return an error
-								if (existingUser) {
-												console.log("Email is in use. " + email);
-												return res.status(422).send({
-																error: 'Email is in use'
-												});
-								}
-
-								// If a user doesn't exist - create and save user record
-								var user = new User({
-												email: email,
-												password: password
-								});
-
-								user.save(function (err, user) {
-												//This is a callback that's being caleld once user is saved
-												if (err) {
-																return next(err);
-												}
-												console.log("User successfully created! " + email);
-												// If there's no errors - user is successfully saved
-												// Send a responce indicating that user has been created
-												/* res.json(user);*/
-												//  res.send({success:'true'});
-												res.send({ token: tokenForUser(user), email: user.email, plan: user.plan });
-								});
-				});
+				console.log("User was invited by " + referrer.email);
+				referrer.cardLimit = referrer.cardLimit + 100;
+				referrer.invited = referrer.invited + 1;
+				referrer.save();
+			});
+		}
+		if (source == "rational") {
+			/* Free account link */
+			user.plan = "Lifetime Unlimited";
+		}
+		user.save(function (err, user) {
+			//This is a callback that's being caleld once user is saved
+			if (err) {
+				return next(err);
+			}
+			console.log("User successfully created! " + email);
+			/* Return the user I've just created */
+			res.send({
+				token: tokenForUser(user),
+				email: user.email,
+				plan: user.plan,
+				referralCode: user.referralCode,
+				cardLimit: user.cardLimit
+			});
+		});
+	});
 }
 
 function getUser(req, res) {
-				var email = req.user.email;
-				console.log("Get user. " + email);
-				// Search for a user with a given email
-				User.findOne({ email: email }, function (err, user) {
-								if (err) {
-												return next(err);
-								}
-								res.send({
-												email: user.email,
-												plan: user.plan
-								});
-				});
+	var email = req.user.email;
+	console.log("Get user. " + email);
+	// Search for a user with a given email
+	User.findOne({ email: email }, function (err, user) {
+		if (err) {
+			return next(err);
+		}
+		res.send({
+			email: user.email,
+			plan: user.plan,
+			referralCode: user.referralCode,
+			cardLimit: user.cardLimit
+		});
+	});
 }
 
 function payment(req, res) {
-				console.log("Payment!");
+	console.log("Payment!");
 
-				// Set your secret key: remember to change this to your live secret key in production
-				// See your keys here: https://dashboard.stripe.com/account/apikeys
-				var stripe = __webpack_require__(26)(config.stripeSecret);
+	// Set your secret key: remember to change this to your live secret key in production
+	// See your keys here: https://dashboard.stripe.com/account/apikeys
+	var stripe = __webpack_require__(26)(config.stripeSecret);
 
-				// Token is created using Stripe.js or Checkout!
-				// Get the payment token submitted by the form:
-				var token = req.body.id;
-				console.log(JSON.stringify(req.body));
-				if (token == "free") {
-								User.findOne({ email: req.user.email }, function (err, user) {
-												if (err) {
-																return next(err);
-												}
-												/* Set user's plan to unlimited */
-												user.plan = "Lifetime Unlimited";
-												user.save(function (err, user) {
-																if (err) {
-																				return next(err);
-																}
-																console.log("User's plan is set to unlimited.");
-																/* Return updated user */
-																res.send({
-																				message: "User's plan is set to unlimited.",
-																				user: user
-																});
-												});
-								});
-				} else {
-								// Charge the user's card:
-								var charge = stripe.charges.create({
-												amount: 2000,
-												currency: "usd",
-												description: "Example charge",
-												source: token
-								}, function (err, charge) {
-												if (err) {
-																return res.status(500).send({ error: 'Stripe Payment Error' });
-												};
-												/* Once payment has been processed - update the user.*/
-												User.findOne({ email: req.user.email }, function (err, user) {
-																if (err) {
-																				return next(err);
-																}
-																/* Set user's plan to unlimited */
-																user.plan = "Lifetime Unlimited";
-																user.save(function (err, user) {
-																				if (err) {
-																								return next(err);
-																				}
-																				console.log("Purchase completed! User's plan is unlimited.");
-																				/* Return updated user */
-																				res.send({
-																								message: "Purchase completed! User's plan is unlimited.",
-																								user: user
-																				});
-																});
-												});
-								});
+	// Token is created using Stripe.js or Checkout!
+	// Get the payment token submitted by the form:
+	var token = req.body.id;
+	console.log(JSON.stringify(req.body));
+	if (token == "Monthly" || token == "Yearly" || token == "Lifetime Unlimited") {
+		/* Surprise free account. Setting account according to the upgrade he chose. */
+		User.findOne({ email: req.user.email }, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+			/* Set user's plan to unlimited */
+			user.plan = token;
+			user.save(function (err, user) {
+				if (err) {
+					return next(err);
 				}
+				console.log("User's plan is set to unlimited.");
+				/* Return updated user */
+				res.send({
+					message: "User's plan is set to unlimited.",
+					user: user
+				});
+			});
+		});
+	} else {
+		// Charge the user's card:
+		var charge = stripe.charges.create({
+			amount: 2000,
+			currency: "usd",
+			description: "Example charge",
+			source: token
+		}, function (err, charge) {
+			if (err) {
+				return res.status(500).send({ error: 'Stripe Payment Error' });
+			};
+			/* Once payment has been processed - update the user.*/
+			User.findOne({ email: req.user.email }, function (err, user) {
+				if (err) {
+					return next(err);
+				}
+				/* Set user's plan to unlimited */
+				user.plan = "Lifetime Unlimited";
+				user.save(function (err, user) {
+					if (err) {
+						return next(err);
+					}
+					console.log("Purchase completed! User's plan is unlimited.");
+					/* Return updated user */
+					res.send({
+						message: "Purchase completed! User's plan is unlimited.",
+						user: user
+					});
+				});
+			});
+		});
+	}
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -580,7 +646,7 @@ var _removeMarkdown = __webpack_require__(24);
 
 var _removeMarkdown2 = _interopRequireDefault(_removeMarkdown);
 
-var _cuid = __webpack_require__(20);
+var _cuid = __webpack_require__(6);
 
 var _cuid2 = _interopRequireDefault(_cuid);
 
@@ -590,7 +656,7 @@ var _slug2 = _interopRequireDefault(_slug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Tree = __webpack_require__(17);
+var Tree = __webpack_require__(18);
 
 function getTree(req, res, next) {
     var slug = req.params.slug;
@@ -683,7 +749,7 @@ function updateTree(req, res, next) {
     var options = { upsert: true, new: true, setDefaultsOnInsert: true };
     /* Find a tree by id and create it if it doesn't exist */
     Tree.findOne({ slug: tree.slug }, function (err, t) {
-        if (t.author != req.user.email) {
+        if (!t.author || t.author != req.user.email) {
             res.status(401).end();
         }
         if (err) {
@@ -703,7 +769,7 @@ function updateTree(req, res, next) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -784,7 +850,7 @@ var TreeModel = mongoose.model('tree', treeSchema);
 module.exports = TreeModel;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -798,15 +864,15 @@ var _express = __webpack_require__(0);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _http = __webpack_require__(11);
+var _http = __webpack_require__(12);
 
 var _http2 = _interopRequireDefault(_http);
 
-var _bodyParser = __webpack_require__(9);
+var _bodyParser = __webpack_require__(10);
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _morgan = __webpack_require__(12);
+var _morgan = __webpack_require__(13);
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
@@ -814,23 +880,23 @@ var _mongoose = __webpack_require__(1);
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _cors = __webpack_require__(10);
+var _cors = __webpack_require__(11);
 
 var _cors2 = _interopRequireDefault(_cors);
 
-var _path = __webpack_require__(13);
+var _path = __webpack_require__(14);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _util = __webpack_require__(14);
+var _util = __webpack_require__(15);
 
 var _util2 = _interopRequireDefault(_util);
 
-var _profilesRoutes = __webpack_require__(7);
+var _profilesRoutes = __webpack_require__(8);
 
 var _profilesRoutes2 = _interopRequireDefault(_profilesRoutes);
 
-var _treesRoutes = __webpack_require__(8);
+var _treesRoutes = __webpack_require__(9);
 
 var _treesRoutes2 = _interopRequireDefault(_treesRoutes);
 
@@ -891,16 +957,10 @@ exports.default = server;
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = require("bcrypt-nodejs");
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = require("cuid");
+module.exports = require("bcrypt-nodejs");
 
 /***/ }),
 /* 21 */
