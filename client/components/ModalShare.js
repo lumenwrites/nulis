@@ -26,6 +26,12 @@ class ModalShare extends Component {
 		    </div>
 		    <p> You will get extra 100 cards for every person who signs up using this link, and they get 100 extra cards as well.<br/> If you will invite 10 people - you get a lifetime unlimited account for free.</p>
 		    <p>2. Write a blog post about Nulis, send a link to <b>raymestalez@gmail.com</b> - and I will give you an unlimited account.</p>
+
+		    <a className="btn"
+		       onClick={()=>{this.props.setShowModal("upgrade");}}>
+			&lt; Back to Plans
+		    </a>
+
 		</div>
 	    </Modal>
 	);

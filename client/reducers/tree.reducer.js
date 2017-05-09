@@ -113,11 +113,13 @@ export default function(state=INITIAL_STATE, action) {
 	    var card = getCard(cardId, root);
 	    var content = card.content;
 
+	    /* Find [ ] or [X] */
 	    var checkboxRegexp = new RegExp(/\[(X| )\]/, 'ig');
 	    var i = 0;
 	    content = content.replace(checkboxRegexp, (match)=>{
 		i++;
 		if (index == i) {
+		    /* Find the changed checkbox by it's index and flip it */
 		    console.log("check");
 		    if (match == "[X]") {
 			return "[ ]";			
@@ -128,7 +130,7 @@ export default function(state=INITIAL_STATE, action) {
 		} 
 		return match;
 	    });
-	    console.log("Checkbox" + content);
+	    /* console.log("Checkbox" + content);*/
 	    card.content = content;
 	    
 	    root = updateCard(card, root);

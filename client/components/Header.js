@@ -75,7 +75,7 @@ class Header extends Component {
 		 </span>
 		 : null
 		}
-		{/*<CardLimit location={this.props.location} />*/}
+		<CardLimit location={this.props.location} />
 		</div>
 
 		<div className={"stats " + (atMyTrees ? "hidden":"")}>

@@ -88,7 +88,7 @@ export function updateTree (req, res, next) {
     var options =  { upsert: true, new: true, setDefaultsOnInsert: true };
     /* Find a tree by id and create it if it doesn't exist */
     Tree.findOne({slug:tree.slug}, (err, t) => {
-	if (t.author != req.user.email) { res.status(401).end(); }
+	if (!t.author || t.author != req.user.email) { res.status(401).end(); }
 	if (err) { return next(err); }
 	/* If tree does exist - update it. */
 	console.log("Updating tree. Received from react: " + JSON.stringify(tree));

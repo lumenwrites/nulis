@@ -36,10 +36,10 @@ function bindTags(cardId, query){
 	tags.map((c, i)=>{
 	    c.onclick = (event)=> {
 		var tag = event.target.innerHTML;
-		console.log("Tag " + tag);
-		console.log("Query " + tag);		
+		/* console.log("Tag " + tag);*/
+		/* console.log("Query " + tag);		*/
 		if (query.includes(tag)) {
-		    this.props.updateSearchQuery(query.replace(tag,""));
+		    this.props.updateSearchQuery(query.replace(tag,"").trim());
 		} else {
 		    var queryWithTag = query + " " + tag;
 		    this.props.updateSearchQuery(queryWithTag.trim());

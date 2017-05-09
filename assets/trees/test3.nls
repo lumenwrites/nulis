@@ -1,0 +1,25 @@
+{
+    "slug": "",
+    "name": "adfasdf",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "adfasdf asd",
+                "children": [],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "author": "test5@gmail.com",
+    "__v": 0,
+    "editing": true,
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": "2017-05-09T04:20:36.397Z",
+    "createdAt": "2017-05-09T04:20:36.397Z",
+    "saved": false,
+    "source": "Online",
+    "debugging": "{\"id\":\"0\",\"content\":\"adfasdf asd\",\"children\":[],\"parent_id\":\"root\"}"
+}

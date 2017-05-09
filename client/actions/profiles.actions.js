@@ -15,7 +15,7 @@ export function fetchUser() {
 	axios.get(`${API_URL}/auth/profile`, config)
 	     .then(response => {
 		 console.log("profiles.actions:");
-		 console.log("Saving user to state " + response.data.email);
+		 console.log("Saving user to state " + response.data.email + " Plan: " + response.data.plan);
 		 dispatch({
 		     type: 'AUTH_USER',
 		     payload: response.data

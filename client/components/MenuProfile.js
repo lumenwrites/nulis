@@ -17,7 +17,7 @@ class MenuProfile extends Component {
 			Preferences
 		    </a>
 		</li>
-		{this.props.user.plan == "Free" && false ?
+		{this.props.user.plan == "Free" ?
 		 <li  className="" key="upgrade">
 		     <a  onClick={()=>this.props.setShowModal("upgrade")}>
 			 Upgrade Account

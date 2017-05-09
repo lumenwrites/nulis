@@ -13,6 +13,7 @@ import * as treesActions from '../actions/trees.actions';
 
 class Hotkeys extends Component {
     componentDidMount(){
+	const {tree} = this.props;
 	/* 
 	Mousetrap(document.body).bind(['alt+f'], ()=>{
 	    console.log("yes");
@@ -28,7 +29,11 @@ class Hotkeys extends Component {
 	});
 	Mousetrap(document.body).bind(['esc'], ()=>{
 	    this.props.setEditing(false);
-	    this.props.saveTree(this.props.tree);
+	    if (tree.saved == false
+		&& tree.source == "Online"
+		&& tree.author == user.email) {
+		this.props.updateTree(this.props.tree);
+	    }
 	    return false;
 	});
 
@@ -38,7 +43,11 @@ class Hotkeys extends Component {
 	    this.props.setEditing(!this.props.tree.editing);
 	    if (editingNow) {
 		/* If I've been editing - save it. */
-		this.props.saveTree(this.props.tree);
+		if (tree.saved == false
+		    && tree.source == "Online"
+		    && tree.author == user.email) {
+		    this.props.updateTree(this.props.tree);
+		}
 	    }
 	    return false;
 	});
@@ -148,5 +157,6 @@ function mapStateToProps(state) {
     return { tree: state.tree.present };
 }
 
-export default connect(mapStateToProps, {...cardsActions, ...treesActions})(Hotkeys);
+export default connect(mapStateToProps, {...cardsActions, ...treesActions,
+					 undo, redo})(Hotkeys);
 

@@ -43,9 +43,11 @@ class MenuTree extends Component {
 	var {source, author} = this.props.tree;
 	var atMyTrees = this.props.location.pathname == "/trees";
 
+	/* 
 	console.log("Source " + source);
 	console.log("Tree's Author " + author);
 	console.log("User " + user.email);		
+	*/
 
 	/* Hide the button when at my trees, or not authenticated. */
 	if (!this.props.tree || atMyTrees || !user)  { return null; }
