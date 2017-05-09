@@ -70,7 +70,7 @@ class Header extends Component {
 		 && this.props.user.email == this.props.tree.author
 		 && this.props.tree.source == "Online"
 		 && this.props.tree.saved ?
-		 <span className="autosaved">
+		 <span className="autosaved left">
 		     [saved]
 		 </span>
 		 : null
