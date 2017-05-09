@@ -15,7 +15,7 @@ export function fetchUser() {
 	axios.get(`${API_URL}/auth/profile`, config)
 	     .then(response => {
 		 /* console.log("profiles.actions:");*/
-		 console.log("Saving user to state " + JSON.stringify(response.data));
+		 console.log("Fetched user " + JSON.stringify(response.data));
 		 dispatch({
 		     type: 'AUTH_USER',
 		     payload: response.data
@@ -27,13 +27,14 @@ export function fetchUser() {
 
 export function login(credentials) {
     return function(dispatch) {
-	console.log("profiles.actions:");
-	console.log("Sending email and password.");
+	/* console.log("profiles.actions:");*/
+	/* console.log("Sending email and password.");*/
 	axios.post(`${API_URL}/auth/login`, credentials)
 	     .then(response => {
-		 console.log("profiles.actions:");
-		 console.log("Sign in successful.");		 
-		 console.log("Saving user to state, saving JWT token to local storage.");
+		 /* console.log("profiles.actions:");*/
+		 /* console.log("Sign in successful."); */
+		 /*console.log("Saving user to state, saving token to local storage.");*/
+		 console.log("Fetched user " + JSON.stringify(response.data));
 		 dispatch({
 		     type: 'AUTH_USER',
 		     payload: response.data
@@ -95,9 +96,9 @@ export function join(credentials) {
 
 export function logout() {
     // delete token and signout
-    console.log("profiles.actions:");
+    /* console.log("profiles.actions:");*/
     console.log("Logging out.")
-    console.log("Removing token from local storage, removing user from state.");
+    /* console.log("Removing token from local storage, removing user from state.");*/
     localStorage.removeItem('token');
     localStorage.removeItem('cardsCreated');    
     return {
