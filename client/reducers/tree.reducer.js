@@ -138,7 +138,7 @@ export default function(state=INITIAL_STATE, action) {
 		i++;
 		if (index == i) {
 		    /* Find the changed checkbox by it's index and flip it */
-		    console.log("check");
+		    /* console.log("check");*/
 		    if (match == "[X]") {
 			return "[ ]";			
 		    } else {

@@ -35,6 +35,12 @@ class MenuAbout extends Component {
 			    Contact Support
 			</a>
 		    </li>
+		    <li key="blog">
+			<a href="/blog"
+			   target="_blank">
+			    Blog
+			</a>
+		    </li>
 		    <li key="subreddit">
 			<a href="https://www.reddit.com/r/nulis"
 			   target="_blank">
