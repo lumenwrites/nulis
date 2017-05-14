@@ -2,6 +2,7 @@ import fs from 'fs';
 import removeMd from 'remove-markdown';
 import cuid from 'cuid';
 import slug from 'slug';
+import { cardsToColumns, getCard } from '../../client/utils/cards';
 
 const Tree = require('../models/tree');
 
@@ -15,6 +16,57 @@ export function getTree (req, res, next) {
 	return res.send(tree);
     });
 }
+
+
+function forEachChild(root, fun) {
+    root.children.map((c)=>{
+	fun(c, root);
+	if (c.children) {
+	    forEachChild(c, fun);
+	}
+    });
+}
+
+export function exportTree (req, res, next) {
+    var slug = req.params.slug;
+
+    /* Find a tree by id, and send it as a respponse */
+    Tree.findOne({slug:slug}, function(err, tree){
+	if (err || !tree) { return res.status(404).end(); }
+	console.log("Exporting tree " + tree.slug);
+	
+	var markdown = "";
+
+	if (req.query.column) {
+	    var columns = cardsToColumns(tree.cards);
+	    var columnNumber = parseInt(req.query.column)-1;
+	    console.log("Exporting column " + columnNumber);
+	    if (columns[columnNumber]) {
+		columns[columnNumber].cardGroups.map((cardGroup)=>{
+		    cardGroup.cards.map((card)=>{
+			markdown += card.content + "\n\n";
+		    });
+		});
+	    }
+	} else if (req.query.subtree) {
+	    console.log("Exporting card's children " + tree.activeCard);
+	    var card = getCard(tree.activeCard, tree.cards);
+	    markdown += card.content + "\n\n";
+	    forEachChild(card, (c)=>{
+		markdown += c.content + "\n\n";
+	    });
+	} else {
+	    console.log("Exporting the whole tree");
+	    forEachChild(tree.cards, (c)=>{
+		markdown += c.content + "\n\n";
+	    });
+	}
+
+	res.setHeader('content-type', 'text/plain');
+	return res.end(markdown);
+    });
+}
+
 
 /* Delete a tree  */
 export function deleteTree(req, res) {
@@ -84,7 +136,7 @@ export function createTree (req, res, next) {
 export function updateTree (req, res, next) {
     /* Getting the tree from the POST request sent to me by react */
     var tree = req.body;
-
+    console.log("Updating tree. " + tree.slug);
     var options =  { upsert: true, new: true, setDefaultsOnInsert: true };
     /* Find a tree by id and create it if it doesn't exist */
     Tree.findOne({slug:tree.slug}, (err, t) => {

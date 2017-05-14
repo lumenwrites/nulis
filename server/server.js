@@ -12,6 +12,9 @@ import util from 'util';
 import profilesRoutes from './routes/profiles.routes.js';
 import treesRoutes from './routes/trees.routes.js';
 
+/* Controllers */
+import * as treeControllers from './controllers/tree.controllers';
+
 // Connect to db.
 mongoose.Promise = global.Promise;
 var MONGO_DB_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/nulis';
@@ -44,6 +47,8 @@ server.get('/bundle.js',(req,res) => {
     res.sendFile(path.resolve(__dirname, '../client/dist/bundle.js'));
 });
 
+/* Export */
+server.get('/tree/:slug.md',treeControllers.exportTree);
 
 /* Send the rest of the requests to be handled by the react router */
 server.use((req, res) =>

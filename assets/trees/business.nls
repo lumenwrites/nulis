@@ -1,0 +1,99 @@
+{
+    "slug": "",
+    "name": "Business",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "# Business\n(Trading value for money)\nBusiness = Product + Marketing + Sales.\nOnline Business = Product + Traffic + Conversions.",
+                "children": [
+                    {
+                        "id": "2-tm03615",
+                        "content": "# Product (value)\nValue = solving a challenge on a person's path to the goal.",
+                        "children": [
+                            {
+                                "id": "3-mw136dh",
+                                "content": "# What to build\n- Ideally - solving your own problem\n- Or - talking to users to know what to build.",
+                                "children": []
+                            },
+                            {
+                                "id": "4-eu236im",
+                                "content": "# Building it\n- Adding features, fixing bugs, cleaning code.\n- Devops, speed, scale.\n//Hiring/Outsorcing if you need more.",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "5-ft336tt",
+                        "content": "# Traffic\n(Marketing, Optimizing growth)",
+                        "children": [
+                            {
+                                "id": "7-wk536wx",
+                                "content": "# Content marketing\nWriting/Videos + sharing on social(twitter/reddit/youtube)",
+                                "children": []
+                            },
+                            {
+                                "id": "8-w5636m0",
+                                "content": "# Viral\nReferral program - incentivize people to invite/share.",
+                                "children": []
+                            },
+                            {
+                                "id": "9-7i7363w",
+                                "content": "# Ads\nMost importantly:\nCustomer acquisition cost < Customer lifetime value.\nMake enough money to cover the costs, then scale indefinitely. ",
+                                "children": []
+                            },
+                            {
+                                "id": "10-st836kl",
+                                "content": "# Outbound\nDo things that don't scale - contact people, invite them to use it.",
+                                "children": []
+                            },
+                            {
+                                "id": "11-0s9363e",
+                                "content": "# SEO\n- Keyword research - find niche keywords with low competition.\n- On-page - keywords in url, headers, meta, images.\n- Backlinks - links from relevant high ruthority sites, with keywords in the anchor text. //And social signals.\n\nWhite-hat links: getting press, guest posting, forum signatures, comments.\nBlack-hat: links: buying domains and building PBN + automated high volume links(spam).",
+                                "children": []
+                            },
+                            {
+                                "id": "12-t9a36sz",
+                                "content": "# PR\n- Contact small niche blogs, they want easy to make content, they write articles about you.\n- Leverage that to get published by bigger blogs, go up the ladder.",
+                                "children": []
+                            },
+                            {
+                                "id": "13-pyb36cz",
+                                "content": "# Affiliate Programs\nOffer % of sales to JV partners. They promote your product and make money by doing that.",
+                                "children": []
+                            },
+                            {
+                                "id": "14-n9c36l4",
+                                "content": "# Bizdev\nBusiness development - talk to other businesses, exchange links, help each other.",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "6-u1436rl",
+                        "content": "# Conversions\n(Onboarding/Funnel/Sales)",
+                        "children": [
+                            {
+                                "id": "15-evd36ag",
+                                "content": "# Sales funnel\nVisitor > Free user / Email Subscriber.\nFree user/subscriber > Paying customer\n",
+                                "children": []
+                            }
+                        ]
+                    }
+                ],
+                "parent_id": "root"
+            }
+        ]
+    },
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
+    "editing": false,
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": "2017-05-11T23:40:12.174Z",
+    "createdAt": "2017-05-11T23:40:12.174Z",
+    "saved": false,
+    "source": "Online",
+    "scroll": true
+}

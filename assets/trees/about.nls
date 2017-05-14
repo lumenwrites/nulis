@@ -23,8 +23,13 @@
                                 "color": "#0079BF"
                             },
                             {
+                                "id": "7-7h0369p",
+                                "content": "# Save and Export\nYou can save your trees as local files, or online. Once the tree has been saved online, it is autosaved automatically every time you switch between cards or edit/preview mode.\n\nYou can add `.md` at the end of your tree's url to view and save the whole tree as a markdown document. You can add `.md?column=3` to export only a specific column, or `.md?subtree=true` to export only the active card and it's children.",
+                                "children": []
+                            },
+                            {
                                 "id": "6-pd13zce",
-                                "content": "# Upcoming features\n- [X] Set card colors with `Alt+C`\n- [X] Checkboxes\n- [ ] Conveniently splitting and merging cards.\n- [ ] Collapse branches/cards (like in mindmaps).\n- [ ] Focus on a subtree.\n- [ ] Cut/Paste trees and cards.\n- [ ] Export markdown.\n- [ ] Possibly plugins and themes.\n- [ ] And much more =)",
+                                "content": "# Upcoming features\n- [X] Set card colors with `Alt+C`\n- [X] Checkboxes\n- [ ] Conveniently splitting and merging cards.\n- [ ] Collapse branches/cards (like in mindmaps).\n- [ ] Focus on a subtree.\n- [ ] Cut/Paste trees and cards.\n- [ ] Possibly plugins and themes.\n- [ ] And much more =)",
                                 "children": [],
                                 "color": ""
                             }
@@ -62,5 +67,6 @@
     "createdAt": null,
     "saved": false,
     "showCardConfig": false,
-    "slug": ""
+    "slug": "",
+    "scroll": true
 }
