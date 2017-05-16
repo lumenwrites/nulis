@@ -1,0 +1,2 @@
+<footer class="footer">
+</footer>

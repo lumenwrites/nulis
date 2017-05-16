@@ -36,6 +36,7 @@ import MenuAbout from './MenuAbout';
 
 import CardLimit from './CardLimit';
 import Search from './Search';
+import Stats from './Stats';
 
 class Header extends Component {
     render() {
@@ -60,6 +61,8 @@ class Header extends Component {
 		    :null}
 		    <MenuProfile />
 		    <MenuAbout />
+		    <Stats />
+
 		    {atMyTrees?
 		     <h1>My Trees</h1>
 		     :

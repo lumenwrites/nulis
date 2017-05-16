@@ -1,0 +1,18 @@
+<% for(var i=0; i < prompts.length; i++) { %>
+<article class="post prompt panel panel-default">
+  <a href="<%= prompts[i].url %>">
+    <%= prompts[i].title %>
+  </a>
+  <div class="post-footer">
+    <i class="fa fa-hashtag"></i>
+    <%= prompts[i].position %>
+    <i class="fa fa-arrow-up"></i>
+    <%= prompts[i].score %>
+    <i class="fa fa-comments"></i>
+    <%= prompts[i].num_comments %>
+    <i class="fa fa-clock-o"></i>
+    <%= prompts[i].age %>
+
+  </div>
+</article>
+<% } %>

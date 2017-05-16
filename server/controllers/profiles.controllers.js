@@ -15,7 +15,15 @@ export function signin(req, res, next) {
     // email/pass is already checked, here I just give user a token.
     // passport has already atteched user object to the request
     console.log("Email/Pass is correct, returning token.");
-    res.send({token:tokenForUser(req.user), email:req.body.email});
+    var user = req.user
+    res.send({
+	token: tokenForUser(user),
+	email:user.email,
+	plan:user.plan,
+	referralCode: user.referralCode,
+	cardLimit: user.cardLimit,
+	stats: user.stats,		
+    });
 }
 
 export function signup(req, res, next) {
@@ -75,7 +83,8 @@ export function signup(req, res, next) {
 		email:user.email,
 		plan:user.plan,
 		referralCode: user.referralCode,
-	    	cardLimit: user.cardLimit
+	    	cardLimit: user.cardLimit,
+	    	stats: user.stats,		
 	    });	    
 	    
 	});
@@ -89,11 +98,28 @@ export function getUser(req, res) {
     // Search for a user with a given email
     User.findOne({email:email}, function(err, user){
 	if (err) { return next(err); }
+	if (!user.stats) {
+	    user.stats = {
+		calendar: [
+		    {
+			date: '2017-05-13',
+			wordcount: 120
+		    },{
+			date: '2017-05-11',
+			wordcount: 514
+		    },{
+			date: '2017-05-09',
+			wordcount: 912
+		    }
+		]
+	    };
+	}
 	res.send({
 	    email:user.email,
 	    plan: user.plan,
 	    referralCode: user.referralCode,
-	    cardLimit: user.cardLimit
+	    cardLimit: user.cardLimit,
+	    stats: user.stats,
 	});	    
     });
 }
@@ -158,4 +184,39 @@ export function payment(req, res) {
 	    });
 	});
     }
+}
+
+
+export function updateWordcount(req, res) {
+    const today = req.body;
+    User.findOne({email:req.user.email}, function(err, user){
+	if (err) { return next(err); }
+	var calendar = [];
+	if (user.stats) {
+	    calendar = [...user.stats.calendar];
+	}
+	if (calendar.length && calendar[calendar.length - 1].date == today.date) {
+	    /* If the last date in user's calendar is today - update it */
+	    calendar[calendar.length - 1] = today;
+	    console.log("Update day.");
+	} else {
+	    /* Otherwise add it */
+	    calendar.push(today);
+	    console.log("Push day.");
+	}
+	/* calendar.push(today);*/
+
+
+	user.stats = {
+	    calendar:calendar
+	};
+	user.save(function(err, usr){
+	    if (err) { return next(err); }
+	    console.log("Updated user " + JSON.stringify(usr, null, 4));
+	    var updatedToday = usr.stats.calendar[usr.stats.calendar.length - 1]
+	    res.send({
+		message: "Wordcount updated! " + updatedToday.wordcount
+	    }); 
+	});
+    });
 }

@@ -50,6 +50,12 @@ const userSchema = new Schema({
     createdAt: {
 	type: Date,
 	default: null
+    },
+    stats: {
+	type: JSON,
+	default: {
+	    calendar: []
+	}
     }
 });
 

@@ -73,11 +73,19 @@ export function dropCard(direction, relativeTo, card) {
 }
 
 export function updateCard(card, content) {
+    var prevWordcount = card.content.split(' ').length;
+    var currentWordcount =  content.split(' ').length;
     card.content = content;
-    /* console.log("Card updated " + JSON.stringify(card));    */
-    return {
-	type: 'UPDATE_CARD',
-	payload: card
+    return function(dispatch) {
+	dispatch({
+	    type: 'UPDATE_CARD',
+	    payload: card
+	});
+	if (currentWordcount > prevWordcount) {
+	    dispatch({
+		type: 'ADD_WORD'
+	    });
+	}
     }
 }
 

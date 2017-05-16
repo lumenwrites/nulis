@@ -130,3 +130,17 @@ export function payment(token) {
 	     });
     }
 }
+
+
+export function updateWordcount(today) {
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}
+    };
+    return function(dispatch) {
+	axios.post(`${API_URL}/update-wordcount`, today, config)
+	     .then(response => {
+		 /* Wordcount updated */
+		 console.log(response.data.message);
+	     });
+    }
+}

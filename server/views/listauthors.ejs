@@ -1,0 +1,20 @@
+<% for(var i=0; i < authors.length; i++) { %>
+<article class="post panel panel-default">
+  <h4>
+    <%= i+1 %>. 
+    <a href="https://www.reddit.com/user/<%= authors[i].username %>/comments/?sort=top">
+      <%= authors[i].username %>
+    </a>
+  </h4>
+  <p>Best stories:  </p>
+  <ol>
+    <% for(var s=0; s < authors[i].beststories.length; s++) { %>
+       <li>
+	 <a href="<%= authors[i].beststories[s].url %>">
+	   <%= authors[i].beststories[s].prompt %>
+	 </a>
+       </li>
+       <% } %>
+  </ol>
+</article>
+<% } %>

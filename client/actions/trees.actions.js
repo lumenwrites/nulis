@@ -10,10 +10,6 @@ import { handleScroll } from '../utils/handleScroll';
 
 import {API_URL} from './cards.actions';
 
-const config = {
-    headers:  { authorization: localStorage.getItem('token')}	
-};
-
 export function updateTreeName(value) {
     /* unused */
     return {
@@ -38,7 +34,11 @@ export function setEditing(boolean) {
 
 export function createTree(tree) {
     var tree_url = `${API_URL}/trees`;
-    
+
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}	
+    };
+
     delete tree._id;
     console.log("Creating a tree " + tree.name);    
     return function(dispatch) {
@@ -60,6 +60,10 @@ export function createTree(tree) {
 export function updateTree(tree) {
     var tree_url = `${API_URL}/tree/${tree.slug}`;
     /* console.log("Updating a tree " + tree.name);*/
+
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}	
+    };
 
     delete tree._id;
     return function(dispatch) {
@@ -87,6 +91,11 @@ export function saveTree(tree) {
 	console.log("Saving(creating) a tree " + tree.name);    
     }
 
+    
+    const config = {
+	headers:  { authorization: localStorage.getItem('token')}	
+    };
+    
     return function(dispatch) {
 	axios.post(tree_url, tree, config)
 	     .then(response => {
@@ -251,14 +260,17 @@ export function listTrees() {
 import aboutTemplate from '../../assets/trees/about.nls';
 import blankTemplate from '../../assets/trees/blank.nls';
 import storyTemplate from '../../assets/trees/story.nls';
+import promptTemplate from '../../assets/trees/prompt.nls';
 
 export function loadTemplate(name) {
     const aboutTree = JSON.parse(aboutTemplate);
     const blankTree = JSON.parse(blankTemplate);
     const storyTree = JSON.parse(storyTemplate);
+    const promptTree = JSON.parse(promptTemplate);
     aboutTree.source = "Template";
     blankTree.source = "Template";
-    storyTree.source = "Template";	
+    storyTree.source = "Template";
+    promptTree.source = "Template";	
 
     console.log("Loading tree from template " + name);
     switch(name) {
@@ -278,6 +290,11 @@ export function loadTemplate(name) {
 	    return {
 		type: 'LOAD_TREE',
 		payload: storyTree
+	    }
+	case 'Prompt':
+	    return {
+		type: 'LOAD_TREE',
+		payload: promptTree
 	    }
 	default:
 	    return {

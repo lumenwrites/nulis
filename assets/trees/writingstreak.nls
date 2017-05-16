@@ -1,0 +1,89 @@
+{
+    "slug": "",
+    "name": "Prompt",
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "2-qv036lw",
+                "content": "Prompt/Premise\nSciFi premise causes problems.\n\nAsk questions.\nAnswer with tropes.\nLists of five.",
+                "children": [
+                    {
+                        "id": "3-eg136or",
+                        "content": "Setting/Worldbuilding ",
+                        "children": []
+                    },
+                    {
+                        "id": "4-kl236j8",
+                        "content": "Characters\nAge/gender/looks\nPersonality trope, \nProfession\nAntagonist",
+                        "children": []
+                    },
+                    {
+                        "id": "5-wd336i0",
+                        "content": "Challenge(conflict)/Resolution",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "6-ef4362b",
+                "content": "Plot.",
+                "children": [
+                    {
+                        "id": "7-rv5361r",
+                        "content": "[ ] Setup\nSetting, action, dialogue.\nObjective, conflict, change in value, infodump.\nPrecise outline if needed, what needs to happen.\n\nWrite a paragraph about the world where the story takes place.\n\nDescribe a character in a situation.",
+                        "children": [
+                            {
+                                "id": "11-ky936rb",
+                                "content": "Improv. In their heads. Straightforward description.",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "10-8p836m6",
+                        "content": "[ ] Challenge/problem\n\nDescribe the event that disrupts the normal course of events and begins the story. What can go wrong? What problem is character facing? What goal does he have? Who is the antagonist?",
+                        "children": []
+                    },
+                    {
+                        "id": "8-8p636lq",
+                        "content": "[ ] Escalate\nProgress/Setbacks, 3 attempts, \nrandom encounters, plan stages\n\nHow can things escalate? How does the character pursue his goal, what obstacles/challenes does he need to overcome? How can things spiral out of control, raising the stakes, requiring bigger and bigger risks, leading to the showdown between the hero and antagonist?",
+                        "children": []
+                    },
+                    {
+                        "id": "9-nl736ou",
+                        "content": "[ ] Resolve\nHow does it end? Does the character win? How? Why?\nDid the world go back to normal? What changed?\n(change in value)",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "12-8la36g5",
+                "content": "Jokes",
+                "children": [
+                    {
+                        "id": "13-6zb36oy",
+                        "content": "Broad Description / Jump\n- Dot Connect. 2nd pattern that fits just extracted thing.\n  ++ 2nd association chain back.",
+                        "children": [
+                            {
+                                "id": "14-ndc364g",
+                                "content": "Second > First / Between dotconnects\nWrite 500 char comics script.\n\n++ Can make even simple premise much better by adding more tags, specific absurd examples.",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "author": "raymestalez@gmail.com",
+    "__v": 0,
+    "editing": true,
+    "modified": false,
+    "activeCard": "9-nl736ou",
+    "updatedAt": "2017-05-15T01:09:06.461Z",
+    "createdAt": "2017-05-14T01:50:49.445Z",
+    "saved": false,
+    "source": "Template",
+    "scroll": false
+}

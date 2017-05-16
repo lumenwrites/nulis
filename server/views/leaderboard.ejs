@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <% include ./elements/head %>
+  </head>
+  <body>
+    <div class="mainWrapper">
+      <% include ./elements/header %>
+      <div class="page leaderboard">
+	<div class="container">
+	  <div class="show-grid row">
+	    <div class="show-grid row">
+	      <div class="col-md-12 col-xs-12">
+
+		<article class="panel panel-default cta">
+		  <span class="btn btn-default dropdown">
+		    <% if(timeframe=='week'){ %>
+		    This Week
+		    <% } else{ %>  
+		    All Time
+		    <% } %>		      
+		    <ul class="dropdown-menu">
+		    <% if(timeframe=='week'){ %>
+		      <li><a href="/top-writingprompts-authors/alltime">All time</a></li>
+		      <% } else{ %>
+		      <li><a href="/top-writingprompts-authors">This Week</a></li>
+		    <% } %>		      
+		    </ul>	
+		  </span>				
+
+		  <h1>Top 100 /r/WritingPrompts authors</h1>
+		  
+		  This is a leaderboard of the best(most upvoted)
+		  <a>/r/WritingPrompts</a> authors and their top stories.<br/>
+		  Updated every Friday.<br/>
+		  <br/>
+		  <b>Check out other cool stuff that I've made:</b>
+		  <br/>
+		  - Discover
+		  <a href="/prompts">
+		    new prompts with very few replies that are about to take off</a>.
+		  <br/>
+		  - Try <a href="https://nulis.io">Nulis</a> - an tree-editor that makes outlining your stories easy, fun, and convenient(learn more <a href="https://nulis.io/blog/post/Revolutionary-outline-editor-for-writers-t1009l8">here</a>).
+		  <%#
+		  <br/>
+		  - Learn how to use Nulis to
+		  <a>write your stories with a straightforward, step by step process</a>.
+		  <br/>
+		  - Learn how to use Nulis to <a>develop a daily writing habit</a>.
+		  %>
+		</article>
+		<% include ./listauthors %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <% include ./elements/footer %>
+    </div>
+  </body>
+</html>

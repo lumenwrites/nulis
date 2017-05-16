@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,22 +76,28 @@ module.exports = require("express");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongoose");
+module.exports = require("fs");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("cuid");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("passport");
+module.exports = require("cuid");
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("passport");
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107,27 +113,27 @@ exports.listTrees = listTrees;
 exports.createTree = createTree;
 exports.updateTree = updateTree;
 
-var _fs = __webpack_require__(23);
+var _fs = __webpack_require__(1);
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _removeMarkdown = __webpack_require__(9);
+var _removeMarkdown = __webpack_require__(10);
 
 var _removeMarkdown2 = _interopRequireDefault(_removeMarkdown);
 
-var _cuid = __webpack_require__(2);
+var _cuid = __webpack_require__(3);
 
 var _cuid2 = _interopRequireDefault(_cuid);
 
-var _slug = __webpack_require__(26);
+var _slug = __webpack_require__(28);
 
 var _slug2 = _interopRequireDefault(_slug);
 
-var _cards = __webpack_require__(18);
+var _cards = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Tree = __webpack_require__(20);
+var Tree = __webpack_require__(23);
 
 function getTree(req, res, next) {
 				var slug = req.params.slug;
@@ -291,7 +297,7 @@ function updateTree(req, res, next) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -304,25 +310,25 @@ module.exports = {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _mongoose = __webpack_require__(1);
+var _mongoose = __webpack_require__(2);
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _validator = __webpack_require__(28);
+var _validator = __webpack_require__(31);
 
 var _validator2 = _interopRequireDefault(_validator);
 
-var _bcryptNodejs = __webpack_require__(22);
+var _bcryptNodejs = __webpack_require__(25);
 
 var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
 
-var _cuid = __webpack_require__(2);
+var _cuid = __webpack_require__(3);
 
 var _cuid2 = _interopRequireDefault(_cuid);
 
@@ -375,6 +381,12 @@ var userSchema = new _mongoose.Schema({
 			createdAt: {
 						type: Date,
 						default: null
+			},
+			stats: {
+						type: JSON,
+						default: {
+									calendar: []
+						}
 			}
 });
 
@@ -430,7 +442,7 @@ var ModelClass = _mongoose2.default.model('user', userSchema);
 module.exports = ModelClass;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -440,12 +452,12 @@ module.exports = ModelClass;
 // check if user is logged in before accessing controllers(which are like django views)
 // So this is essentially @IsAuthenticated
 
-var passport = __webpack_require__(3);
-var JwtStrategy = __webpack_require__(8).Strategy;
-var LocalStrategy = __webpack_require__(25);
-var ExtractJwt = __webpack_require__(8).ExtractJwt;
-var User = __webpack_require__(6);
-var config = __webpack_require__(5);
+var passport = __webpack_require__(4);
+var JwtStrategy = __webpack_require__(9).Strategy;
+var LocalStrategy = __webpack_require__(27);
+var ExtractJwt = __webpack_require__(9).ExtractJwt;
+var User = __webpack_require__(7);
+var config = __webpack_require__(6);
 
 // by default you send a POST request with username and password
 // here Im telling it to use email instead
@@ -525,19 +537,93 @@ passport.use(jwtLogin);
 passport.use(localLogin);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-jwt");
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("remove-markdown");
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = get_prompts;
+var fs = __webpack_require__(1);
+var snoowrap = __webpack_require__(29);
+
+/* const config = JSON.parse(fs.readFileSync('../config.json','utf8'));*/
+
+var r = new snoowrap({
+	userAgent: 'Best /r/WritingPrompts prompts by /u/raymestalez',
+	clientId: 'STVPWGT5kl4t7Q',
+	clientSecret: 'CLLwhfaHzitTf0dZNcyI20Xfikg',
+	username: 'raymestalez',
+	password: 'Qwe1s1zxCrdt'
+});
+
+function get_prompts(fun) {
+	r.getSubreddit('WritingPrompts').getNew({ limit: 100 }).then(function (newPrompts) {
+		r.getSubreddit('WritingPrompts').getHot({ limit: 50 }).then(function (hotPrompts) {
+			var prompts = newPrompts.map(function (prompt) {
+				/* Calculate age */
+				var now = new Date().getTime();
+				var created_at = new Date(prompt.created_utc * 1000);
+				var age_minutes = (now - created_at) / (1000 * 60);
+				var age_hours = Math.round(age_minutes / 60 * 10) / 10;
+
+				prompt.age = age_hours;
+				prompt.num_comments -= 1;
+
+				/* Prompts with >1 upvote, <3 replies, less than 5 hours old */
+				if (prompt.score > 1 && prompt.num_comments < 3 && age_hours < 5 && !prompt.title.includes("[OT]")) {
+
+					prompt.position = 0;
+					/* Search for a prompt in the list of hot prompts,
+        to find out it's position on the front page */
+					hotPrompts.map(function (hotPrompt, i) {
+						if (prompt.title == hotPrompt.title) {
+							prompt.position = i - 1;
+						}
+					});
+					prompt.title = prompt.title.replace("[WP]", "").trim();
+					prompt.title = prompt.title.replace("[EU]", "").trim();
+					/* Add prompt to the list of prompts */
+					return prompt;
+				}
+			});
+
+			/* Sort by score */
+			prompts.sort(function (a, b) {
+				return parseFloat(b.score) - parseFloat(a.score);
+			});
+
+			/* Return 15 prompts */
+			prompts = prompts.slice(0, 10);
+			fun(prompts);
+		});
+	});
+}
+
+/* 
+var prompts = get_prompts((prompts)=>{
+    console.log(prompts.length);
+    prompts.map((p)=> console.log(p.score));
+});
+*/
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -551,13 +637,13 @@ var _express = __webpack_require__(0);
 
 var router = new _express.Router();
 
-var passport = __webpack_require__(3);
-var passportService = __webpack_require__(7);
+var passport = __webpack_require__(4);
+var passportService = __webpack_require__(8);
 
 var requireAuth = passport.authenticate('jwt', { session: false });
 var requireSignin = passport.authenticate('local', { session: false });
 
-var profilesControllers = __webpack_require__(19);
+var profilesControllers = __webpack_require__(22);
 
 // Make every request go through the passport profilesentication check:
 router.route('/auth-test').get(requireAuth, function (req, res) {
@@ -571,11 +657,12 @@ router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
 router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
 router.route('/purchase').post(requireAuth, profilesControllers.payment);
+router.route('/update-wordcount').post(requireAuth, profilesControllers.updateWordcount);
 
 exports.default = router;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -587,7 +674,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = __webpack_require__(0);
 
-var _tree = __webpack_require__(4);
+var _tree = __webpack_require__(5);
 
 var treeControllers = _interopRequireWildcard(_tree);
 
@@ -595,8 +682,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var router = new _express.Router();
 
-var passport = __webpack_require__(3);
-var passportService = __webpack_require__(7);
+var passport = __webpack_require__(4);
+var passportService = __webpack_require__(8);
 var requireAuth = passport.authenticate('jwt', { session: false });
 
 router.route('/trees').get(requireAuth, treeControllers.listTrees);
@@ -608,43 +695,49 @@ router.route('/tree/:slug').delete(requireAuth, treeControllers.deleteTree);
 exports.default = router;
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("http");
 
 /***/ }),
-/* 15 */
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("memory-cache");
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("morgan");
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -680,11 +773,11 @@ exports.sortByKey = sortByKey;
 exports.cardsToColumns = cardsToColumns;
 exports.search = search;
 
-var _cuid = __webpack_require__(2);
+var _cuid = __webpack_require__(3);
 
 var _cuid2 = _interopRequireDefault(_cuid);
 
-var _removeMarkdown = __webpack_require__(9);
+var _removeMarkdown = __webpack_require__(10);
 
 var _removeMarkdown2 = _interopRequireDefault(_removeMarkdown);
 
@@ -1171,7 +1264,7 @@ function search(card, query) {
 }
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1184,9 +1277,13 @@ exports.signin = signin;
 exports.signup = signup;
 exports.getUser = getUser;
 exports.payment = payment;
-var jwt = __webpack_require__(24);
-var config = __webpack_require__(5);
-var User = __webpack_require__(6);
+exports.updateWordcount = updateWordcount;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var jwt = __webpack_require__(26);
+var config = __webpack_require__(6);
+var User = __webpack_require__(7);
 
 function tokenForUser(user) {
 	// sub means subject. a property describing who it is about
@@ -1201,7 +1298,15 @@ function signin(req, res, next) {
 	// email/pass is already checked, here I just give user a token.
 	// passport has already atteched user object to the request
 	console.log("Email/Pass is correct, returning token.");
-	res.send({ token: tokenForUser(req.user), email: req.body.email });
+	var user = req.user;
+	res.send({
+		token: tokenForUser(user),
+		email: user.email,
+		plan: user.plan,
+		referralCode: user.referralCode,
+		cardLimit: user.cardLimit,
+		stats: user.stats
+	});
 }
 
 function signup(req, res, next) {
@@ -1267,7 +1372,8 @@ function signup(req, res, next) {
 				email: user.email,
 				plan: user.plan,
 				referralCode: user.referralCode,
-				cardLimit: user.cardLimit
+				cardLimit: user.cardLimit,
+				stats: user.stats
 			});
 		});
 	});
@@ -1281,11 +1387,26 @@ function getUser(req, res) {
 		if (err) {
 			return next(err);
 		}
+		if (!user.stats) {
+			user.stats = {
+				calendar: [{
+					date: '2017-05-13',
+					wordcount: 120
+				}, {
+					date: '2017-05-11',
+					wordcount: 514
+				}, {
+					date: '2017-05-09',
+					wordcount: 912
+				}]
+			};
+		}
 		res.send({
 			email: user.email,
 			plan: user.plan,
 			referralCode: user.referralCode,
-			cardLimit: user.cardLimit
+			cardLimit: user.cardLimit,
+			stats: user.stats
 		});
 	});
 }
@@ -1295,7 +1416,7 @@ function payment(req, res) {
 
 	// Set your secret key: remember to change this to your live secret key in production
 	// See your keys here: https://dashboard.stripe.com/account/apikeys
-	var stripe = __webpack_require__(27)(config.stripeSecret);
+	var stripe = __webpack_require__(30)(config.stripeSecret);
 
 	// Token is created using Stripe.js or Checkout!
 	// Get the payment token submitted by the form:
@@ -1355,15 +1476,52 @@ function payment(req, res) {
 	}
 }
 
+function updateWordcount(req, res) {
+	var today = req.body;
+	User.findOne({ email: req.user.email }, function (err, user) {
+		if (err) {
+			return next(err);
+		}
+		var calendar = [];
+		if (user.stats) {
+			calendar = [].concat(_toConsumableArray(user.stats.calendar));
+		}
+		if (calendar.length && calendar[calendar.length - 1].date == today.date) {
+			/* If the last date in user's calendar is today - update it */
+			calendar[calendar.length - 1] = today;
+			console.log("Update day.");
+		} else {
+			/* Otherwise add it */
+			calendar.push(today);
+			console.log("Push day.");
+		}
+		/* calendar.push(today);*/
+
+		user.stats = {
+			calendar: calendar
+		};
+		user.save(function (err, usr) {
+			if (err) {
+				return next(err);
+			}
+			console.log("Updated user " + JSON.stringify(usr, null, 4));
+			var updatedToday = usr.stats.calendar[usr.stats.calendar.length - 1];
+			res.send({
+				message: "Wordcount updated! " + updatedToday.wordcount
+			});
+		});
+	});
+}
+
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /* Mongoose is ORM, like models.py in django */
-var mongoose = __webpack_require__(1);
+var mongoose = __webpack_require__(2);
 var Schema = mongoose.Schema;
 
 // Define model. 
@@ -1437,59 +1595,67 @@ var TreeModel = mongoose.model('tree', treeSchema);
 module.exports = TreeModel;
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+				value: true
 });
 
 var _express = __webpack_require__(0);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _http = __webpack_require__(14);
+var _http = __webpack_require__(16);
 
 var _http2 = _interopRequireDefault(_http);
 
-var _bodyParser = __webpack_require__(12);
+var _bodyParser = __webpack_require__(14);
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _morgan = __webpack_require__(15);
+var _morgan = __webpack_require__(18);
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
-var _mongoose = __webpack_require__(1);
+var _mongoose = __webpack_require__(2);
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _cors = __webpack_require__(13);
+var _cors = __webpack_require__(15);
 
 var _cors2 = _interopRequireDefault(_cors);
 
-var _path = __webpack_require__(16);
+var _path = __webpack_require__(19);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _util = __webpack_require__(17);
+var _util = __webpack_require__(20);
 
 var _util2 = _interopRequireDefault(_util);
 
-var _profilesRoutes = __webpack_require__(10);
+var _profilesRoutes = __webpack_require__(12);
 
 var _profilesRoutes2 = _interopRequireDefault(_profilesRoutes);
 
-var _treesRoutes = __webpack_require__(11);
+var _treesRoutes = __webpack_require__(13);
 
 var _treesRoutes2 = _interopRequireDefault(_treesRoutes);
 
-var _tree = __webpack_require__(4);
+var _tree = __webpack_require__(5);
 
 var treeControllers = _interopRequireWildcard(_tree);
+
+var _fs = __webpack_require__(1);
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _hotprompts = __webpack_require__(11);
+
+var _hotprompts2 = _interopRequireDefault(_hotprompts);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1511,16 +1677,17 @@ _mongoose2.default.Promise = global.Promise;
 var MONGO_DB_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/nulis';
 console.log("Connecting to the db at " + MONGO_DB_URL);
 _mongoose2.default.connect(MONGO_DB_URL, function (error) {
-    if (error) {
-        console.error('Please make sure Mongodb is installed and running!');
-        throw error;
-    }
+				if (error) {
+								console.error('Please make sure Mongodb is installed and running!');
+								throw error;
+				}
 });
 
 /* Setup server */
 var server = new _express2.default();
 server.use(_bodyParser2.default.json({ type: '*/*' }));
 server.use((0, _cors2.default)());
+server.set('view engine', 'ejs');
 /* server.use(morgan('combined'));*/
 
 /* API */
@@ -1531,7 +1698,52 @@ server.use('/api/v1', _treesRoutes2.default);
 server.use('/media', _express2.default.static(_path2.default.resolve(__dirname, '../client/media')));
 server.use('/downloads', _express2.default.static(_path2.default.resolve(__dirname, '../desktop/packages')));
 server.get('/bundle.js', function (req, res) {
-    res.sendFile(_path2.default.resolve(__dirname, '../client/dist/bundle.js'));
+				res.sendFile(_path2.default.resolve(__dirname, '../client/dist/bundle.js'));
+});
+
+/* Static pages */
+server.use('/static', _express2.default.static(_path2.default.resolve(__dirname, './static')));
+// index page
+
+server.get('/top-writingprompts-authors', function (req, res) {
+				var top_authors = JSON.parse(_fs2.default.readFileSync('./misc/top_authors_week.json', 'utf8'));
+				res.render('leaderboard', { authors: top_authors, timeframe: 'week' });
+});
+server.get('/top-writingprompts-authors/alltime', function (req, res) {
+				var top_authors = JSON.parse(_fs2.default.readFileSync('./misc/top_authors_all.json', 'utf8'));
+				res.render('leaderboard', { authors: top_authors, timeframe: 'all' });
+});
+
+/* Cache */
+var mcache = __webpack_require__(17);
+var cache = function cache(duration) {
+				return function (req, res, next) {
+								var key = '__express__' + req.originalUrl || req.url;
+								var cachedBody = mcache.get(key);
+								if (cachedBody) {
+												res.send(cachedBody);
+												return;
+								} else {
+												res.sendResponse = res.send;
+												res.send = function (body) {
+																mcache.put(key, body, duration * 1000);
+																res.sendResponse(body);
+												};
+												next();
+								}
+				};
+};
+
+server.get('/prompts', cache(5 * 60), function (req, res) {
+				/* var prompts = JSON.parse(fs.readFileSync('./misc/hotprompts.json', 'utf8'));*/
+				(0, _hotprompts2.default)(function (prompts) {
+								res.render('prompts', { prompts: prompts });
+				});
+				/* var prompts = require('./misc/hotprompts.json');*/
+});
+
+server.get('/topauthors/alltime', function (req, res) {
+				res.render('leaderboard');
 });
 
 /* Export */
@@ -1539,60 +1751,60 @@ server.get('/tree/:slug.md', treeControllers.exportTree);
 
 /* Send the rest of the requests to be handled by the react router */
 server.use(function (req, res) {
-    return res.sendFile(_path2.default.resolve(__dirname, '../client/index.html'));
+				return res.sendFile(_path2.default.resolve(__dirname, '../client/index.html'));
 });
 
 // start server
 var port = process.env.PORT || 3000;
 server.listen(port, function (error) {
-    if (!error) {
-        console.log('Server is running on port ' + port + '!');
-    } else {
-        console.error('Couldnt start server!');
-    }
+				if (!error) {
+								console.log('Server is running on port ' + port + '!');
+				} else {
+								console.error('Couldnt start server!');
+				}
 });
 
 exports.default = server;
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("bcrypt-nodejs");
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("jwt-simple");
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-local");
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = require("slug");
 
 /***/ }),
-/* 27 */
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = require("snoowrap");
+
+/***/ }),
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("stripe");
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("validator");
