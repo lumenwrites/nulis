@@ -148,13 +148,7 @@ def calculate_karma(author, time_filter='week', limit=1000):
                 return processed_author
 
 
-
-def sort_authors(authors, limit=500, time_filter='week'):
-    # Calculate combined karma from all stories and sort by it
-    # And attach a list of user's best stories
-    # Here, limit is the number of user's comments to calculate karma from
-
-    authorsdata = []
+def process_authors(authors, limit=500, time_filter='week'):
     numberofauthors = len(authors)
     for index, author in enumerate(authors):
         try:
@@ -168,6 +162,18 @@ def sort_authors(authors, limit=500, time_filter='week'):
 
     print("All karma calculated.")
     print("Total authors: " + str(len(authorsdata)))
+
+def sort_authors(authors, limit=500, time_filter='week', refetch=False):
+    # Calculate combined karma from all stories and sort by it
+    # And attach a list of user's best stories
+    # Here, limit is the number of user's comments to calculate karma from
+    
+    authorsdata = []
+    # Open already processed authors
+    filename = 'processed_authors.pkl'
+    with open (filename, 'rb') as fp:
+        authorsdata = pickle.load(fp)
+    
 
     # Sort authors by their /r/WritingPrompts karma
     sorted_authors = sorted(authorsdata, key=lambda x: x.wpscore, reverse=True)
@@ -247,9 +253,9 @@ def top_authors_all():
                         'all_authors_all.pkl', refetch=False
     )
     print("Top authors " + str(len(all_authors)))
-    # Sort them in order of combined story karma
+    # Sort them in order of combined story karma (considering only first 1k authors)
     sorted_authors = cache(
-        sort_authors, {'authors':all_authors,'time_filter':'all','limit':limit},
+        sort_authors, {'authors':all_authors[:500],'time_filter':'all','limit':limit},
         'sorted_authors_all.pkl', refetch=True
     )
 
