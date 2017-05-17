@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Nulis - a tree editor for writers</title>
+    <!-- Meta -->
+    <meta name="description"
+	  content="Nulis makes the process of outlining your stories, articles, or books easy, fun, and convenient.">
+    <meta name="keywords" content="Text, Editor, Writing, Creativity, SaaS, App.">
+    <meta name="author" content="Ray Alez">  
+    <link rel="shortcut icon" href="https://nulis.io/media/favicon.png"/>
+    <!-- Facebook -->
+    <meta property="og:description" content="Nulis makes the process of outlining your stories, articles, or books easy, fun, and convenient.">
+    <meta property="og:image" content="https://nulis.io/media/social.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Nulis" />
+    <meta property="twitter:description" content="Nulis makes the process of outlining your stories, articles, or books easy, fun, and convenient." />
+    <meta property="twitter:creator" content="@raymestalez" />
+    <meta property="twitter:image" content="https://nulis.io/media/social.png" />  
+
+
+  </head>
+  <body>
+    <div class="app"></div>
+  </body>
+  <script src="/bundle.js"></script>
+</html>

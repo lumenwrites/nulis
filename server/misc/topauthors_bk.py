@@ -88,43 +88,118 @@ def extract_authors(comments):
     return all_authors
 
 
-@retry(stop_max_attempt_number=10)
-def process_author(author, time_filter='week'):
-    author.wpscore = 0
-    author.beststories = []
-    # Combine stories score, collect the best stories.
-    comments = author.comments.top(time_filter=time_filter, limit=1000)
-    for comment in comments:
-        if comment.subreddit.display_name == "WritingPrompts" and comment.is_root:
-            author.wpscore += comment.score
-            author.beststories.append(comment)
+def is_in_list(word, filename):
+    try:
+        with open(filename, 'r') as f:
+            if (str(word) in [x.strip() for x in f.readlines()]):
+                print(word + " already in the list!")
+                return 1
+            else:
+                print(word + " not in the list!")
+                return 0
+    except IOError as e:
+        # catch non-existing file
+        if e.errno == 2:
+            return 0
 
-    print('/r/WPs karma calculated: ' + author.name + ' - ' + str(author.wpscore))
-    return author
+def add_to_list(word, filename):
+    if not is_in_list(word, filename):
+        with open(filename, 'a') as f:
+            f.write(str(word))
+            f.write('\n')        
+
+# @retry(stop_max_attempt_number=10)
+def calculate_karma(author, time_filter='week', limit=1000):
+    if (time_filter=='week'):
+        filename = 'processed_authors_week.pkl'
+    else:
+        filename = 'processed_authors_all.pkl'
+    if (time_filter=='week'):
+        namesfile = 'processed_authors_names_week.db'
+    else:
+        namesfile = 'processed_authors_names_all.db'        
+
+    # Create cache file if it doesn't exist
+    if not os.path.isfile(filename):
+        print("Creating processed_authors file")
+        processed_authors = []
+        with open(filename, 'wb') as fp:
+            pickle.dump(processed_authors, fp)
+
+    # Open already processed authors
+    with open (filename, 'rb') as fp:
+        processed_authors = pickle.load(fp)
+
+    # If author is not among the processed authors - calculate his karma/stories
+    if not is_in_list(author.name, namesfile):
+        author.wpscore = 0
+        author.beststories = []
+        # Combine stories score, collect the best stories.
+        comments = author.comments.top(time_filter=time_filter, limit=limit)
+        for comment in comments:
+            if comment.subreddit.display_name == "WritingPrompts" and comment.is_root:
+                author.wpscore += comment.score
+                author.beststories.append(comment)
+
+        # Append author to the list and save the file
+        processed_authors.append(author)
+        with open(filename, 'wb') as fp:
+            pickle.dump(processed_authors, fp)
+        print(author.name + " processed, returning.")
+        add_to_list(author.name, namesfile)
+        return author
+    else:
+        print(author.name + " has been processed before, reading from file and returning.")
+        # If author has already been processed - find him and return him
+        for processed_author in processed_authors:
+            if author.name == processed_author.name:
+                return processed_author
 
 
-def sort_authors(authors, time_filter='week'):
-    authors = authors[:1000]
+def process_authors(authors, time_filter='week'):
+    authors = authors[:800]
     numberofauthors = len(authors)
-    processed_authors = []
     for index, author in enumerate(authors):
         try:
-            processed_authors.append(process_author(author, time_filter=time_filter))
-            print("Processed " + str(index) + "/" + str(numberofauthors))
+            processed_author = calculate_karma(author, time_filter)
+            print("/r/WPs karma calculated: " + processed_author.name + " - " + str(processed_author.wpscore))
+            print(str(index) + "/" + str(numberofauthors))
         except:
-            print("Error processing")
+            pass
 
     print("All karma calculated.")
+
+def sort_authors(authors, time_filter='week', reprocess=False):
+    # Calculate combined karma from all stories and sort by it
+    # And attach a list of user's best stories
+    # Here, limit is the number of user's comments to calculate karma from
+
+    if reprocess:
+        # Loop through all authors, calculate stories/karma, write into a file
+        process_authors(authors, time_filter)
+
+    authorsdata = []
+    # Open already processed authors
+    if (time_filter=='week'):
+            filename = 'processed_authors_week.pkl'
+    else:
+        filename = 'processed_authors_all.pkl'
+    with open (filename, 'rb') as fp:
+        print("Loading processed authors")
+        authorsdata = pickle.load(fp)
+
+    print("Total authors: " + str(len(authorsdata)))
+    print("Last author's karma " + str(authorsdata[-1].wpkarma))
     # Sort authors by their /r/WritingPrompts karma
-    sorted_authors = sorted(processed_authors, key=lambda x: x.wpscore, reverse=True)
+    sorted_authors = sorted(authorsdata, key=lambda x: x.wpscore, reverse=True)
     sorted_authors = sorted_authors[:100]
     print("Authors sorted!")
-    print("Last author's karma " + str(sorted_authors[-1].wpscore))
     
     return sorted_authors
 
 def authors_to_json(sorted_authors, filename):
     authors_list = []
+
     for index, author in  enumerate(sorted_authors):
         # print("Author " + author.name)
         author_dict = {}
@@ -137,10 +212,10 @@ def authors_to_json(sorted_authors, filename):
             story_dict = {}
             story_dict['url'] = story.link_url + story.id
             story_dict['prompt'] = story.link_title.replace('[WP]', '')
+            # Append story to author's stories
             author_dict['beststories'].append(story_dict)
-
+        # Append author to author's list
         authors_list.append(author_dict)
-
     # Generate json out of author's list
     authors_json = json.dumps(authors_list)
     print("JSON generated for " + str(len(authors_list)))
@@ -156,7 +231,7 @@ def top_authors_week():
         'top_posts_week.pkl', refetch=False
     )
 
-    # All the coments from the top posts combined and sorted
+    # Combine and sort their comments
     sorted_comments = cache(
         fetch_top_comments, {'top_posts':top_posts[:limit]},
         'top_comments_week.pkl', refetch=False
@@ -168,7 +243,9 @@ def top_authors_week():
     )
     # Sort them in order of combined story karma
     sorted_authors = cache(
-        sort_authors, {'authors':all_authors[:2000], 'time_filter':'week'},
+        sort_authors, {'authors':all_authors[:2000],
+                       'time_filter':'week',
+                       'reprocess':False},
         'sorted_authors_week.pkl', refetch=True
     )
 

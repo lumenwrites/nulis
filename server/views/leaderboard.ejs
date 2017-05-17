@@ -32,7 +32,13 @@
 		  
 		  This is a leaderboard of the best(most upvoted)
 		  <a>/r/WritingPrompts</a> authors and their top stories.<br/>
-		  Updated every Friday.<br/>
+		  <% if(timeframe=='week'){ %>
+		  Updated every day.
+		  <% } else{ %>  
+		  Updated every week.
+		  <% } %>		      
+
+		  <br/>
 		  <br/>
 		  <b>Check out other cool stuff that I've made:</b>
 		  <br/>
@@ -40,7 +46,7 @@
 		  <a href="/prompts">
 		    new prompts with very few replies that are about to take off</a>.
 		  <br/>
-		  - Try <a href="https://nulis.io">Nulis</a> - an tree-editor that makes outlining your stories easy, fun, and convenient(learn more <a href="https://nulis.io/blog/post/Revolutionary-outline-editor-for-writers-t1009l8">here</a>).
+		  - Try <a href="https://nulis.io">Nulis</a> - a tree-editor that makes outlining your stories easy, fun, and convenient(learn more <a href="https://nulis.io/blog/post/Revolutionary-outline-editor-for-writers-t1009l8">here</a>).
 		  <%#
 		  <br/>
 		  - Learn how to use Nulis to
