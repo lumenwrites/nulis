@@ -1707,11 +1707,11 @@ server.use('/static', _express2.default.static(_path2.default.resolve(__dirname,
 
 server.get('/top-writingprompts-authors', function (req, res) {
 				var top_authors = JSON.parse(_fs2.default.readFileSync('./misc/top_authors_week.json', 'utf8'));
-				res.render('leaderboard', { authors: top_authors, timeframe: 'week' });
+				res.render('leaderboard', { authors: top_authors, timeframe: 'week', loc: 'authors' });
 });
 server.get('/top-writingprompts-authors/alltime', function (req, res) {
 				var top_authors = JSON.parse(_fs2.default.readFileSync('./misc/top_authors_all.json', 'utf8'));
-				res.render('leaderboard', { authors: top_authors, timeframe: 'all' });
+				res.render('leaderboard', { authors: top_authors, timeframe: 'all', loc: 'authors' });
 });
 
 /* Cache */
@@ -1737,13 +1737,9 @@ var cache = function cache(duration) {
 server.get('/prompts', cache(5 * 60), function (req, res) {
 				/* var prompts = JSON.parse(fs.readFileSync('./misc/hotprompts.json', 'utf8'));*/
 				(0, _hotprompts2.default)(function (prompts) {
-								res.render('prompts', { prompts: prompts });
+								res.render('prompts', { prompts: prompts, loc: 'prompts' });
 				});
 				/* var prompts = require('./misc/hotprompts.json');*/
-});
-
-server.get('/topauthors/alltime', function (req, res) {
-				res.render('leaderboard');
 });
 
 /* Export */

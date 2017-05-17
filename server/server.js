@@ -56,11 +56,11 @@ server.use('/static',
 import fs from 'fs';
 server.get('/top-writingprompts-authors', function(req, res) {
     var top_authors = JSON.parse(fs.readFileSync('./misc/top_authors_week.json','utf8'));
-    res.render('leaderboard', {authors: top_authors, timeframe:'week'});
+    res.render('leaderboard', {authors: top_authors, timeframe:'week', loc:'authors'});
 });
 server.get('/top-writingprompts-authors/alltime', function(req, res) {
     var top_authors = JSON.parse(fs.readFileSync('./misc/top_authors_all.json','utf8'));
-    res.render('leaderboard', {authors: top_authors, timeframe:'all'});
+    res.render('leaderboard', {authors: top_authors, timeframe:'all', loc:'authors'});
 });
 
 /* Cache */
@@ -87,16 +87,11 @@ import get_prompts from './misc/hotprompts';
 server.get('/prompts', cache(5*60), function(req, res) {
     /* var prompts = JSON.parse(fs.readFileSync('./misc/hotprompts.json', 'utf8'));*/
     get_prompts((prompts)=>{
-	res.render('prompts', {prompts: prompts});
+	res.render('prompts', {prompts: prompts, loc:'prompts'});
     });
     /* var prompts = require('./misc/hotprompts.json');*/
 
 });
-
-server.get('/topauthors/alltime', function(req, res) {
-    res.render('leaderboard');
-});
-
 
 /* Export */
 server.get('/tree/:slug.md',treeControllers.exportTree);
