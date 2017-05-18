@@ -10,7 +10,7 @@
                 "children": [
                     {
                         "id": "19-rd93673",
-                        "content": "- Learn more about the fundamentals of writing and story structure [here](https://nulis.io/blog/post/Story-kj1098i).\n- Learn more about how to use Nulis [here](https://nulis.io/about)\n- Learn how to use Nulis to practice the craft of writing, develop good writing habits, and quckly move forward on your path to mastery [here]().",
+                        "content": "- Learn more about the fundamentals of writing and story structure [here](https://nulis.io/blog/post/Story-kj1098i).\n- Learn more about how to use Nulis [here](https://nulis.io/about)\n- Learn how to use Nulis to practice the craft of writing, develop good writing habits, and quckly move forward on your path to mastery [here](https://nulis.io/blog/post/nulis-writing-prompts-e58092f).",
                         "children": []
                     }
                 ]
@@ -118,7 +118,7 @@
     "updatedAt": "2017-05-18T06:37:13.387Z",
     "createdAt": "2017-05-14T01:50:49.445Z",
     "saved": false,
-    "source": "Online",
+    "source": "Template",
     "scroll": true,
     "showCardConfig": false
 }
