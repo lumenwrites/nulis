@@ -1,0 +1,99 @@
+{
+    "_id": "590a31dd348beb446dd319d4",
+    "name": "Story",
+    "source":"Template",    	    
+    "cards": {
+        "id": "root",
+        "children": [
+            {
+                "id": "0",
+                "content": "# Worldbuilding",
+                "children": [
+                    {
+                        "id": "4-3233z0y",
+                        "content": "# Premise\nGeneral idea of the world of your story.",
+                        "children": [
+                            {
+                                "id": "5-me43z47",
+                                "content": "# Physical. Social/Cultural.",
+                                "children": []
+                            },
+                            {
+                                "id": "6-9p53z3k",
+                                "content": "# Magic system. \nWhat if. Rules and limitations.",
+                                "children": []
+                            },
+                            {
+                                "id": "7-sz63zsh",
+                                "content": "# Artifacts/spells/superpowers",
+                                "children": []
+                            },
+                            {
+                                "id": "8-dp73zg3",
+                                "content": "# Settings\nDifferent locations in your world.",
+                                "children": []
+                            }
+                        ]
+                    }
+                ],
+                "parent_id": "root"
+            },
+            {
+                "id": "2-ub13z6o",
+                "content": "# Characters",
+                "children": [
+                    {
+                        "id": "9-fx83zae",
+                        "content": "**Character Name**\nBrief description.",
+                        "children": [
+                            {
+                                "id": "10-vt93z9d",
+                                "content": "Character Details",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "3-5a23zzl",
+                "content": "# Plot outline\nGenereal idea of what is going to happen in your story.",
+                "children": [
+                    {
+                        "id": "11-8ka3z1l",
+                        "content": "# Chapter/Episode 1\nEpisode Description (tagline).\n\n## Act 1 - Setup\nA story:\nB story:\n## Act 2 - Escalate\nA story:\nB story:\n## Act 3 - Resolve\nA story:\nB story:",
+                        "children": [
+                            {
+                                "id": "12-99b3ztf",
+                                "content": "# Scene 1\nSetting\nDescription\nAction\nDialogue\n>< Conflict\n+/- Change of value",
+                                "children": []
+                            },
+                            {
+                                "id": "13-9ac3zv1",
+                                "content": "# Scene 2\n....",
+                                "children": []
+                            },
+                            {
+                                "id": "14-idd3zm1",
+                                "content": "",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "15-sq030yp",
+                        "content": "**Episode concepts**\nAdd more cards here to outline the rest of your chapters or episodes for this season.",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "__v": 0,
+    "author": "raymestalez3@gmail.com",
+    "editing": true,
+    "modified": false,
+    "activeCard": "0",
+    "updatedAt": null,
+    "createdAt": null
+}

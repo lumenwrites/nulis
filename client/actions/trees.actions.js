@@ -70,7 +70,7 @@ export function updateTree(tree) {
 	axios.post(tree_url, tree, config)
 	     .then(response => {
 		 /* console.log("Updated a tree in db.");*/
-		 var tree = response.data.name;
+		 var tree = response.data;
 		 dispatch({
 		     type: 'UPDATED_TREE',
 		     payload: {name:tree.name}

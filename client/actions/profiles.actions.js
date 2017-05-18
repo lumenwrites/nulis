@@ -140,7 +140,7 @@ export function updateWordcount(today) {
 	axios.post(`${API_URL}/update-wordcount`, today, config)
 	     .then(response => {
 		 /* Wordcount updated */
-		 console.log(response.data.message);
+		 /* console.log(response.data.message);*/
 	     });
     }
 }

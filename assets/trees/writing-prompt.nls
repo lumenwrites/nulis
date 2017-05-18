@@ -1,20 +1,9 @@
 {
     "slug": "",
-    "name": "Story Template",
+    "name": "Prompt",
     "cards": {
         "id": "root",
         "children": [
-            {
-                "id": "18-w1536fd",
-                "content": "# About\nThis is a story template that will guide you through the process of writing your story. Start with the cards in the first column, and move from left to right, answering questions, replacing this template's text with the details about your story.\n",
-                "children": [
-                    {
-                        "id": "19-rd93673",
-                        "content": "- Learn more about the fundamentals of writing and story structure [here](https://nulis.io/blog/post/Story-kj1098i).\n- Learn more about how to use Nulis [here](https://nulis.io/about)\n- Learn how to use Nulis to practice the craft of writing, develop good writing habits, and quckly move forward on your path to mastery [here]().",
-                        "children": []
-                    }
-                ]
-            },
             {
                 "id": "2-qv036lw",
                 "content": "# Story Premise\n(Tagline, \"What if?\", or a Writing Prompt.)\nDescribe the basic idea of your story in a couple of sentences.",
@@ -25,7 +14,7 @@
                         "children": [
                             {
                                 "id": "14-37036wd",
-                                "content": "Ask questions, then answer them.\nList the things you need to figure out, then solve them.\n\nIf you get stuck - answer with the most obvious, cliche answer or a trope. Often it will be enough, and it allows you to move further without hitting the writing block. \n\nIf you want to do better - create a list of 5 alternative options, sort them in order of awesomeness, and pick the best one. This will help you to never get stuck in a paradox of choice, unable to decide on the perfect solution.\n\nYour first goal is to complete the rough draft as fast as possible, get it done. Then you can make a list of things you would like to fix and improve, and do a second pass.",
+                                "content": "Ask questions, then answer them.\nList the things you need to figure out, then solve them.\n\nIf you get stuck - answer with the most obvious, cliche answer or a trope. Often it will be enough, and it allows you to move further without hitting the writing block. \n\nIf you want to do better - create a list of 5 alternative options, sort them in order of awesomeness, and pick the best one. This will help you to never get stuck in a paradox of choice, unable to decide on the perfect solution.",
                                 "children": []
                             }
                         ]
@@ -36,7 +25,7 @@
                         "children": [
                             {
                                 "id": "15-4j136c9",
-                                "content": "# Character's name\n- Personality trope and main character traits.\n- Profession - what is he really good at?\n- Physical attributes - Age/Gender/Looks.\n- Life's goals and dreams - what is he passionate about?\n- Past - what past events have shaped him?\n- What are his quirks? What is his deep dark secret?\n- What are his relationships to other characters?\n- What is his inner conflict? What is his biggest fear? What flaw does he need to overcome?",
+                                "content": "# Character's name\n- Personality trope and main character traits.\n- Profession - what is he really good at?\n- Physical attributes - Age/Gender/Looks.\n- Life's goals and dreams - what is he passionate about?\n- Past - what past events have shaped him?\n- What are his quirks? What is his deep dark secret?\n- What are his relationships to other characters?",
                                 "children": []
                             }
                         ]
@@ -55,19 +44,19 @@
                     {
                         "id": "16-7u236wq",
                         "content": "# [ ] Scene Title #A-Story\nThis is the place to write a more detailed, \nscene by scene outline of the story. Use bulletpoints to briefly describe what this scene needs to convey.\n\n- Action - what needs to happen at this plot point?\n- Setting - where is this happening?\n- Dialogue - main talking points.\n- Infodump goal - what reader learns about the world/characters?\n- Objectives - what does each character want?\n- Conflict - what/who prevents them from getting it?\n- Change in value - what has changed as a result of this event? Is the character closer or farther away from his goal?",
-                        "children": [
-                            {
-                                "id": "18-rs436qw",
-                                "content": "Here you write out the scene. You already have all the information, and know what's going to happen.\n\nStraightforward description of the events that communicates the story is often enough to be good. Try to keep it simple, vivid, concise. Make it concrete(show don't tell).\n\nIf you get stuck - determine why, ask a question - what information do you need to know to move forward, and then figure out.\n\nVisualise the events in your mind for good descriptions,\nGet into character's heads for dialogue and motivation,\nTry improv and discovery writing to organically develop more cool ideas.\n\nAlways feel free to go back to the cards above to modify modify your world/characters or tweak the plot outline - it is infinitely flexible, you can always change your mind or add more ideas.",
-                                "children": []
-                            }
-                        ],
+                        "children": [],
                         "color": "#0079BF"
                     },
                     {
                         "id": "7-rv5361r",
                         "content": "# [ ] Setup\nIntroduce the reader to the world, characters, and their relationships.\n\nHook reader's interest, ask the question that sparks curiosity, convey why this story is awesome and is worth reading.",
-                        "children": []
+                        "children": [
+                            {
+                                "id": "11-ky936rb",
+                                "content": "Improv. In their heads. Straightforward description.",
+                                "children": []
+                            }
+                        ]
                     },
                     {
                         "id": "10-8p836m6",
@@ -92,16 +81,16 @@
                 ]
             },
             {
-                "id": "16-it636t2",
-                "content": "# Jokes\nIf you're writing comedy - this is the place to brainstorm your jokes.",
+                "id": "12-8la36g5",
+                "content": "Jokes",
                 "children": [
                     {
-                        "id": "17-o7736e5",
-                        "content": "# Absurd Associations\nPick an element of your scene(a physical attribute, an adjective, a broad description, assumption, pattern), and take it out of the context, extract it from the scene, look at it separately.\n\nConnect the Dots:\n- List other patterns or situations it belongs to. If you forget about the context, what is the most absurd situation you can imagine this element in? What is the weirdest, craziest association or reinterpretation you can come up with?",
+                        "id": "13-6zb36oy",
+                        "content": "Broad Description / Jump\n- Dot Connect. 2nd pattern that fits just extracted thing.\n  ++ 2nd association chain back.",
                         "children": [
                             {
-                                "id": "18-5f836ot",
-                                "content": "Write the joke.\n\nSetup expresses the first, \"normal\" interpretation of the element, misleads the reader, leads him to make the wrong assumptions.\n\nPunchline shatters these assumptions, reinterprets this element, switches the context, applies a different, unrelated, very wrong pattern to it.",
+                                "id": "14-ndc364g",
+                                "content": "Second > First / Between dotconnects\nWrite 500 char comics script.\n\n++ Can make even simple premise much better by adding more tags, specific absurd examples.",
                                 "children": []
                             }
                         ]
@@ -112,9 +101,9 @@
     },
     "author": "raymestalez@gmail.com",
     "__v": 0,
-    "editing": false,
+    "editing": true,
     "modified": false,
-    "activeCard": "18-w1536fd",
+    "activeCard": "6-ef4362b",
     "updatedAt": "2017-05-18T06:37:13.387Z",
     "createdAt": "2017-05-14T01:50:49.445Z",
     "saved": false,
