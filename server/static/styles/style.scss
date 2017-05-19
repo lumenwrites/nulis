@@ -163,7 +163,10 @@ header {
 	color: #f66303;
 	color: #008cba;
     }
-    .dropdown {
+    .cta .btn-default {
+	color: #333333;
+    }
+    .dropdown, .btn-default {
 	width: 120px;
 	padding: 12px;
 	float:right;

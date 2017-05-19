@@ -1734,7 +1734,8 @@ var cache = function cache(duration) {
 				};
 };
 
-server.get('/prompts', cache(5 * 60), function (req, res) {
+/* 5*60 */
+server.get('/prompts', cache(1), function (req, res) {
 				/* var prompts = JSON.parse(fs.readFileSync('./misc/hotprompts.json', 'utf8'));*/
 				(0, _hotprompts2.default)(function (prompts) {
 								res.render('prompts', { prompts: prompts, loc: 'prompts' });

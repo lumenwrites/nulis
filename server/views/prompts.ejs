@@ -13,21 +13,15 @@
 	      <div class="col-md-12 col-xs-12">
 
 		<article class="panel panel-default cta">
-		  <h1>Hot Prompts</h1>
-		  This tool allows you to discover prompts that are about to take off,
-		  but do not have many replies yet.
-		  Replying to these prompts maximizes the chances that your story will
-		  get more attention - it has a good chance of being visible on the front page, without getting buried under hundreds of other replies.
-		  <br/>
-		  <br/>
-		  <i class="fa fa-hashtag"></i> - Position of the prompt on the front page of /r/WritingPrompts
-		  <br/>
-		  <i class="fa fa-arrow-up"></i> - Number of upvotes
-		  <br/>
-		  <i class="fa fa-comments"></i> - Number of replies
-		  <br/>
-		  <i class="fa fa-clock-o"></i> - How long ago it has been posted (in hours)
-		  <br/><br/>
+		  <a class="btn btn-default dropdown"
+		     href="/top-writingprompts-authors">
+		    Top writers
+		  </a>
+		  <h1>Unnoticed Prompts</h1>
+Use this tool to discover great prompts that did not receive many replies.
+Replying to them will help your story to get more attention(it will not be buried
+		  under hundreds of other replies), and will make sure that prompts people want to read are not left unanswered.
+		  <%#
 		  <b>Check out other cool stuff that I've made:</b>
 		  <br/>
 		  - <a href="/top-writingprompts-authors/">
@@ -37,6 +31,7 @@
 		  - <a href="https://nulis.io/blog/post/nulis-writing-prompts-e58092f">Learn how to use Nulis and /r/WritingPrompts</a> to craft your stories, get awesome at writing fiction, and develop daily writing habits.
 		  <br/>		  
 		  - Use the <a href="https://nulis.io/template/Story">story writing template</a> to brainstorm and outline your stories.
+		  %>
 		</article>
 		<% include ./listprompts %>
 	      </div>
@@ -44,6 +39,14 @@
 	  </div>
 	</div>
       </div>
+
+		  <script>
+		    $(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		    });
+		  </script>      
+		  
+      
       <% include ./elements/footer %>
     </div>
   </body>
