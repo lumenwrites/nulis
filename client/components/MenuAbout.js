@@ -26,6 +26,12 @@ class MenuAbout extends Component {
 			    }}>
 			    About Nulis</a>
 		    </li>
+		    <li key="tutorial">
+			<a href="https://nulis.io/blog/post/story-writing-process-xh909iw"
+			   target="_blank">
+			    Tutorial
+			</a>
+		    </li>
 		    <li key="desktop" className={" "+(isDesktop ? "hidden":"")}>
 			<a onClick={()=>this.props.setShowModal("desktop")}>
 			    Nulis Desktop</a>
