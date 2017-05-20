@@ -4,20 +4,28 @@
     <%= prompts[i].title %>
   </a>
   <div class="post-footer">
-    <a data-toggle="tooltip" title="Position of the prompt on the front page of /r/WritingPrompts">
+    <a data-toggle="tooltip"
+       data-placement="right"
+       title="Position of the prompt on the front page of /r/WritingPrompts">
       <i class="fa fa-hashtag"></i>
       <%= prompts[i].position %>
     </a>
-    <a data-toggle="tooltip" title="Number of upvotes">
+    <a data-toggle="tooltip"
+       data-placement="right"       
+       title="Number of upvotes">
       <i class="fa fa-arrow-up"></i>
       <%= prompts[i].score %>
     </a>
-    <a data-toggle="tooltip" title="Number of replies">    
+    <a data-toggle="tooltip"
+       data-placement="right"       
+       title="Number of replies">    
       <i class="fa fa-comments"></i>
       <%= prompts[i].num_comments %>
     </a>
-    <a data-toggle="tooltip" data-html="true" title="How long ago it was posted
-						     <br/> (in hours)">
+    <a data-toggle="tooltip"
+       data-placement="right"       
+       data-html="true"
+       title="How long ago it was posted <br/> (in hours)">
       <i class="fa fa-clock-o"></i>
       <%= prompts[i].age %>
     </a>
