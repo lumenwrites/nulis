@@ -25,7 +25,7 @@ class ModalPayments extends Component {
 		</Modal.Header>
 		<div className="panel-modal">
 		    <p>You are currently using a free version of Nulis,
-			which allows you to create up to {this.props.user.cardLimit}
+			which allows you to create up to {this.props.user.cardLimit} 
 			cards per month.</p>
 		    <p>Upgrade your account to create unlimited cards (both online and on desktop), get priority support, early access to new features, and help me to make this project even more awesome!</p>
 		    <p>Because Nulis has launched only recently, as an early adopter

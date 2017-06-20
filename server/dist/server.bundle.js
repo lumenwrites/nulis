@@ -1498,6 +1498,7 @@ function paypal_payment(req, res) {
 				return next(err);
 			}
 			console.log("Purchase completed!  User's plan is set to unlimited.");
+			return res.status(200);
 		});
 	});
 }
