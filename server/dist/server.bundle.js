@@ -657,7 +657,7 @@ router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
 router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
 /* router.route('/purchase').post(requireAuth, profilesControllers.payment);*/
-router.route('/purchase').post(profilesControllers.paypal_payment);
+router.route('/purchase/:email').post(profilesControllers.paypal_payment);
 router.route('/update-wordcount').post(requireAuth, profilesControllers.updateWordcount);
 
 exports.default = router;
@@ -1484,7 +1484,7 @@ function paypal_payment(req, res) {
 	console.log("Paypal Payment!");
 	// Grabbing user email from paypal's payment notification
 	// (I've submitted email via form)
-	var email = req.body.email;
+	var email = req.params.email;
 	console.log("Paypal IPN " + JSON.stringify(req.body));
 	/* Just find a user by email and upgrade his plan. */
 	User.findOne({ email: email }, function (err, user) {

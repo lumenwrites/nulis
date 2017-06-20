@@ -21,7 +21,7 @@ router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
 router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
 /* router.route('/purchase').post(requireAuth, profilesControllers.payment);*/
-router.route('/purchase').post(profilesControllers.paypal_payment);
+router.route('/purchase/:email').post(profilesControllers.paypal_payment);
 router.route('/update-wordcount').post(requireAuth, profilesControllers.updateWordcount);
 
 

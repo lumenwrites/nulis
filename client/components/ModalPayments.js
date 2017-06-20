@@ -54,7 +54,9 @@ class ModalPayments extends Component {
 			    <input type="hidden" name="email"
 				   value={this.props.user.email}/>	   
 			    <input type="hidden" name="notify_url" 
-				   value="https://nulis.io/api/v1/purchase" />
+				   value={"https://nulis.io/api/v1/purchase/"
+					+ this.props.user.email
+					 } />
 			    <input type="hidden" name="hosted_button_id"
 				   value="EE9L2NEJYDY4W"/>
 			    <input type="button" type="submit"
