@@ -16,6 +16,7 @@ class ModalPayments extends Component {
 	this.props.setShowModal("thankyou");
     }
     render() {
+	const paymentNotification = "https://nulis.io/api/v1/purchase/" + this.props.user.email;
 	return (
 	    <Modal className="upgrade"
 		   show={this.props.showModal =="upgrade" ? true : false}
@@ -54,9 +55,12 @@ class ModalPayments extends Component {
 			    <input type="hidden" name="email"
 				   value={this.props.user.email}/>	   
 			    <input type="hidden" name="notify_url" 
-				   value={"https://nulis.io/api/v1/purchase/"
-					+ this.props.user.email
-					 } />
+				   value={paymentNotification} />
+			    <input type="hidden" name="rm" value="2" />
+			    <input type="hidden" name="return" 
+				   value={paymentNotification} />
+			    <input type="hidden" name="return_url" 
+				   value={paymentNotification} />
 			    <input type="hidden" name="hosted_button_id"
 				   value="EE9L2NEJYDY4W"/>
 			    <input type="button" type="submit"
