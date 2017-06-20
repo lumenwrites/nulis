@@ -15,6 +15,18 @@ class ModalPayments extends Component {
 	this.props.payment(token);
 	this.props.setShowModal("thankyou");
     }
+
+    paypalPayment(event) {
+	/* Before taking a person to paypal,
+	   send a dumb simple post request confirming the payment */
+	var email = this.props.user.email;
+	var paymentNotification = "https://nulis.io/api/v1/purchase/" + email;
+	/* var paymentNotification = "http://localhost:3000/api/v1/purchase/" + email;*/
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", paymentNotification, true);
+	xhr.send(null);
+    }
+    
     render() {
 	const paymentNotification = "https://nulis.io/api/v1/purchase/" + this.props.user.email;
 	return (
@@ -50,7 +62,8 @@ class ModalPayments extends Component {
 			<h2>Unlimited</h2>
 			<p>$20 one-time payment</p>
 			<form action="https://www.paypal.com/cgi-bin/webscr"
-			      method="post" target="_top">
+			      method="post" target="_top"
+			      onSubmit={this.paypalPayment.bind(this)}>
 			    <input type="hidden" name="cmd" value="_s-xclick"/>
 			    <input type="hidden" name="email"
 				   value={this.props.user.email}/>	   
