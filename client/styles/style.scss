@@ -158,15 +158,9 @@ textarea {
 .modal-body {
 }
 
+/* Wide modal
 .upgrade {
-    .modal-content{
-	max-height: 95vh;
-	overflow-y: auto;
-    }
-    .modal-content::-webkit-scrollbar { 
-	display: none; 
-    }
-    .modal-content {
+   .modal-content {
 	position: fixed;
 	right: auto;
 	bottom: auto;
@@ -176,9 +170,20 @@ textarea {
 	width: 90vw;
     }
 }
+*/
+.upgrade {
+    .modal-content{
+	max-height: 95vh;
+	overflow-y: auto;
+    }
+    .modal-content::-webkit-scrollbar { 
+	display: none; 
+    }
+}
 
 .panel-pricing {
-    width: calc(25% - 10px);
+    /* width: calc(25% - 10px); for 4 panels */
+    width: calc(50% - 10px);    
     float:left;
     margin:10px;
     margin-left:0;

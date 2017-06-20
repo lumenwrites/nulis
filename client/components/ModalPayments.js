@@ -25,10 +25,14 @@ class ModalPayments extends Component {
 		</Modal.Header>
 		<div className="panel-modal">
 		    <p>You are currently using a free version of Nulis,
-			which allows you to create up to {this.props.user.cardLimit} cards per month.</p>
+			which allows you to create up to {this.props.user.cardLimit}
+			cards per month.</p>
 		    <p>Upgrade your account to create unlimited cards (both online and on desktop), get priority support, early access to new features, and help me to make this project even more awesome!</p>
+		    <p>Because Nulis has launched only recently, as an early adopter
+			you can purchase the unlimited lifetime account for only 
+			<b> $20</b>.
+		    </p>
 		    <h1> Plans: </h1>
-
 		    <div className="panel-pricing">
 			<h2>Referral</h2>
 			<p>Get Nulis for free</p>
@@ -41,6 +45,26 @@ class ModalPayments extends Component {
 			<div className="clearfix"></div>			
 		    </div>
 
+		    <div className="panel-pricing">
+			<h2>Unlimited</h2>
+			<p>$20 one-time payment</p>
+			<form action="https://www.paypal.com/cgi-bin/webscr"
+			      method="post" target="_top">
+			    <input type="hidden" name="cmd" value="_s-xclick"/>
+			    <input type="hidden" name="email"
+				   value={this.props.user.email}/>	   
+			    <input type="hidden" name="notify_url" 
+				   value="https://nulis.io/purchase" />
+			    <input type="hidden" name="hosted_button_id"
+				   value="EE9L2NEJYDY4W"/>
+			    <input type="button" type="submit"
+				   className="btn right" value="Upgrade" />
+			</form>
+			<div className="clearfix"></div>			
+		    </div>
+
+   		    {/* Monthly plans with stripe  */}		    
+		    {/*  
 		    <div className="panel-pricing">
 			<h2>Monthly</h2>
 			<p> $5/month </p>
@@ -79,7 +103,7 @@ class ModalPayments extends Component {
 			</a>
 			<div className="clearfix"></div>			
 		    </div>
-		    
+		      */}
 		    {/*  		    
 			<div className="panel-pricing">
 			<h2>Nulis Unlimited</h2>

@@ -27,7 +27,7 @@ class MenuAbout extends Component {
 			    About Nulis</a>
 		    </li>
 		    <li key="tutorial">
-			<a href="https://nulis.io/blog/post/story-writing-process-xh909iw"
+			<a href="https://fictionhub.io/post/story-writing-process"
 			   target="_blank">
 			    Tutorial
 			</a>

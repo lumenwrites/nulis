@@ -656,7 +656,8 @@ router.route('/auth/join').post(profilesControllers.signup);
 router.route('/auth/login').post(requireSignin, profilesControllers.signin);
 
 router.route('/auth/profile').get(requireAuth, profilesControllers.getUser);
-router.route('/purchase').post(requireAuth, profilesControllers.payment);
+/* router.route('/purchase').post(requireAuth, profilesControllers.payment);*/
+router.route('/purchase').post(profilesControllers.paypal_payment);
 router.route('/update-wordcount').post(requireAuth, profilesControllers.updateWordcount);
 
 exports.default = router;
@@ -1277,6 +1278,7 @@ exports.signin = signin;
 exports.signup = signup;
 exports.getUser = getUser;
 exports.payment = payment;
+exports.paypal_payment = paypal_payment;
 exports.updateWordcount = updateWordcount;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -1411,6 +1413,7 @@ function getUser(req, res) {
 	});
 }
 
+/* Stripe payment */
 function payment(req, res) {
 	console.log("Payment!");
 
@@ -1474,6 +1477,29 @@ function payment(req, res) {
 			});
 		});
 	}
+}
+
+/* Paypal payment */
+function paypal_payment(req, res) {
+	console.log("Paypal Payment!");
+	// Grabbing user email from paypal's payment notification
+	// (I've submitted email via form)
+	var email = req.body.email;
+	console.log("Paypal IPN " + JSON.stringify(req.body));
+	/* Just find a user by email and upgrade his plan. */
+	User.findOne({ email: email }, function (err, user) {
+		if (err) {
+			return next(err);
+		}
+		/* Set user's plan to unlimited */
+		user.plan = "Lifetime Unlimited";
+		user.save(function (err, user) {
+			if (err) {
+				return next(err);
+			}
+			console.log("Purchase completed!  User's plan is set to unlimited.");
+		});
+	});
 }
 
 function updateWordcount(req, res) {

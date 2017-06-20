@@ -128,7 +128,7 @@ export function getUser(req, res) {
 
 
 
-
+/* Stripe payment */
 export function payment(req, res) {
     console.log("Payment!");
 
@@ -184,6 +184,25 @@ export function payment(req, res) {
 	    });
 	});
     }
+}
+
+/* Paypal payment */
+export function paypal_payment(req, res) {
+    console.log("Paypal Payment!");
+    // Grabbing user email from paypal's payment notification
+    // (I've submitted email via form)
+    var email = req.body.email;
+    console.log("Paypal IPN " + JSON.stringify(req.body));
+    /* Just find a user by email and upgrade his plan. */
+    User.findOne({email:email}, function(err, user){
+	if (err) { return next(err); }
+	/* Set user's plan to unlimited */
+	user.plan = "Lifetime Unlimited";
+	user.save(function(err, user){
+	    if (err) { return next(err); }
+	    console.log("Purchase completed!  User's plan is set to unlimited.")
+	});
+    });
 }
 
 
