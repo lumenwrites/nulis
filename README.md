@@ -10,6 +10,7 @@ I've built Nulis with Node/React/Redux, so that many developers would be able to
 
 This project is still very much work in progress, so feel free to suggest improvements or submit bug reports. You can open issues in this repo, or send me an email to **raymestalez@gmail.com**.
 
+If you are looking for web development or consulting services - come visit my latest project [Startup lab](https://startuplab.io/).
 
 
-
+If you have found this useful, you can also check out another big project I have open sourced recently - [a fiction publishing platform](https://github.com/raymestalez/fictionhub).
