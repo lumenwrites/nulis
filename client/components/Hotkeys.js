@@ -54,21 +54,33 @@ class Hotkeys extends Component {
 
 	/* Select */
 	Mousetrap(document.body).bind(['ctrl+j', 'ctrl+down'], ()=>{
-	    this.props.selectCard('down');
-	    return false;
+	    var editingNow = this.props.tree.editing;
+	    if (!editingNow) {
+	        this.props.selectCard('down');
+	        return false;
+	    }
 	});
 
 	Mousetrap(document.body).bind(['ctrl+k','ctrl+up'], ()=>{
-	    this.props.selectCard('up');
-	    return false;
+	    var editingNow = this.props.tree.editing;
+	    if (!editingNow) {
+	        this.props.selectCard('up');
+	        return false;
+	    }
 	});
 	Mousetrap(document.body).bind(['ctrl+h', 'ctrl+left'], ()=>{
-	    this.props.selectCard('left');
-	    return false;
+	    var editingNow = this.props.tree.editing;
+	    if (!editingNow) {
+	        this.props.selectCard('left');
+	        return false;
+	    }
 	});
 	Mousetrap(document.body).bind(['ctrl+l', 'ctrl+right'], ()=>{
-	    this.props.selectCard('right');
-	    return false;
+	    var editingNow = this.props.tree.editing;
+	    if (!editingNow) {
+	        this.props.selectCard('right');
+	        return false;
+	    }
 	});
 	/* Create */
 	Mousetrap(document.body).bind(['ctrl+shift+l', 'ctrl+shift+right'], ()=>{
